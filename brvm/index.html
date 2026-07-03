@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>BRVM Radar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar" aria-label="Navigation principale">
+    <a class="brand-mark" href="#" aria-label="BRVM Radar">BR</a>
+    <nav class="sidebar-nav" aria-label="Sections">
+      <button class="sidebar-icon is-active" type="button" aria-label="Dashboard" title="Dashboard">R</button>
+      <button class="sidebar-icon" type="button" aria-label="Screening" title="Screening">S</button>
+      <button class="sidebar-icon" type="button" aria-label="Pipeline" title="Pipeline">P</button>
+      <button class="sidebar-icon" type="button" aria-label="Actualites" title="Actualites">A</button>
+    </nav>
+    <button class="sidebar-icon sidebar-settings" type="button" aria-label="Parametres" title="Parametres">O</button>
+  </aside>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="title-stack">
+        <h1>BRVM Radar</h1>
+        <span>Outil de decision</span>
+      </div>
+      <label class="search-box" for="global-search">
+        <span class="search-icon">Q</span>
+        <input id="global-search" type="search" placeholder="Rechercher une societe..." autocomplete="off">
+      </label>
+      <div class="topbar-meta">
+        <span id="analysis-date">Analyse 2026-05-27</span>
+        <span class="live-pill"><span class="live-dot"></span><span id="updated-at">Maj 14h32</span></span>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Theme visuel">T</button>
+    </header>
+
+    <section class="control-bar" aria-label="Filtres et vues">
+      <div class="signal-chips" id="signal-filters" aria-label="Filtre signal">
+        <button class="chip is-active" type="button" data-signal="all">Tous</button>
+        <button class="chip signal-achat_fort" type="button" data-signal="achat_fort">Achat Fort</button>
+        <button class="chip signal-achat" type="button" data-signal="achat">Achat</button>
+        <button class="chip signal-neutre" type="button" data-signal="neutre">Neutre</button>
+        <button class="chip signal-vente" type="button" data-signal="vente">Vente</button>
+        <button class="chip signal-vente_forte" type="button" data-signal="vente_forte">Vente Forte</button>
+      </div>
+      <label class="select-wrap" for="sector-filter">
+        <span>Secteur</span>
+        <select id="sector-filter">
+          <option value="all">Tous</option>
+        </select>
+      </label>
+      <label class="range-wrap" for="score-filter">
+        <span>Score min</span>
+        <input id="score-filter" type="range" min="0" max="100" value="0">
+        <strong id="score-value">0</strong>
+      </label>
+      <nav class="tabs" aria-label="Vues radar">
+        <button class="tab-button is-active" type="button" data-tab="scoring">Scoring</button>
+        <button class="tab-button" type="button" data-tab="prix">Prix</button>
+        <button class="tab-button" type="button" data-tab="fondamentaux">Fondamentaux</button>
+        <button class="tab-button" type="button" data-tab="actualites">Actualites</button>
+        <button class="tab-button" type="button" data-tab="pipeline">Pipeline</button>
+      </nav>
+    </section>
+
+    <main class="main-content">
+      <section id="kpi-grid" class="kpi-grid" aria-label="Indicateurs principaux"></section>
+      <section class="main-grid">
+        <aside id="chart-column" class="chart-column" aria-label="Graphiques et syntheses"></aside>
+        <section id="primary-panel" class="primary-panel" aria-label="Table principale"></section>
+      </section>
+      <section id="tab-content" class="tab-content" aria-live="polite"></section>
+      <div id="empty-state" class="empty-state" hidden>
+        <strong>Aucun resultat</strong>
+        <span>Les filtres actifs ne retournent aucune societe.</span>
+      </div>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="data.runtime.js"></script>
+  <script src="live-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
