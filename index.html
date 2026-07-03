@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Terminal</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0A0A0C;
+    --surface:   #121215;
+    --surface-2: #17171B;
+    --border:    #24242A;
+    --border-hi: #33333B;
+    --text:      #E7E7EA;
+    --text-2:    #8A8A93;
+    --text-3:    #5C5C64;
+    --accent:    #F5A623;
+    --accent-dim: rgba(245, 166, 35, 0.12);
+    --danger:    #E16A7C;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Inter, Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  /* ─── PIN gate ──────────────────────────────────────────── */
+  #gate {
+    position: fixed; inset: 0; z-index: 100;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 18px;
+  }
+  #gate.hidden { display: none; }
+  #gate .brand {
+    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-3);
+  }
+  #gate input {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-size: 28px; letter-spacing: 14px;
+    text-align: center; width: 200px; padding: 14px 10px;
+    border-radius: 6px; font-family: "IBM Plex Mono", monospace;
+  }
+  #gate input:focus { outline: none; border-color: var(--accent); }
+  #gate .error { color: var(--danger); font-size: 12px; height: 14px; }
+
+  /* ─── Shell ─────────────────────────────────────────────── */
+  #shell { display: flex; height: 100vh; }
+  #shell.hidden { display: none; }
+
+  #sidebar {
+    width: 220px; flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+  }
+
+  #sidebar .logo {
+    padding: 18px 16px; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text); border-bottom: 1px solid var(--border);
+  }
+  #sidebar .logo span { color: var(--accent); }
+
+  #nav { flex: 1; padding: 10px 0; overflow-y: auto; }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; cursor: pointer;
+    color: var(--text-2); font-size: 13px; font-weight: 500;
+    border-left: 2px solid transparent;
+  }
+  .nav-item:hover { color: var(--text); background: var(--surface-2); }
+  .nav-item.active {
+    color: var(--text); background: var(--accent-dim);
+    border-left-color: var(--accent);
+  }
+  .nav-item .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-3); flex-shrink: 0;
+  }
+  .nav-item.active .dot { background: var(--accent); }
+
+  #sidebar .foot {
+    padding: 12px 16px; font-size: 10px; color: var(--text-3);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ─── Content ───────────────────────────────────────────── */
+  #content { flex: 1; position: relative; background: var(--bg); }
+  #content iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    border: none; background: #fff;
+  }
+  #content .placeholder {
+    position: absolute; inset: 0; display: flex;
+    align-items: center; justify-content: center;
+    color: var(--text-3); font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="brand">N&nbsp;&nbsp;Terminal</div>
+  <input id="pin-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off">
+  <div class="error" id="pin-error"></div>
+</div>
+
+<div id="shell" class="hidden">
+  <div id="sidebar">
+    <div class="logo"><span>N</span>&nbsp;Terminal</div>
+    <div id="nav"></div>
+    <div class="foot">Privé — David</div>
+  </div>
+  <div id="content">
+    <div class="placeholder">Choisis un dashboard à gauche</div>
+  </div>
+</div>
+
+<script>
+  // ── Config : liste des dashboards ────────────────────────
+  // Pour ajouter un dashboard plus tard : ajouter une ligne ici.
+  const DASHBOARDS = [
+    { name: "Daily",  url: "https://light-lab701.github.io/daily-marches/" },
+    { name: "Weekly", url: "https://light-lab701.github.io/daily-marches/weekly/" },
+  ];
+
+  // ── PIN gate ──────────────────────────────────────────────
+  // Hash SHA-256 du code à 4 chiffres (jamais stocké en clair ici).
+  const PIN_HASH = "5fc81d2cb64968db6cae7122a7f003afa088268a703db44297e4ccf63848b023";
+  const UNLOCK_KEY = "terminal_unlocked_v1";
+
+  async function sha256(text) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  function showShell() {
+    document.getElementById("gate").classList.add("hidden");
+    document.getElementById("shell").classList.remove("hidden");
+    initNav();
+  }
+
+  const pinInput = document.getElementById("pin-input");
+  const pinError = document.getElementById("pin-error");
+
+  if (localStorage.getItem(UNLOCK_KEY) === "1") {
+    showShell();
+  } else {
+    pinInput.focus();
+  }
+
+  pinInput.addEventListener("input", async () => {
+    if (pinInput.value.length !== 4) return;
+    const hash = await sha256(pinInput.value);
+    if (hash === PIN_HASH) {
+      localStorage.setItem(UNLOCK_KEY, "1");
+      showShell();
+    } else {
+      pinError.textContent = "Code incorrect";
+      pinInput.value = "";
+    }
+  });
+
+  // ── Sidebar / iframe switching ───────────────────────────
+  function initNav() {
+    const nav = document.getElementById("nav");
+    const content = document.getElementById("content");
+    nav.innerHTML = "";
+
+    DASHBOARDS.forEach((d, i) => {
+      const item = document.createElement("div");
+      item.className = "nav-item";
+      item.innerHTML = `<span class="dot"></span>${d.name}`;
+      item.addEventListener("click", () => selectDashboard(i));
+      nav.appendChild(item);
+    });
+
+    function selectDashboard(i) {
+      [...nav.children].forEach((el, idx) => el.classList.toggle("active", idx === i));
+      content.innerHTML = `<iframe src="${DASHBOARDS[i].url}" title="${DASHBOARDS[i].name}"></iframe>`;
+    }
+
+    if (DASHBOARDS.length > 0) selectDashboard(0);
+  }
+</script>
+
+</body>
+</html>
