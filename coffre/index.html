@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Dashboard — État du coffre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060b14;--card:#0d1827;--card-h:#122033;--border:#192d46;--text:#dde5f0;--muted:#4f6580;--dim:#8199b5;--up:#22c55e;--down:#ef4444;--accent:#3b82f6;--gold:#f59e0b;--purple:#8b5cf6;--teal:#14b8a6;--rose:#f43f5e;--orange:#f97316;--indigo:#6366f1;--t:.2s ease}
+body{font-family:'Quicksand',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);padding:32px 28px;min-height:100vh;font-weight:500}
+h1{font-family:'Fira Code',monospace;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-.02em}
+.subtitle{color:var(--muted);font-size:.85rem;margin-bottom:36px;font-weight:500}
+h2{font-family:'Fira Code',monospace;font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h4{font-family:'Fira Code',monospace;font-size:.82rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:10px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 16px;border-top:3px solid transparent;transition:background var(--t),border-color var(--t),box-shadow var(--t)}
+.card:hover{background:var(--card-h);border-color:rgba(59,130,246,.25);box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.card-value{font-family:'Fira Code',monospace;font-size:2rem;font-weight:700;line-height:1;letter-spacing:-.04em}
+.card-label{font-size:.68rem;color:var(--muted);margin-top:6px;font-weight:700;text-transform:uppercase;letter-spacing:.07em}
+.card.purple{border-top-color:var(--purple)}.card.purple .card-value{color:var(--purple)}
+.card.blue{border-top-color:var(--accent)}.card.blue .card-value{color:var(--accent)}
+.card.green{border-top-color:var(--up)}.card.green .card-value{color:var(--up)}
+.card.orange{border-top-color:var(--orange)}.card.orange .card-value{color:var(--orange)}
+.card.rose{border-top-color:var(--rose)}.card.rose .card-value{color:var(--rose)}
+.card.teal{border-top-color:var(--teal)}.card.teal .card-value{color:var(--teal)}
+.card.slate{border-top-color:var(--dim)}.card.slate .card-value{color:var(--dim)}
+.card.indigo{border-top-color:var(--indigo)}.card.indigo .card-value{color:var(--indigo)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+.section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px}
+.project-card{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(25,45,70,.7)}
+.project-card:last-child{border-bottom:none}
+.project-name{font-weight:600;color:var(--text);font-size:.88rem}
+.project-meta{font-size:.72rem;color:var(--muted);margin-top:2px}
+.task-group{margin-bottom:16px}
+.task-group ul{list-style:none}
+.task-group li{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px solid rgba(25,45,70,.5);font-size:.85rem;color:var(--dim);line-height:1.4}
+.task-group li::before{content:"○";color:var(--purple);font-size:.7rem;flex-shrink:0;margin-top:2px}
+.task-count{font-size:.68rem;background:rgba(139,92,246,.12);color:var(--purple);padding:2px 7px;border-radius:12px;font-weight:700;vertical-align:middle;margin-left:6px;border:1px solid rgba(139,92,246,.2)}
+details{margin-top:4px}
+details summary{font-size:.76rem;color:var(--purple);cursor:pointer;padding:4px 0;list-style:none;font-weight:600}
+details summary::before{content:"▸ ";font-size:.7rem}
+details[open] summary::before{content:"▾ "}
+details ul{margin-top:4px;padding-left:0}
+.books{display:flex;gap:8px;flex-wrap:wrap}
+.badge{padding:5px 14px;border-radius:20px;font-size:.76rem;font-weight:700;letter-spacing:.02em;font-family:'Fira Code',monospace}
+.badge.en-cours{background:rgba(59,130,246,.1);color:#7fb3f5;border:1px solid rgba(59,130,246,.2)}
+.badge.a-lire{background:rgba(245,158,11,.1);color:var(--gold);border:1px solid rgba(245,158,11,.2)}
+.badge.termine{background:rgba(34,197,94,.1);color:#86efac;border:1px solid rgba(34,197,94,.2)}
+.planning-section{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.planning-section{grid-template-columns:1fr}}
+.planning-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
+.planning-block h3{font-family:'Fira Code',monospace;font-size:.75rem;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.planning-block.trainents h3{color:var(--rose)}
+.planning-block.accumulent h3{color:var(--orange)}
+.planning-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(25,45,70,.5)}
+.planning-item:last-child{border-bottom:none}
+.planning-name{font-size:.84rem;color:var(--text);font-weight:600}
+.planning-badge{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;margin-left:8px}
+.planning-badge.stale{background:rgba(244,63,94,.1);color:var(--rose);border:1px solid rgba(244,63,94,.2)}
+.planning-badge.tasks{background:rgba(249,115,22,.1);color:var(--orange);border:1px solid rgba(249,115,22,.2)}
+.accordion{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.accordion-summary{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;list-style:none;font-weight:700;font-size:.88rem;color:var(--text);transition:background var(--t)}
+.accordion-summary:hover{background:var(--card-h)}
+.accordion-summary::marker,.accordion-summary::-webkit-details-marker{display:none}
+.accordion-summary::before{content:"▸ ";font-size:.7rem;color:var(--muted);margin-right:6px;transition:transform var(--t)}
+details[open] .accordion-summary::before{content:"▾ "}
+.accordion-count{font-family:'Fira Code',monospace;font-size:.72rem;background:rgba(59,130,246,.1);color:var(--accent);padding:2px 8px;border-radius:10px;border:1px solid rgba(59,130,246,.2)}
+.accordion-body{padding:0 18px 14px}
+.footer{margin-top:40px;text-align:center;font-size:.7rem;color:var(--muted);padding-top:16px;border-top:1px solid var(--border)}
+.empty{color:var(--muted);font-style:italic;font-size:.87rem}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<h1>Dashboard — État du coffre</h1>
+<p class="subtitle">Mis à jour le Wednesday 24 june 2026 à 10:02</p>
+
+<h2>📊 Stats du coffre — Notes</h2>
+<div class="grid">
+  <div class="card indigo"><div class="card-value">25</div><div class="card-label">Total</div></div>
+  <div class="card blue"><div class="card-value">1</div><div class="card-label">Articles</div></div>
+  <div class="card teal"><div class="card-value">2</div><div class="card-label">Concepts</div></div>
+  <div class="card green"><div class="card-value">4</div><div class="card-label">Livres</div></div>
+  <div class="card rose"><div class="card-value">9</div><div class="card-label">Écrits</div></div>
+  <div class="card orange"><div class="card-value">3</div><div class="card-label">Podcasts</div></div>
+  <div class="card purple"><div class="card-value">6</div><div class="card-label">Vidéos</div></div>
+</div>
+
+<h2>🚀 Stats projets</h2>
+<div class="grid">
+  <div class="card slate"><div class="card-value">24</div><div class="card-label">Total</div></div>
+  <div class="card green"><div class="card-value">20</div><div class="card-label">Actifs</div></div>
+  <div class="card blue"><div class="card-value">4</div><div class="card-label">Terminés</div></div>
+  <div class="card rose"><div class="card-value">42</div><div class="card-label">Tâches</div></div>
+</div>
+
+<div class="two-col">
+  <div>
+    <h2>🚀 Projets actifs</h2>
+    <details class="accordion" open>
+  <summary class="accordion-summary">
+    <span>Projets actifs</span>
+    <span class="accordion-count">20</span>
+  </summary>
+  <div class="accordion-body"><div class="project-card"><div><div class="project-name">gestionnaire-patrimoine</div><div class="project-meta">— · modifié le 07/05/2026</div></div></div><div class="project-card"><div><div class="project-name">assistant-veille-ia</div><div class="project-meta">— · modifié le 18/05/2026</div></div></div><div class="project-card"><div><div class="project-name">n8n-test</div><div class="project-meta">— · modifié le 20/05/2026</div></div></div><div class="project-card"><div><div class="project-name">youtube-perso</div><div class="project-meta">— · modifié le 20/05/2026</div></div></div><div class="project-card"><div><div class="project-name">forex-news-bot</div><div class="project-meta">— · modifié le 21/05/2026</div></div></div><div class="project-card"><div><div class="project-name">tolia</div><div class="project-meta">— · modifié le 30/05/2026</div></div></div><div class="project-card"><div><div class="project-name">amelioration-continue</div><div class="project-meta">— · modifié le 31/05/2026</div></div></div><div class="project-card"><div><div class="project-name">Contexte utilisateur — Session deep Opus</div><div class="project-meta">Moi · modifié le 03/06/2026</div></div></div><div class="project-card"><div><div class="project-name">gold-setup-apotre</div><div class="project-meta">— · modifié le 04/06/2026</div></div></div><div class="project-card"><div><div class="project-name">indicateurs</div><div class="project-meta">— · modifié le 04/06/2026</div></div></div><div class="project-card"><div><div class="project-name">test-indicateur-tradingview-directement</div><div class="project-meta">— · modifié le 04/06/2026</div></div></div><div class="project-card"><div><div class="project-name">creation-indicateur-nico-dev</div><div class="project-meta">— · modifié le 04/06/2026</div></div></div><div class="project-card"><div><div class="project-name">mtf-ichimoku</div><div class="project-meta">— · modifié le 04/06/2026</div></div></div><div class="project-card"><div><div class="project-name">bots-trading</div><div class="project-meta">— · modifié le 04/06/2026</div></div></div><div class="project-card"><div><div class="project-name">brvm-decisions</div><div class="project-meta">— · modifié le 06/06/2026</div></div></div><div class="project-card"><div><div class="project-name">journal-trading</div><div class="project-meta">— · modifié le 06/06/2026</div></div></div><div class="project-card"><div><div class="project-name">strategie-trading-dow-smc</div><div class="project-meta">— · modifié le 09/06/2026</div></div></div><div class="project-card"><div><div class="project-name">Automatisation décisions BRVM</div><div class="project-meta">Investisseur · modifié le 17/06/2026</div></div></div><div class="project-card"><div><div class="project-name">Automatisation stratégie Forex Knight</div><div class="project-meta">Trader · modifié le 17/06/2026</div></div></div><div class="project-card"><div><div class="project-name">Dashboard Obsidian — État du coffre</div><div class="project-meta">Aucune · modifié le 24/06/2026</div></div></div></div>
+</details>
+    <h2>📚 Bibliothèque</h2>
+    <div class="section">
+      <div class="books">
+        <span class="badge en-cours">📖 0 en cours</span>
+        <span class="badge a-lire">🗂️ 3 à lire</span>
+        <span class="badge termine">✅ 1 terminés</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2>✅ Tâches à faire</h2>
+    <div class="section"><div class="task-group"><h4>Amelioration Continue <span class="task-count">5</span></h4><ul><li>Valider visuellement les BOS sur Gold M15 après le fix width=2</li><li>Phase B : Task 5 cascade auto swing/scalp M15</li></ul><details><summary>+3 tâches</summary><ul><li>Phase B : Task 6 SPIKE `request.security` sur OB M15 (critères pass/fail binaires)</li><li>Phase B : Task 7 POI + liquidité sourcés M15</li><li>Phase B : Task 8 doc</li></ul></details></div><div class="task-group"><h4>Assistant Veille Ia</h4><ul><li>Tester le nouveau prompt en conditions réelles (`python main.py`)</li></ul></div><div class="task-group"><h4>Bots Trading</h4><ul><li>Récupérer le contenu exact des skill.md depuis la vidéo → affiner les 3 agents</li><li>Choisir le premier indicateur à automatiser</li><li>Lancer le workflow Concepteur → Architecte → Développeur sur le premier bot</li></ul></div><div class="task-group"><h4>Creation Indicateur Nico Dev <span class="task-count">4</span></h4><ul><li>Interroger NotebookLM sur les questions ouvertes (stratégie pattern, MQL5 bridge Redis, sizing lots)</li><li>Phase 1 : installer MetaTrader 5 + compte démo Blueberry Market</li></ul><details><summary>+2 tâches</summary><ul><li>Installer Redis (WSL ou Docker sur Windows)</li><li>Créer un script de monitoring temps réel du canal Telegram (nouveaux messages)</li></ul></details></div><div class="task-group"><h4>Forex News Bot</h4><ul><li>Surveiller : l'anti-bot peut se durcir à nouveau → réflexe = rafraîchir les en-têtes / UA (noté dans lessons.md).</li><li>Pas de garde anti-doublon (singleton) dans le bot : risque de double instance si lancement manuel pendant que le bot tourne. À ajouter si ça pose souci un jour.</li></ul></div><div class="task-group"><h4>Global</h4><ul><li>Vérifier que les charts de clôture/post-trade s'affichent correctement sur un prochain trade</li></ul></div><div class="task-group"><h4>Gold Setup Apotre</h4><ul><li>Extraire les patterns réutilisables — prioriser la mécanique Renko ATR fixe du biais HTF.</li><li>Décider si on creuse un bloc en particulier pour améliorer/construire notre propre indicateur.</li></ul></div><div class="task-group"><h4>Journal Trading</h4><ul><li>Tester le pipeline réparé sur la séance live de demain (22-06) : vérifier 1 seule page par trade, qui se remplit.</li><li>Si clôture partielle : vérifier N pages, pas de doublon.</li><li>Optionnel un jour : graphiques sur les morceaux TP2..TPN via sync_notion.</li></ul></div></div>
+  </div>
+</div>
+
+<h2>🗓️ Planification semaine</h2>
+<div class="planning-section">
+  <div class="planning-block trainents">
+    <h3>⏳ Ces projets traînent</h3>
+    <div class="planning-item"><span class="planning-name">gestionnaire-patrimoine</span><span class="planning-badge stale">47j sans activité</span></div><div class="planning-item"><span class="planning-name">assistant-veille-ia</span><span class="planning-badge stale">36j sans activité</span></div><div class="planning-item"><span class="planning-name">n8n-test</span><span class="planning-badge stale">35j sans activité</span></div>
+  </div>
+  <div class="planning-block accumulent">
+    <h3>📌 Ces projets s'accumulent</h3>
+    <div class="planning-item"><span class="planning-name">Amelioration Continue</span><span class="planning-badge tasks">5 tâches</span></div><div class="planning-item"><span class="planning-name">Creation Indicateur Nico Dev</span><span class="planning-badge tasks">4 tâches</span></div><div class="planning-item"><span class="planning-name">Mtf Ichimoku</span><span class="planning-badge tasks">4 tâches</span></div>
+  </div>
+</div>
+
+<div class="footer">Généré par Python · Second Brain · Wednesday 24 june 2026 10:02</div>
+</body>
+</html>
