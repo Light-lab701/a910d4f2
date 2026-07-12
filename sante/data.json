@@ -1,5 +1,5 @@
 {
-    "genere_le":  "2026-07-12 08:51:50",
+    "genere_le":  "2026-07-12 09:32:37",
     "nb_ko":  3,
     "taches":  [
                    {
@@ -45,12 +45,12 @@
                    {
                        "nom":  "JournalTrading_AutoRecord",
                        "type":  "quotidien",
-                       "etat":  "ko",
-                       "motif":  "arretee de force (kill ou limite de temps)",
+                       "etat":  "ok",
+                       "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-11 21:00",
+                       "dernier_run":  "2026-07-12 09:31",
                        "prochain_run":  "2026-07-12 12:00",
-                       "code":  "0x41306"
+                       "code":  "0x0"
                    },
                    {
                        "nom":  "SanteSysteme",
@@ -58,8 +58,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-07-12 08:51",
-                       "prochain_run":  "2026-07-12 21:15",
+                       "dernier_run":  "2026-07-12 09:31",
+                       "prochain_run":  "2026-07-12 12:00",
                        "code":  "0x41301"
                    },
                    {
@@ -78,8 +78,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 08:51",
-                       "prochain_run":  "2026-07-12 08:52",
+                       "dernier_run":  "2026-07-12 09:32",
+                       "prochain_run":  "2026-07-12 09:33",
                        "code":  "0x0"
                    },
                    {
@@ -88,8 +88,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 08:49",
-                       "prochain_run":  "2026-07-12 08:51",
+                       "dernier_run":  "2026-07-12 09:31",
+                       "prochain_run":  "2026-07-12 09:33",
                        "code":  "0x0"
                    },
                    {
@@ -98,8 +98,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 08:50",
-                       "prochain_run":  "2026-07-12 08:55",
+                       "dernier_run":  "2026-07-12 09:30",
+                       "prochain_run":  "2026-07-12 09:35",
                        "code":  "0x0"
                    },
                    {
@@ -108,8 +108,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 08:30",
-                       "prochain_run":  "2026-07-12 09:00",
+                       "dernier_run":  "2026-07-12 09:30",
+                       "prochain_run":  "2026-07-12 10:00",
                        "code":  "0x0"
                    },
                    {
@@ -118,8 +118,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 08:30",
-                       "prochain_run":  "2026-07-12 09:00",
+                       "dernier_run":  "2026-07-12 09:30",
+                       "prochain_run":  "2026-07-12 10:00",
                        "code":  "0x0"
                    },
                    {
@@ -195,8 +195,8 @@
                    {
                        "nom":  "JournalTrading_MonthlyStats",
                        "type":  "mensuel",
-                       "etat":  "off",
-                       "motif":  "tache desactivee",
+                       "etat":  "ko",
+                       "motif":  "en retard : dernier run il y a 972 h (max 780 h)",
                        "detail":  "",
                        "dernier_run":  "2026-06-01 21:30",
                        "prochain_run":  "2026-08-01 07:00",
