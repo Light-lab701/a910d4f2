@@ -1,6 +1,6 @@
 {
-    "genere_le":  "2026-07-12 13:18:30",
-    "nb_ko":  4,
+    "genere_le":  "2026-07-12 13:42:38",
+    "nb_ko":  3,
     "taches":  [
                    {
                        "nom":  "SyncProjetsObsidian",
@@ -10,7 +10,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-11 19:00",
                        "prochain_run":  "2026-07-12 19:00",
-                       "code":  "0xC000013A"
+                       "code":  "0xC000013A",
+                       "note":  "Réparée le 12-07 (chantier 2) — le rouge vient du dernier passage automatique d\u0027avant la réparation. Verdict ce soir 19h : si le passage réussit, la tuile repasse verte toute seule.",
+                       "note_conduite":  "attendre"
                    },
                    {
                        "nom":  "BackupSyncr",
@@ -20,7 +22,9 @@
                        "detail":  "397.7 Mo en 332 s",
                        "dernier_run":  "2026-07-12 05:18",
                        "prochain_run":  "2026-07-12 20:30",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "DailyMarches",
@@ -30,7 +34,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-12 08:30",
                        "prochain_run":  "2026-07-13 08:30",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "Majordome-DeepDream",
@@ -40,7 +46,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-11 23:55",
                        "prochain_run":  "2026-07-12 23:55",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "JournalTrading_AutoRecord",
@@ -50,7 +58,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-12 12:00",
                        "prochain_run":  "2026-07-12 19:00",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "SanteSysteme",
@@ -58,29 +68,35 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-07-12 13:17",
+                       "dernier_run":  "2026-07-12 13:42",
                        "prochain_run":  "2026-07-12 21:15",
-                       "code":  "0x41301"
+                       "code":  "0x41301",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "Majordome",
                        "type":  "permanent",
-                       "etat":  "ko",
-                       "motif":  "session tombee (etat Ready)",
-                       "detail":  "",
-                       "dernier_run":  "2026-07-12 08:22",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "session active",
+                       "dernier_run":  "2026-07-12 11:23",
                        "prochain_run":  "2026-07-12 23:45",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "Majordome-Watchdog",
                        "type":  "continu",
                        "etat":  "ok",
                        "motif":  "",
-                       "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-07-12 13:18",
-                       "prochain_run":  "2026-07-12 13:19",
-                       "code":  "0x41301"
+                       "detail":  "",
+                       "dernier_run":  "2026-07-12 13:42",
+                       "prochain_run":  "2026-07-12 13:43",
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "JournalTrading_SLSnapshot",
@@ -88,9 +104,11 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:17",
-                       "prochain_run":  "2026-07-12 13:19",
-                       "code":  "0x0"
+                       "dernier_run":  "2026-07-12 13:41",
+                       "prochain_run":  "2026-07-12 13:43",
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "BRVMTelegramBotPolling",
@@ -98,9 +116,11 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:15",
-                       "prochain_run":  "2026-07-12 13:20",
-                       "code":  "0x0"
+                       "dernier_run":  "2026-07-12 13:40",
+                       "prochain_run":  "2026-07-12 13:45",
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "InboxTelegram",
@@ -108,9 +128,11 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:00",
-                       "prochain_run":  "2026-07-12 13:30",
-                       "code":  "0x0"
+                       "dernier_run":  "2026-07-12 13:30",
+                       "prochain_run":  "2026-07-12 14:00",
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "PriereTelegram",
@@ -118,9 +140,11 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:00",
-                       "prochain_run":  "2026-07-12 13:30",
-                       "code":  "0x0"
+                       "dernier_run":  "2026-07-12 13:30",
+                       "prochain_run":  "2026-07-12 14:00",
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "WeeklyAmis",
@@ -130,7 +154,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-06 08:30",
                        "prochain_run":  "2026-07-13 08:30",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "WeeklyAngela",
@@ -140,7 +166,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-08 08:00",
                        "prochain_run":  "2026-07-15 08:00",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "WeeklyMarches",
@@ -150,7 +178,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-05 20:00",
                        "prochain_run":  "2026-07-12 20:00",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "WeeklyNewsletter",
@@ -160,7 +190,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-11 23:00",
                        "prochain_run":  "2026-07-18 23:00",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "NexPipsWatch",
@@ -170,7 +202,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-06 09:00",
                        "prochain_run":  "2026-07-13 09:00",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "Dashboard Newsletters",
@@ -180,7 +214,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-11 09:00",
                        "prochain_run":  "2026-07-18 09:00",
-                       "code":  "0x1"
+                       "code":  "0x1",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "WeeklyCoherence",
@@ -190,7 +226,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-12 13:16",
                        "prochain_run":  "2026-07-12 19:00",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "CleanupTraderReports",
@@ -200,7 +238,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-07-12 12:50",
                        "prochain_run":  "2026-07-13 07:50",
-                       "code":  "0x0"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    },
                    {
                        "nom":  "JournalTrading_MonthlyStats",
@@ -210,7 +250,9 @@
                        "detail":  "",
                        "dernier_run":  "2026-06-01 21:30",
                        "prochain_run":  "2026-08-01 07:00",
-                       "code":  "0x1"
+                       "code":  "0x1",
+                       "note":  "KO connu et assumé — les stats de juin seront rattrapées plus tard, quand MT5 sera ouvert (décision David du 12-07, ticket T42). La tuile restera rouge d\u0027ici là.",
+                       "note_conduite":  "attendre"
                    }
                ]
 }
