@@ -91,6 +91,47 @@
   .tile .runs span b { color: var(--text); font-weight: 500; }
 
   #vide { color: var(--text-3); font-size: 13px; margin-top: 30px; }
+
+  /* Tuiles cliquables → panneau de détail */
+  .tile { cursor: pointer; transition: border-color .15s; }
+  .tile:hover { border-color: var(--border-hi); }
+
+  #voile {
+    position: fixed; inset: 0; background: rgba(0,0,0,.65);
+    display: none; z-index: 50;
+  }
+  #panneau {
+    position: fixed; z-index: 51; display: none;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(560px, calc(100vw - 32px)); max-height: 84vh; overflow-y: auto;
+    background: var(--surface-2); border: 1px solid var(--border-hi);
+    border-radius: 10px; padding: 20px 22px 24px;
+  }
+  .p-top { display: flex; align-items: center; gap: 10px; }
+  .p-label { font-size: 15px; font-weight: 600; flex: 1; }
+  .p-fermer {
+    color: var(--text-3); cursor: pointer; font-size: 16px;
+    padding: 2px 6px; border-radius: 4px; flex-shrink: 0;
+  }
+  .p-fermer:hover { color: var(--text); background: var(--surface); }
+  .p-desc { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+  .p-titre {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-3); margin: 18px 0 6px;
+  }
+  .p-texte { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .p-motif { color: var(--ko); }
+  .p-note {
+    font-size: 13px; line-height: 1.5; color: var(--text);
+    background: var(--warn-dim); border-left: 3px solid var(--accent);
+    padding: 10px 12px; border-radius: 6px;
+  }
+  .p-conduite {
+    display: inline-block; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.5px; padding: 6px 12px; border-radius: 14px; margin-bottom: 8px;
+  }
+  .p-conduite.agir     { color: var(--ko); background: var(--ko-dim); border: 1px solid var(--ko); }
+  .p-conduite.attendre { color: var(--ok); background: var(--ok-dim); border: 1px solid var(--ok); }
 </style>
 </head>
 <body>
@@ -103,6 +144,8 @@
 <div id="banner"></div>
 <div id="sections"></div>
 <div id="vide" style="display:none">Aucune donnée.</div>
+<div id="voile"></div>
+<div id="panneau"></div>
 
 <script>
   // Libellés d'affichage — la source des états est data.json (généré par
@@ -131,6 +174,147 @@
     "JournalTrading_MonthlyStats": ["Journal — stats mensuelles",  "1ᵉʳ du mois"]
   };
 
+  // Guide par tâche, affiché dans le panneau de détail (clic sur une tuile) :
+  // quoi  = ce que fait la tâche, en une phrase
+  // siKo  = pourquoi c'est KO en général (2 lignes max, langage simple)
+  // faire = la conduite à tenir pour redevenir vert
+  // mode  = "agir" (c'est à toi de faire quelque chose) ou "attendre" (ça se résout seul)
+  // La « note du moment » (sante-notes.json, via data.json) prime sur ce guide quand elle existe.
+  const GUIDE = {
+    "SyncProjetsObsidian": {
+      quoi: "Recopie chaque soir à 19h les fiches projets dans le vault Obsidian, puis rafraîchit les graphes.",
+      siKo: "En général : le PC était éteint à 19h, ou la sync a été interrompue en cours de route.",
+      faire: "Attendre ce soir 19h — elle se rattrape toute seule. Rouge 2 soirs de suite ? Demander à Elvis ou Claude de lire le log de sync du jour.",
+      mode: "attendre"
+    },
+    "BackupSyncr": {
+      quoi: "Archive chiffrée quotidienne de tous les projets vers pCloud (20h30).",
+      siKo: "PC éteint à 20h30, disque pCloud (P:) déconnecté, ou erreur d'archivage. Une alerte Telegram a normalement été envoyée.",
+      faire: "Vérifier que le disque P: s'ouvre dans l'Explorateur, puis demander à Elvis ou Claude de relancer la sauvegarde. La dernière archive reste valable en attendant.",
+      mode: "agir"
+    },
+    "DailyMarches": {
+      quoi: "Le rapport marchés de 8h30, envoyé sur Telegram (+ version web).",
+      siKo: "PC éteint à 8h30, ou source de données injoignable ce matin-là.",
+      faire: "Demander à Elvis : « relance le daily marchés » — sans risque, le rapport part aussitôt.",
+      mode: "agir"
+    },
+    "Majordome-DeepDream": {
+      quoi: "La consolidation nocturne de la mémoire d'Elvis (le digest reçu le matin).",
+      siKo: "Neuf fois sur dix : le PC était éteint à 23h55. Pas de digest ce matin-là, rien n'est perdu.",
+      faire: "Rien à faire : ça repart tout seul la nuit prochaine si le PC reste allumé.",
+      mode: "attendre"
+    },
+    "JournalTrading_AutoRecord": {
+      quoi: "Enregistre tes trades MT5 dans le journal (12h et 21h).",
+      siKo: "MT5 était fermé au moment du passage, ou le passage a dépassé son temps limite.",
+      faire: "Si tu as tradé aujourd'hui : ouvrir MT5 puis demander à Elvis de relancer AutoRecord. Sinon, le prochain passage suffira.",
+      mode: "agir"
+    },
+    "SanteSysteme": {
+      quoi: "Le collecteur qui alimente cette page (7h40, 12h, 21h15).",
+      siKo: "S'il est KO, cette page ne reflète plus la réalité — c'est la panne à traiter en premier.",
+      faire: "Demander à Elvis ou Claude : « relance la tâche SanteSysteme et lis son log ».",
+      mode: "agir"
+    },
+    "Majordome": {
+      quoi: "La session Claude permanente d'Elvis, reliée à Telegram.",
+      siKo: "Le processus est tombé ET son gardien (le watchdog, qui le relance chaque minute) n'y arrive pas — situation anormale.",
+      faire: "Envoie un message à Elvis sur Telegram. S'il répond : fausse alerte, signale-le à Claude. Muet après 2-3 min : lancer la tâche « Majordome » depuis le PC, ou redémarrer le PC.",
+      mode: "agir"
+    },
+    "Majordome-Watchdog": {
+      quoi: "Le gardien d'Elvis : vérifie chaque minute qu'il tourne, et le relance sinon.",
+      siKo: "S'il ne tourne plus, plus personne ne relance Elvis automatiquement en cas de chute.",
+      faire: "Demander à Claude (session PC) de vérifier la tâche Majordome-Watchdog dans le Planificateur.",
+      mode: "agir"
+    },
+    "JournalTrading_SLSnapshot": {
+      quoi: "Relevé de tes stop-loss toutes les 2 minutes quand MT5 est ouvert.",
+      siKo: "Depuis le 12-07, MT5 fermé ne provoque plus d'erreur — un KO ici est une vraie panne du script.",
+      faire: "Demander à Elvis ou Claude de lire le log SL Snapshot. Pas urgent si tu ne trades pas aujourd'hui.",
+      mode: "agir"
+    },
+    "BRVMTelegramBotPolling": {
+      quoi: "Le bot Telegram BRVM (il répond à tes commandes bourse).",
+      siKo: "Le bot est tombé : il ne répond plus à tes commandes BRVM sur Telegram.",
+      faire: "Demander à Elvis ou Claude de relancer la tâche BRVMTelegramBotPolling.",
+      mode: "agir"
+    },
+    "InboxTelegram": {
+      quoi: "Ramène ce que tu envoies au bot Inbox vers ton inbox Obsidian (toutes les 30 min).",
+      siKo: "Tes captures Telegram ne sont plus rangées dans l'inbox — elles restent dans le chat, rien n'est perdu.",
+      faire: "Le retard se rattrape au passage suivant. Toujours rouge après 1 h ? Demander à Elvis de relancer la tâche.",
+      mode: "attendre"
+    },
+    "PriereTelegram": {
+      quoi: "Les rappels de prière sur Telegram (toutes les 30 min).",
+      siKo: "Le rappel n'est pas parti à l'heure prévue.",
+      faire: "Demander à Elvis ou Claude de relancer la tâche PriereTelegram.",
+      mode: "agir"
+    },
+    "WeeklyAmis": {
+      quoi: "Le brief hebdo de suivi de tes proches (lundi 8h30).",
+      siKo: "Passage raté (PC éteint lundi matin) ou erreur du script : le brief n'est pas parti.",
+      faire: "Demander à Elvis : « lance le weekly amis » — il part aussitôt. Sinon, il reviendra lundi prochain.",
+      mode: "agir"
+    },
+    "WeeklyAngela": {
+      quoi: "L'audit hebdo du vault par Angela (mercredi 8h) : projets qui dorment, inbox, anniversaires.",
+      siKo: "Passage raté (PC éteint mercredi matin) ou erreur du script : le rapport n'est pas parti.",
+      faire: "Demander à Elvis : « lance le rapport Angela » — il part aussitôt. Sinon, il reviendra mercredi prochain.",
+      mode: "agir"
+    },
+    "WeeklyMarches": {
+      quoi: "Le rapport hebdo Marchés & Macro (samedi 20h) : Gold + Forex majeurs.",
+      siKo: "Passage raté (PC éteint samedi soir) ou erreur du script : le rapport n'est pas parti.",
+      faire: "Demander à Elvis : « lance le weekly marchés » — il part aussitôt. Sinon, il reviendra samedi prochain.",
+      mode: "agir"
+    },
+    "WeeklyNewsletter": {
+      quoi: "La newsletter hebdo (samedi 23h), sauvegardée dans Obsidian et publiée en ligne.",
+      siKo: "Passage raté (PC éteint samedi soir) ou erreur du script : la newsletter n'est pas sortie.",
+      faire: "Demander à Elvis ou Claude de relancer la tâche WeeklyNewsletter.",
+      mode: "agir"
+    },
+    "NexPipsWatch": {
+      quoi: "La veille NexPips du lundi 9h.",
+      siKo: "Passage raté (PC éteint lundi matin) ou erreur du script.",
+      faire: "Demander à Elvis ou Claude de relancer la tâche NexPipsWatch — sinon, elle reviendra lundi prochain.",
+      mode: "agir"
+    },
+    "Dashboard Newsletters": {
+      quoi: "Met à jour le dashboard de lecture des newsletters Outlook (samedi 9h).",
+      siKo: "Erreur du script ou boîte mail injoignable : le dashboard affiche les données de la semaine d'avant.",
+      faire: "Demander à Elvis ou Claude : « répare le dashboard newsletters » (lire l'erreur, relancer la tâche).",
+      mode: "agir"
+    },
+    "WeeklyCoherence": {
+      quoi: "Le vérificateur de cohérence du système (dimanche 19h) : désyncs de règles, tables de projets, statuts.",
+      siKo: "Passage raté (PC éteint dimanche soir) ou erreur du vérificateur : pas de rapport cette semaine.",
+      faire: "Demander à Elvis ou Claude de relancer la tâche WeeklyCoherence — le rapport part aussitôt.",
+      mode: "agir"
+    },
+    "CleanupTraderReports": {
+      quoi: "Le ménage quotidien de 7h50 : purge des vieux rapports Trader et des logs de plus de 14 jours.",
+      siKo: "Erreur pendant la purge — rien de grave à court terme, les fichiers s'accumulent juste un peu.",
+      faire: "Pas urgent. À l'occasion, demander à Claude de lancer la tâche et lire son retour.",
+      mode: "agir"
+    },
+    "JournalTrading_MonthlyStats": {
+      quoi: "Le bilan mensuel de ton trading, calculé le 1ᵉʳ du mois au soir (MT5 doit être ouvert).",
+      siKo: "MT5 était fermé le soir du 1ᵉʳ (le script réessaie jusqu'à 23h30 puis abandonne), ou le mois n'a pas été rattrapé.",
+      faire: "Ouvrir MT5, puis demander à Elvis : « lance le rattrapage des stats du mois ».",
+      mode: "agir"
+    }
+  };
+  const GUIDE_DEFAUT = {
+    quoi: "Tâche planifiée suivie par le collecteur santé.",
+    siKo: "Le dernier passage a échoué ou n'a pas eu lieu à l'heure prévue.",
+    faire: "Demander à Elvis ou Claude de regarder cette tâche (lire le log, relancer).",
+    mode: "agir"
+  };
+
   const GROUPES = [
     ["permanent", "Session permanente"],
     ["quotidien", "Quotidiennes"],
@@ -157,6 +341,63 @@
 
   function esc(s) {
     return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+  }
+
+  // --- Panneau de détail (clic sur une tuile) -------------------------------
+  const voile = document.getElementById("voile");
+  const panneau = document.getElementById("panneau");
+  function fermerPanneau() { voile.style.display = "none"; panneau.style.display = "none"; }
+  voile.addEventListener("click", fermerPanneau);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") fermerPanneau(); });
+
+  function ouvrirPanneau(t) {
+    const [label, desc] = LABELS[t.nom] || [t.nom, ""];
+    const g = GUIDE[t.nom] || GUIDE_DEFAUT;
+    const ko = t.etat === "ko";
+
+    let html =
+      '<div class="p-top"><span class="p-label">' + esc(label) + '</span>' +
+      '<span class="badge ' + t.etat + '">' + (BADGES[t.etat] || t.etat) + '</span>' +
+      '<span class="p-fermer" id="p-fermer" title="Fermer">✕</span></div>' +
+      (desc ? '<div class="p-desc">' + esc(desc) + '</div>' : "");
+
+    html += '<div class="p-titre">Ce que fait cette tâche</div>' +
+            '<div class="p-texte">' + esc(g.quoi) + '</div>';
+
+    if (ko) {
+      html += '<div class="p-titre">Le problème</div>' +
+              '<div class="p-texte p-motif">' + esc(t.motif || "échec du dernier passage") +
+              (t.dernier_run ? " · dernier passage " + esc(relatif(t.dernier_run)) : "") + '</div>';
+      html += '<div class="p-titre">En clair</div>' +
+              '<div class="p-texte">' + esc(g.siKo) + '</div>';
+    }
+
+    if (t.note) {
+      html += '<div class="p-titre">Note du moment</div>' +
+              '<div class="p-note">' + esc(t.note) + '</div>';
+    }
+
+    if (ko) {
+      // La conduite portée par la note du moment prime sur le guide général.
+      const agir = (t.note_conduite || g.mode) === "agir";
+      html += '<div class="p-titre">Que faire ?</div>' +
+              '<div class="p-conduite ' + (agir ? "agir" : "attendre") + '">' +
+              (agir ? "🔧 À toi d'agir" : "⏳ Rien à faire — ça se résout tout seul") + '</div>' +
+              (t.note_conduite && t.note_conduite !== g.mode
+                ? ""
+                : '<div class="p-texte">' + esc(g.faire) + '</div>');
+    } else if (t.etat === "ok") {
+      html += '<div class="p-titre">Que faire ?</div>' +
+              '<div class="p-conduite attendre">✅ Rien — tout va bien</div>';
+    } else if (t.etat === "off") {
+      html += '<div class="p-titre">Que faire ?</div>' +
+              '<div class="p-texte">Cette tâche est volontairement coupée dans le Planificateur. Rien à faire, sauf si tu veux la réactiver.</div>';
+    }
+
+    panneau.innerHTML = html;
+    document.getElementById("p-fermer").addEventListener("click", fermerPanneau);
+    voile.style.display = "block";
+    panneau.style.display = "block";
   }
 
   async function charger() {
@@ -260,6 +501,7 @@
           '<div class="runs"><span>Dernier : <b>' + esc(relatif(t.dernier_run)) + "</b></span>" +
           (t.prochain_run ? "<span>Prochain : <b>" + esc(relatif(t.prochain_run)) + "</b></span>" : "") +
           "</div>";
+        tile.addEventListener("click", () => ouvrirPanneau(t));
         grid.appendChild(tile);
       });
       sections.appendChild(grid);
