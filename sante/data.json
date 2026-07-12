@@ -1,6 +1,6 @@
 {
-    "genere_le":  "2026-07-12 08:38:42",
-    "nb_ko":  4,
+    "genere_le":  "2026-07-12 08:41:16",
+    "nb_ko":  3,
     "taches":  [
                    {
                        "nom":  "SyncProjetsObsidian",
@@ -55,12 +55,12 @@
                    {
                        "nom":  "SanteSysteme",
                        "type":  "quotidien",
-                       "etat":  "ko",
-                       "motif":  "tache introuvable dans le Planificateur",
-                       "detail":  "",
-                       "dernier_run":  "",
-                       "prochain_run":  "",
-                       "code":  ""
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "en cours d\u0027execution",
+                       "dernier_run":  "2026-07-12 08:40",
+                       "prochain_run":  "2026-07-12 21:15",
+                       "code":  "0x41301"
                    },
                    {
                        "nom":  "Majordome",
@@ -78,8 +78,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 08:38",
-                       "prochain_run":  "2026-07-12 08:39",
+                       "dernier_run":  "2026-07-12 08:40",
+                       "prochain_run":  "2026-07-12 08:41",
                        "code":  "0x0"
                    },
                    {
@@ -88,8 +88,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 08:37",
-                       "prochain_run":  "2026-07-12 08:39",
+                       "dernier_run":  "2026-07-12 08:39",
+                       "prochain_run":  "2026-07-12 08:41",
                        "code":  "0x0"
                    },
                    {
@@ -98,8 +98,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 08:35",
-                       "prochain_run":  "2026-07-12 08:40",
+                       "dernier_run":  "2026-07-12 08:40",
+                       "prochain_run":  "2026-07-12 08:45",
                        "code":  "0x0"
                    },
                    {
