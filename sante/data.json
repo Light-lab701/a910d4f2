@@ -1,5 +1,5 @@
 {
-    "genere_le":  "2026-07-12 12:00:30",
+    "genere_le":  "2026-07-12 12:58:53",
     "nb_ko":  4,
     "taches":  [
                    {
@@ -47,10 +47,10 @@
                        "type":  "quotidien",
                        "etat":  "ok",
                        "motif":  "",
-                       "detail":  "en cours d\u0027execution",
+                       "detail":  "",
                        "dernier_run":  "2026-07-12 12:00",
                        "prochain_run":  "2026-07-12 19:00",
-                       "code":  "0x41301"
+                       "code":  "0x0"
                    },
                    {
                        "nom":  "SanteSysteme",
@@ -58,7 +58,7 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-07-12 12:00",
+                       "dernier_run":  "2026-07-12 12:58",
                        "prochain_run":  "2026-07-12 21:15",
                        "code":  "0x41301"
                    },
@@ -78,8 +78,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 12:00",
-                       "prochain_run":  "2026-07-12 12:01",
+                       "dernier_run":  "2026-07-12 12:58",
+                       "prochain_run":  "2026-07-12 12:59",
                        "code":  "0x0"
                    },
                    {
@@ -88,8 +88,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 11:59",
-                       "prochain_run":  "2026-07-12 12:01",
+                       "dernier_run":  "2026-07-12 12:57",
+                       "prochain_run":  "2026-07-12 12:59",
                        "code":  "0x0"
                    },
                    {
@@ -98,8 +98,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 12:00",
-                       "prochain_run":  "2026-07-12 12:05",
+                       "dernier_run":  "2026-07-12 12:55",
+                       "prochain_run":  "2026-07-12 13:00",
                        "code":  "0x0"
                    },
                    {
@@ -108,8 +108,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 12:00",
-                       "prochain_run":  "2026-07-12 12:30",
+                       "dernier_run":  "2026-07-12 12:30",
+                       "prochain_run":  "2026-07-12 13:00",
                        "code":  "0x0"
                    },
                    {
@@ -118,8 +118,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 12:00",
-                       "prochain_run":  "2026-07-12 12:30",
+                       "dernier_run":  "2026-07-12 12:30",
+                       "prochain_run":  "2026-07-12 13:00",
                        "code":  "0x0"
                    },
                    {
@@ -184,12 +184,12 @@
                    },
                    {
                        "nom":  "CleanupTraderReports",
-                       "type":  "mensuel",
+                       "type":  "quotidien",
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-01 07:50",
-                       "prochain_run":  "2026-08-01 07:50",
+                       "dernier_run":  "2026-07-12 12:50",
+                       "prochain_run":  "2026-07-13 07:50",
                        "code":  "0x0"
                    },
                    {
