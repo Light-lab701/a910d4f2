@@ -1,0 +1,206 @@
+{
+    "genere_le":  "2026-07-12 08:38:42",
+    "nb_ko":  4,
+    "taches":  [
+                   {
+                       "nom":  "SyncProjetsObsidian",
+                       "type":  "quotidien",
+                       "etat":  "ko",
+                       "motif":  "code de sortie 0xC000013A",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-11 19:00",
+                       "prochain_run":  "2026-07-12 19:00",
+                       "code":  "0xC000013A"
+                   },
+                   {
+                       "nom":  "BackupSyncr",
+                       "type":  "quotidien",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "397.7 Mo en 332 s",
+                       "dernier_run":  "2026-07-12 05:18",
+                       "prochain_run":  "2026-07-12 20:30",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "DailyMarches",
+                       "type":  "quotidien",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-12 08:30",
+                       "prochain_run":  "2026-07-13 08:30",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "Majordome-DeepDream",
+                       "type":  "quotidien",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-11 23:55",
+                       "prochain_run":  "2026-07-12 23:55",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "JournalTrading_AutoRecord",
+                       "type":  "quotidien",
+                       "etat":  "ko",
+                       "motif":  "arretee de force (kill ou limite de temps)",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-11 21:00",
+                       "prochain_run":  "2026-07-12 12:00",
+                       "code":  "0x41306"
+                   },
+                   {
+                       "nom":  "SanteSysteme",
+                       "type":  "quotidien",
+                       "etat":  "ko",
+                       "motif":  "tache introuvable dans le Planificateur",
+                       "detail":  "",
+                       "dernier_run":  "",
+                       "prochain_run":  "",
+                       "code":  ""
+                   },
+                   {
+                       "nom":  "Majordome",
+                       "type":  "permanent",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "session active",
+                       "dernier_run":  "2026-07-12 08:22",
+                       "prochain_run":  "2026-07-12 23:45",
+                       "code":  "0x41301"
+                   },
+                   {
+                       "nom":  "Majordome-Watchdog",
+                       "type":  "continu",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-12 08:38",
+                       "prochain_run":  "2026-07-12 08:39",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "JournalTrading_SLSnapshot",
+                       "type":  "continu",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-12 08:37",
+                       "prochain_run":  "2026-07-12 08:39",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "BRVMTelegramBotPolling",
+                       "type":  "continu",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-12 08:35",
+                       "prochain_run":  "2026-07-12 08:40",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "InboxTelegram",
+                       "type":  "continu",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-12 08:30",
+                       "prochain_run":  "2026-07-12 09:00",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "PriereTelegram",
+                       "type":  "continu",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-12 08:30",
+                       "prochain_run":  "2026-07-12 09:00",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "WeeklyAmis",
+                       "type":  "hebdo",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-06 08:30",
+                       "prochain_run":  "2026-07-13 08:30",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "WeeklyAngela",
+                       "type":  "hebdo",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-08 08:00",
+                       "prochain_run":  "2026-07-15 08:00",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "WeeklyMarches",
+                       "type":  "hebdo",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-05 20:00",
+                       "prochain_run":  "2026-07-12 20:00",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "WeeklyNewsletter",
+                       "type":  "hebdo",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-11 23:00",
+                       "prochain_run":  "2026-07-18 23:00",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "NexPipsWatch",
+                       "type":  "hebdo",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-06 09:00",
+                       "prochain_run":  "2026-07-13 09:00",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "Dashboard Newsletters",
+                       "type":  "hebdo",
+                       "etat":  "ko",
+                       "motif":  "code de sortie 0x1",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-11 09:00",
+                       "prochain_run":  "2026-07-18 09:00",
+                       "code":  "0x1"
+                   },
+                   {
+                       "nom":  "CleanupTraderReports",
+                       "type":  "mensuel",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "",
+                       "dernier_run":  "2026-07-01 07:50",
+                       "prochain_run":  "2026-08-01 07:50",
+                       "code":  "0x0"
+                   },
+                   {
+                       "nom":  "JournalTrading_MonthlyStats",
+                       "type":  "mensuel",
+                       "etat":  "off",
+                       "motif":  "tache desactivee",
+                       "detail":  "",
+                       "dernier_run":  "2026-06-01 21:30",
+                       "prochain_run":  "2026-08-01 07:00",
+                       "code":  "0x1"
+                   }
+               ]
+}
