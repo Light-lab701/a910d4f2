@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Santé du système</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0A0A0C;
+    --surface:   #121215;
+    --surface-2: #17171B;
+    --border:    #24242A;
+    --border-hi: #33333B;
+    --text:      #E7E7EA;
+    --text-2:    #8A8A93;
+    --text-3:    #5C5C64;
+    --accent:    #F5A623;
+    --ok:        #3DD68C;
+    --ok-dim:    rgba(61, 214, 140, 0.10);
+    --ko:        #E16A7C;
+    --ko-dim:    rgba(225, 106, 124, 0.12);
+    --off:       #5C5C64;
+    --warn:      #F5A623;
+    --warn-dim:  rgba(245, 166, 35, 0.10);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Inter, Arial, sans-serif;
+    padding: 26px 30px 60px;
+  }
+
+  header { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 6px; }
+  h1 { font-size: 17px; letter-spacing: 2px; text-transform: uppercase; }
+  h1 span { color: var(--accent); }
+  #meta { font-size: 12px; color: var(--text-2); }
+  #resume { font-size: 12px; margin-bottom: 20px; color: var(--text-2); }
+  #resume b.ko { color: var(--ko); }
+  #resume b.ok { color: var(--ok); }
+
+  #banner {
+    display: none; margin: 0 0 20px;
+    background: var(--ko-dim); border: 1px solid var(--ko);
+    color: var(--ko); font-size: 13px; padding: 12px 14px; border-radius: 6px;
+  }
+
+  h2 {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-3); margin: 26px 0 10px;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+
+  .tile {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .tile.ok      { border-left: 3px solid var(--ok); }
+  .tile.ko      { border-left: 3px solid var(--ko); background: linear-gradient(var(--ko-dim), var(--ko-dim)), var(--surface); }
+  .tile.off     { border-left: 3px solid var(--off); opacity: 0.65; }
+  .tile.attente { border-left: 3px solid var(--warn); background: linear-gradient(var(--warn-dim), var(--warn-dim)), var(--surface); }
+
+  .tile .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .tile .label { font-size: 13px; font-weight: 600; }
+  .badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    padding: 2px 8px; border-radius: 10px; flex-shrink: 0;
+  }
+  .badge.ok      { color: var(--ok);   background: var(--ok-dim); }
+  .badge.ko      { color: var(--ko);   background: var(--ko-dim); }
+  .badge.off     { color: var(--off);  background: rgba(92,92,100,0.15); }
+  .badge.attente { color: var(--warn); background: var(--warn-dim); }
+
+  .tile .desc  { font-size: 11px; color: var(--text-3); }
+  .tile .motif { font-size: 12px; color: var(--ko); }
+  .tile .detail{ font-size: 11px; color: var(--text-2); }
+  .tile .runs  { font-size: 11px; color: var(--text-2); display: flex; gap: 12px; flex-wrap: wrap; }
+  .tile .runs span b { color: var(--text); font-weight: 500; }
+
+  #vide { color: var(--text-3); font-size: 13px; margin-top: 30px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>Santé</span> du système</h1>
+  <div id="meta">chargement…</div>
+</header>
+<div id="resume"></div>
+<div id="banner"></div>
+<div id="sections"></div>
+<div id="vide" style="display:none">Aucune donnée.</div>
+
+<script>
+  // Libellés d'affichage — la source des états est data.json (généré par
+  // _scripts/sante-systeme.ps1). Tâche absente de cette table → nom brut.
+  const LABELS = {
+    "SyncProjetsObsidian":         ["Sync coffre Obsidian",        "19h · projets → vault"],
+    "BackupSyncr":                 ["Sauvegarde chiffrée",         "20h30 · vers pCloud"],
+    "DailyMarches":                ["Daily Marchés",               "8h30 · rapport quotidien"],
+    "Majordome-DeepDream":         ["Deep Dream (mémoire)",        "23h55 · consolidation nocturne"],
+    "JournalTrading_AutoRecord":   ["Journal — AutoRecord",        "12h & 21h · enregistrement trades"],
+    "SanteSysteme":                ["Collecteur santé",            "7h40 & 21h15 · alimente cette page"],
+    "Majordome":                   ["Elvis (session permanente)",  "always-on · Telegram"],
+    "Majordome-Watchdog":          ["Watchdog Elvis",              "toutes les minutes"],
+    "JournalTrading_SLSnapshot":   ["Journal — SL Snapshot",       "toutes les 2 min"],
+    "BRVMTelegramBotPolling":      ["Bot BRVM Telegram",           "toutes les 5 min"],
+    "InboxTelegram":               ["Inbox Telegram",              "toutes les 30 min"],
+    "PriereTelegram":              ["Prière Telegram",             "toutes les 30 min"],
+    "WeeklyAmis":                  ["Weekly Amis",                 "lundi 8h30"],
+    "WeeklyAngela":                ["Weekly Angela",               "mercredi 8h"],
+    "WeeklyMarches":               ["Weekly Marchés",              "samedi 20h"],
+    "WeeklyNewsletter":            ["Weekly Newsletter",           "samedi 23h"],
+    "NexPipsWatch":                ["NexPips Watch",               "lundi 9h"],
+    "Dashboard Newsletters":       ["Dashboard Newsletters",       "samedi 9h"],
+    "CleanupTraderReports":        ["Nettoyage rapports trader",   "1ᵉʳ du mois"],
+    "JournalTrading_MonthlyStats": ["Journal — stats mensuelles",  "1ᵉʳ du mois"]
+  };
+
+  const GROUPES = [
+    ["permanent", "Session permanente"],
+    ["quotidien", "Quotidiennes"],
+    ["continu",   "En continu"],
+    ["hebdo",     "Hebdomadaires"],
+    ["mensuel",   "Mensuelles"]
+  ];
+
+  const BADGES = { ok: "OK", ko: "KO", off: "OFF", attente: "ATTENTE" };
+  const MAX_AGE_DONNEES_H = 26;
+
+  function relatif(s) {
+    if (!s) return "—";
+    const d = new Date(s.replace(" ", "T"));
+    if (isNaN(d)) return s;
+    const min = Math.round((Date.now() - d.getTime()) / 60000);
+    const abs = Math.abs(min);
+    let txt;
+    if (abs < 60) txt = abs + " min";
+    else if (abs < 48 * 60) txt = Math.round(abs / 60) + " h";
+    else txt = Math.round(abs / 1440) + " j";
+    return min >= 0 ? "il y a " + txt : "dans " + txt;
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+  }
+
+  async function charger() {
+    const meta = document.getElementById("meta");
+    const banner = document.getElementById("banner");
+    let data;
+    try {
+      const r = await fetch("data.json", { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      data = await r.json();
+    } catch (e) {
+      meta.textContent = "";
+      banner.style.display = "block";
+      banner.textContent = "Impossible de charger data.json (" + e.message + ") — le collecteur n'a peut-être jamais publié.";
+      return;
+    }
+
+    const genere = new Date(data.genere_le.replace(" ", "T"));
+    const ageH = (Date.now() - genere.getTime()) / 3600000;
+    meta.textContent = "Données du " + data.genere_le + " (" + relatif(data.genere_le) + ")";
+    if (ageH > MAX_AGE_DONNEES_H) {
+      banner.style.display = "block";
+      banner.textContent = "⚠ Données périmées (" + Math.round(ageH) + " h) — le collecteur SanteSysteme ne tourne plus. La réalité peut être pire que ce qui est affiché.";
+    }
+
+    const taches = data.taches || [];
+    const nbKo = taches.filter(t => t.etat === "ko").length;
+    const nbOk = taches.filter(t => t.etat === "ok").length;
+    document.getElementById("resume").innerHTML =
+      "<b class='ok'>" + nbOk + " OK</b> · <b class='ko'>" + nbKo + " KO</b> · " +
+      (taches.length - nbOk - nbKo) + " autres (off / en attente)";
+
+    const sections = document.getElementById("sections");
+    sections.innerHTML = "";
+    const poids = { ko: 0, attente: 1, ok: 2, off: 3 };
+
+    GROUPES.forEach(([type, titre]) => {
+      const liste = taches.filter(t => t.type === type)
+        .sort((a, b) => (poids[a.etat] ?? 9) - (poids[b.etat] ?? 9));
+      if (!liste.length) return;
+
+      const h = document.createElement("h2");
+      h.textContent = titre;
+      sections.appendChild(h);
+      const grid = document.createElement("div");
+      grid.className = "grid";
+
+      liste.forEach(t => {
+        const [label, desc] = LABELS[t.nom] || [t.nom, ""];
+        const tile = document.createElement("div");
+        tile.className = "tile " + t.etat;
+        tile.innerHTML =
+          '<div class="top"><span class="label">' + esc(label) + '</span>' +
+          '<span class="badge ' + t.etat + '">' + (BADGES[t.etat] || t.etat) + "</span></div>" +
+          (desc ? '<div class="desc">' + esc(desc) + "</div>" : "") +
+          (t.motif ? '<div class="motif">' + esc(t.motif) + "</div>" : "") +
+          (t.detail ? '<div class="detail">' + esc(t.detail) + "</div>" : "") +
+          '<div class="runs"><span>Dernier : <b>' + esc(relatif(t.dernier_run)) + "</b></span>" +
+          (t.prochain_run ? "<span>Prochain : <b>" + esc(relatif(t.prochain_run)) + "</b></span>" : "") +
+          "</div>";
+        grid.appendChild(tile);
+      });
+      sections.appendChild(grid);
+    });
+
+    if (!sections.children.length) document.getElementById("vide").style.display = "block";
+  }
+
+  charger();
+</script>
+
+</body>
+</html>
