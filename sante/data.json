@@ -1,5 +1,5 @@
 {
-    "genere_le":  "2026-07-12 13:52:14",
+    "genere_le":  "2026-07-12 14:03:06",
     "nb_ko":  2,
     "taches":  [
                    {
@@ -68,7 +68,7 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-07-12 13:51",
+                       "dernier_run":  "2026-07-12 14:02",
                        "prochain_run":  "2026-07-12 21:15",
                        "code":  "0x41301",
                        "note":  "",
@@ -92,8 +92,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:51",
-                       "prochain_run":  "2026-07-12 13:52",
+                       "dernier_run":  "2026-07-12 14:02",
+                       "prochain_run":  "2026-07-12 14:03",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -104,8 +104,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:51",
-                       "prochain_run":  "2026-07-12 13:53",
+                       "dernier_run":  "2026-07-12 14:01",
+                       "prochain_run":  "2026-07-12 14:03",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -116,8 +116,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:50",
-                       "prochain_run":  "2026-07-12 13:55",
+                       "dernier_run":  "2026-07-12 14:00",
+                       "prochain_run":  "2026-07-12 14:05",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -128,8 +128,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:30",
-                       "prochain_run":  "2026-07-12 14:00",
+                       "dernier_run":  "2026-07-12 14:00",
+                       "prochain_run":  "2026-07-12 14:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -140,8 +140,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-12 13:30",
-                       "prochain_run":  "2026-07-12 14:00",
+                       "dernier_run":  "2026-07-12 14:00",
+                       "prochain_run":  "2026-07-12 14:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -207,18 +207,6 @@
                        "note_conduite":  ""
                    },
                    {
-                       "nom":  "Dashboard Newsletters",
-                       "type":  "hebdo",
-                       "etat":  "off",
-                       "motif":  "tache desactivee",
-                       "detail":  "",
-                       "dernier_run":  "2026-07-11 09:00",
-                       "prochain_run":  "2026-07-18 09:00",
-                       "code":  "0x1",
-                       "note":  "Tâche désactivée le 12-07 : c\u0027était un vestige de la V1 (Gmail IMAP, jamais fonctionnelle — mot de passe jamais renseigné). Depuis le 04-07, les newsletters se font à la main via /newsletters (décision David : la session Outlook doit être connectée). Suppression définitive de la tâche : à valider par David.",
-                       "note_conduite":  "attendre"
-                   },
-                   {
                        "nom":  "WeeklyCoherence",
                        "type":  "hebdo",
                        "etat":  "ok",
@@ -246,7 +234,7 @@
                        "nom":  "JournalTrading_MonthlyStats",
                        "type":  "mensuel",
                        "etat":  "ko",
-                       "motif":  "en retard : dernier run il y a 976 h (max 780 h)",
+                       "motif":  "en retard : dernier run il y a 977 h (max 780 h)",
                        "detail":  "",
                        "dernier_run":  "2026-06-01 21:30",
                        "prochain_run":  "2026-08-01 07:00",
