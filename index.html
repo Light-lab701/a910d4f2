@@ -160,6 +160,7 @@
   // Hash SHA-256 du code à 4 chiffres (jamais stocké en clair ici).
   const PIN_HASH = "d83036ffb5b49a153bc391fd12b4a10df06bbb200f39fed97c331b03b6833ce7";
   const UNLOCK_KEY = "terminal_unlocked_v1";
+  const LAST_DASH_KEY = "hub_last_dashboard";
 
   async function sha256(text) {
     const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
@@ -218,9 +219,14 @@
     function selectDashboard(i) {
       [...nav.children].forEach((el, idx) => el.classList.toggle("active", idx === i));
       content.innerHTML = `<iframe src="${DASHBOARDS[i].url}" title="${DASHBOARDS[i].name}"></iframe>`;
+      localStorage.setItem(LAST_DASH_KEY, DASHBOARDS[i].name);
     }
 
-    if (DASHBOARDS.length > 0) selectDashboard(0);
+    // Réouvrir le dernier dashboard consulté (mémorisé par nom : robuste
+    // si le menu est réordonné) ; sinon le premier de la liste.
+    const lastName = localStorage.getItem(LAST_DASH_KEY);
+    const lastIdx = DASHBOARDS.findIndex(d => d.name === lastName);
+    if (DASHBOARDS.length > 0) selectDashboard(lastIdx >= 0 ? lastIdx : 0);
   }
 </script>
 
