@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Indicateurs Économiques</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #060b14;
+    --surface: #09122099;
+    --card: #0d1827;
+    --card-hover: #122033;
+    --border: #192d46;
+    --text: #dde5f0;
+    --muted: #4f6580;
+    --dim: #8199b5;
+    --high: #ef4444;
+    --high-bg: rgba(239,68,68,0.07);
+    --med: #f97316;
+    --med-bg: rgba(249,115,22,0.07);
+    --low: #eab308;
+    --low-bg: rgba(234,179,8,0.07);
+    --up: #22c55e;
+    --down: #ef4444;
+    --accent: #3b82f6;
+    --gold: #f59e0b;
+    --radius: 10px;
+    --t: 0.2s ease;
+  }
+
+  /* ── SKIP LINK (accessibilité) ── */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .skip-link:focus {
+    position: fixed;
+    left: 12px;
+    top: 12px;
+    width: auto;
+    height: auto;
+    padding: 8px 16px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    z-index: 9999;
+    overflow: visible;
+    outline: none;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: rgba(9,18,32,0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 13px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-title {
+    font-family: 'Fira Code', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: -0.01em;
+  }
+  .header-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  nav { display: flex; gap: 3px; }
+  nav button {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--muted);
+    padding: 5px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    transition: color var(--t), background var(--t), border-color var(--t);
+  }
+  nav button:hover { color: var(--text); border-color: var(--border); }
+  nav button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  nav button.active { background: var(--accent); color: #fff; border-color: transparent; }
+
+  /* ── MAIN ── */
+  main { padding: 20px 24px; max-width: 1440px; margin: 0 auto; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 14px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color var(--t), box-shadow var(--t), background var(--t);
+  }
+  .card:hover {
+    background: var(--card-hover);
+    border-color: rgba(59,130,246,0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35), 0 0 0 1px rgba(59,130,246,0.06) inset;
+  }
+  .card.high { border-top: 3px solid var(--high); }
+  .card.med  { border-top: 3px solid var(--med); }
+  .card.low  { border-top: 3px solid var(--low); }
+
+  .card-head {
+    padding: 13px 14px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .card-name {
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .card-fullname { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  .badge {
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-family: 'Fira Code', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+  .badge.high { background: var(--high-bg); color: var(--high); border: 1px solid rgba(239,68,68,0.2); }
+  .badge.med  { background: var(--med-bg);  color: var(--med);  border: 1px solid rgba(249,115,22,0.2); }
+  .badge.low  { background: var(--low-bg);  color: var(--low);  border: 1px solid rgba(234,179,8,0.2); }
+
+  .card-utility {
+    padding: 0 14px 10px;
+    font-size: 12px;
+    color: var(--dim);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .card-meta {
+    padding: 8px 14px;
+    background: rgba(0,0,0,0.18);
+    border-top: 1px solid rgba(25,45,70,0.7);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .meta { display: flex; align-items: center; gap: 4px; font-size: 11px; }
+  .meta-k { color: var(--muted); }
+  .meta-v { color: var(--dim); font-weight: 500; }
+
+  .card-pairs {
+    padding: 8px 14px;
+    border-top: 1px solid rgba(25,45,70,0.7);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .ptag {
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background: rgba(59,130,246,0.07);
+    border: 1px solid rgba(59,130,246,0.17);
+    color: #7fb3f5;
+  }
+  .ptag.xau {
+    background: rgba(245,158,11,0.07);
+    border-color: rgba(245,158,11,0.2);
+    color: var(--gold);
+  }
+
+  .card-reading {
+    padding: 8px 14px;
+    border-top: 1px solid rgba(25,45,70,0.7);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .reading-row { display: flex; gap: 7px; font-size: 12px; align-items: flex-start; }
+  .ico { font-size: 13px; flex-shrink: 0; line-height: 1.55; }
+  .reading-txt { color: var(--dim); line-height: 1.55; }
+
+  .card-tip {
+    padding: 7px 14px;
+    background: rgba(59,130,246,0.04);
+    border-top: 1px solid rgba(59,130,246,0.1);
+    font-size: 11.5px;
+    color: #6db8f5;
+    line-height: 1.5;
+  }
+  .card-tip::before { content: "⚠ "; }
+
+  /* ── CORRELATIONS ── */
+  .corr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .block-title {
+    padding: 10px 14px;
+    font-family: 'Fira Code', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--dim);
+    background: rgba(0,0,0,0.18);
+    border-bottom: 1px solid var(--border);
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th {
+    padding: 7px 12px;
+    text-align: left;
+    color: var(--muted);
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: rgba(0,0,0,0.15);
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 7px 12px; border-bottom: 1px solid rgba(25,45,70,0.5); color: var(--dim); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(59,130,246,0.04); }
+  .td-i { font-family: 'Fira Code', monospace; font-weight: 700; color: var(--text); white-space: nowrap; font-size: 11.5px; }
+  .u  { color: var(--up);   font-weight: 700; }
+  .d  { color: var(--down); font-weight: 700; }
+  .n  { color: var(--muted); }
+
+  /* Risk-On / Risk-Off */
+  .rof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .rof-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .rof-head {
+    padding: 10px 14px;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border);
+  }
+  .rof-head.off { background: rgba(239,68,68,0.07); color: #f9a8a8; border-top: 3px solid var(--high); }
+  .rof-head.on  { background: rgba(34,197,94,0.07);  color: #86efac; border-top: 3px solid var(--up); }
+
+  .rof-body { padding: 12px 14px; display: flex; gap: 16px; }
+  .rof-col { flex: 1; }
+  .rof-col-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    margin-bottom: 7px;
+  }
+  .rof-col.buy .rof-col-label { color: var(--up); }
+  .rof-col.sell .rof-col-label { color: var(--down); }
+
+  .rof-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .rtag {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .rof-col.buy  .rtag { background: rgba(34,197,94,0.07);  border: 1px solid rgba(34,197,94,0.17); color: #86efac; }
+  .rof-col.sell .rtag { background: rgba(239,68,68,0.07);  border: 1px solid rgba(239,68,68,0.17); color: #f9a8a8; }
+
+  .rof-note {
+    font-size: 11.5px;
+    color: var(--muted);
+    font-style: italic;
+    padding: 8px 14px;
+    background: rgba(0,0,0,0.15);
+    border-top: 1px solid rgba(25,45,70,0.5);
+  }
+
+  /* Pair details */
+  .pair-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .pair-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .pair-head {
+    padding: 9px 14px;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: -0.01em;
+    background: rgba(0,0,0,0.18);
+    border-bottom: 1px solid var(--border);
+  }
+  .pair-body { padding: 10px 14px; }
+  .driver {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: var(--dim);
+    align-items: flex-start;
+  }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; }
+
+  /* ── ACCESSIBILITY & MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr; }
+    .corr-grid { grid-template-columns: 1fr; }
+    .rof-grid { grid-template-columns: 1fr; }
+    .pair-cards { grid-template-columns: 1fr; }
+    header { gap: 10px; padding: 10px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Passer au contenu principal</a>
+
+<header>
+  <div class="header-left">
+    <div>
+      <div class="header-title">📊 Indicateurs Économiques</div>
+      <div class="header-sub">Référence trading · Mis à jour 18/05/2026</div>
+    </div>
+  </div>
+  <nav role="navigation" aria-label="Sections">
+    <button class="active" onclick="show('majeurs', this)">Majeurs</button>
+    <button onclick="show('secondaires', this)">Secondaires</button>
+    <button onclick="show('correlations', this)">Corrélations</button>
+  </nav>
+</header>
+
+<main id="main-content">
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 1 — INDICATEURS MAJEURS
+════════════════════════════════════════════════ -->
+<div id="majeurs" class="section active">
+  <div class="section-label">5 indicateurs majeurs — Fort impact sur les marchés</div>
+  <div class="grid">
+
+    <!-- NFP -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">NFP</div>
+          <div class="card-fullname">Non-Farm Payrolls</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Baromètre n°1 du marché du travail US — indique si l'économie américaine crée suffisamment d'emplois pour rester en bonne santé.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · 1er vendredi</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h30 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">BLS</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+        <span class="ptag">GBP/USD</span>
+        <span class="ptag xau">XAU/USD</span>
+        <span class="ptag">USD/CHF</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Résultat &gt; attentes → emploi solide → USD ↑ · EUR/USD ↓ · USD/JPY ↑ · XAU ↓</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Résultat &lt; attentes → marché fragile → USD ↓ · EUR/USD ↑ · XAU ↑</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt">Lire aussi : Unemployment Rate + Average Hourly Earnings — les trois ensemble</span></div>
+      </div>
+      <div class="card-tip">Faux mouvements fréquents dans les 5 premières minutes. Attendre 2 bougies M5 pour confirmer la direction.</div>
+    </div>
+
+    <!-- CPI -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">CPI</div>
+          <div class="card-fullname">Consumer Price Index · Inflation US</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Mesure si les prix montent trop vite dans la vie quotidienne — l'indicateur d'inflation de référence que la Fed surveille pour décider de monter ou baisser ses taux.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · milieu de mois</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h30 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">BLS</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+        <span class="ptag">USD/CHF</span>
+        <span class="ptag xau">XAU/USD</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">CPI &gt; attentes → inflation forte → Fed hawkish → USD ↑ · XAU ↓</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">CPI &lt; attentes → inflation ralentit → Fed peut pivoter → USD ↓ · XAU ↑</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt">Regarder le <strong>Core CPI</strong> (hors énergie/alim) — plus stable et plus suivi</span></div>
+      </div>
+      <div class="card-tip">Si le marché a déjà "pricé" la surprise, la réaction peut s'inverser. Attendre la stabilisation.</div>
+    </div>
+
+    <!-- PIB -->
+    <div class="card med">
+      <div class="card-head">
+        <div>
+          <div class="card-name">PIB / GDP</div>
+          <div class="card-fullname">Produit Intérieur Brut</div>
+        </div>
+        <div class="badge med">⚡⚡ MODÉRÉ</div>
+      </div>
+      <div class="card-utility">Photo de la santé globale de l'économie sur trois mois — deux trimestres négatifs consécutifs = récession officielle.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Trimestriel · 3 publications</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h30 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">BEA</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+        <span class="ptag">GBP/USD</span>
+        <span class="ptag xau">XAU/USD</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Croissance &gt; attentes → économie solide → USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">PIB négatif 2 trimestres → récession → USD ↓ · XAU ↑↑ (valeur refuge)</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt"><strong>Advance GDP</strong> (1ère publication) = seule vraiment impactante</span></div>
+      </div>
+      <div class="card-tip">Les révisions Preliminary/Final génèrent peu de mouvement sauf surprise majeure.</div>
+    </div>
+
+    <!-- FED -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">Fed · FOMC</div>
+          <div class="card-fullname">Fed Funds Rate — Réserve Fédérale US</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Détermine le "prix de l'argent" aux États-Unis — taux hauts renforcent le dollar et freinent l'économie, taux bas affaiblissent le dollar et la stimulent.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">8× / an (~6 sem.)</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">14h00 ET (déc.) · 14h30 (conf.)</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">Federal Reserve</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">Toutes paires USD</span>
+        <span class="ptag xau">XAU/USD</span>
+        <span class="ptag">SPX · NAS</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Hausse taux / Hawkish → USD ↑↑ · XAU ↓↓ · actions ↓</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Baisse taux / Dovish → USD ↓↓ · XAU ↑↑ · actions ↑</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt"><strong>Hawkish</strong> = combat l'inflation (taux hauts) · <strong>Dovish</strong> = soutient la croissance (taux bas)</span></div>
+      </div>
+      <div class="card-tip">C'est la conférence de presse qui fixe la direction, pas juste la décision. Éviter toute position ouverte avant 14h.</div>
+    </div>
+
+    <!-- BCE -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">BCE</div>
+          <div class="card-fullname">Banque Centrale Européenne</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Même rôle que la Fed mais pour la zone euro — les décisions de la BCE dictent la direction de l'euro face à toutes les autres devises.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Toutes les 6 semaines</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">14h15 CET (déc.) · 14h45 (conf.)</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">BCE · Christine Lagarde</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">EUR/JPY</span>
+        <span class="ptag">EUR/GBP</span>
+        <span class="ptag">EUR/CHF</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Hawkish / hausse taux → EUR ↑ · EUR/USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Dovish / baisse taux → EUR ↓ · EUR/USD ↓</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt">Le ton verbal de Lagarde pèse autant que la décision chiffrée</span></div>
+      </div>
+      <div class="card-tip">Toujours suivre la conférence de presse — la surprise vient souvent des nuances du discours.</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 2 — INDICATEURS SECONDAIRES
+════════════════════════════════════════════════ -->
+<div id="secondaires" class="section">
+  <div class="section-label">10 indicateurs secondaires</div>
+  <div class="grid">
+
+    <!-- PCE -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">PCE</div>
+          <div class="card-fullname">Personal Consumption Expenditures</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Inflation préférée de la Fed — plus large que le CPI, il couvre plus de dépenses réelles des ménages. Quand il monte, la Fed est sous pression pour agir.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · fin de mois</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h30 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">BEA</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+        <span class="ptag xau">XAU/USD</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Core PCE &gt; attentes → Fed reste hawkish → USD ↑ · XAU ↓</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Core PCE &lt; attentes → pivot possible → USD ↓ · XAU ↑</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt">Regarder le <strong>Core PCE</strong> — hors énergie et alimentation</span></div>
+      </div>
+    </div>
+
+    <!-- PPI -->
+    <div class="card med">
+      <div class="card-head">
+        <div>
+          <div class="card-name">PPI</div>
+          <div class="card-fullname">Producer Price Index</div>
+        </div>
+        <div class="badge med">⚡⚡ MODÉRÉ</div>
+      </div>
+      <div class="card-utility">Mesure l'inflation là où elle naît — chez les producteurs, avant qu'elle atteigne le consommateur. Un PPI en hausse annonce souvent un CPI en hausse dans quelques semaines.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · veille du CPI</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h30 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">BLS</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">PPI ↑ → inflation en route → USD ↑ anticipatif</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt">Lire conjointement avec le CPI du lendemain</span></div>
+      </div>
+    </div>
+
+    <!-- ADP -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">ADP Employment</div>
+          <div class="card-fullname">Emploi privé US</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Donne un avant-goût du NFP en mesurant les créations d'emplois privés — publié le mercredi, 2 jours avant le grand chiffre du vendredi.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · mercredi avant NFP</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h15 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">ADP Research</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt">Corrélation ADP ↔ NFP faible (~50%) — calibrer les attentes, pas positionner lourd</span></div>
+      </div>
+      <div class="card-tip">Ne pas sur-trader l'ADP — le NFP du vendredi peut complètement contredire.</div>
+    </div>
+
+    <!-- JOBLESS CLAIMS -->
+    <div class="card med">
+      <div class="card-head">
+        <div>
+          <div class="card-name">Jobless Claims</div>
+          <div class="card-fullname">Inscriptions hebdomadaires au chômage</div>
+        </div>
+        <div class="badge med">⚡⚡ MODÉRÉ</div>
+      </div>
+      <div class="card-utility">Thermomètre hebdomadaire du marché du travail — seul indicateur publié chaque semaine, utile pour suivre la tendance en temps réel entre deux NFP.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Hebdomadaire · jeudi</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h30 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">Dept. of Labor</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Claims ↓ → moins de licenciements → marché du travail solide → USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Claims ↑ → davantage de pertes d'emploi → marché fragile → USD ↓</span></div>
+      </div>
+    </div>
+
+    <!-- ISM Manufacturing -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">ISM Manufacturing</div>
+          <div class="card-fullname">PMI secteur industriel US</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Indique si les usines américaines tournent à plein régime ou ralentissent — le seuil de 50 est la frontière entre expansion et contraction.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · 1er jour ouvré</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">10h00 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">ISM</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+        <span class="ptag">USD/CAD</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">&gt; 50 → expansion → USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">&lt; 50 → contraction → USD ↓</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt"><strong>Seuil clé : 50</strong> — au-dessus = croissance, en-dessous = récession industrielle</span></div>
+      </div>
+    </div>
+
+    <!-- ISM Services -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">ISM Services</div>
+          <div class="card-fullname">PMI secteur des services US</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Même logique que l'ISM Manufacturing mais pour les services — plus représentatif car les services représentent ~70% de l'économie américaine.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · 3e jour ouvré</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">10h00 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">ISM</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">&gt; 50 → économie de services en expansion → USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">&lt; 50 → contraction des services → USD ↓</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt">Plus important que l'ISM Manufacturing — couvre 70% de l'économie</span></div>
+      </div>
+    </div>
+
+    <!-- RETAIL SALES -->
+    <div class="card high">
+      <div class="card-head">
+        <div>
+          <div class="card-name">Retail Sales</div>
+          <div class="card-fullname">Ventes au détail</div>
+        </div>
+        <div class="badge high">⚡⚡⚡ FORT</div>
+      </div>
+      <div class="card-utility">Mesure combien les Américains dépensent en magasin — si les consommateurs dépensent, l'économie tourne bien et le dollar est soutenu.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · milieu de mois</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h30 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">Census Bureau</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Ventes &gt; attentes → consommation solide → USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Ventes &lt; attentes → consommation faible → USD ↓</span></div>
+        <div class="reading-row"><span class="ico">📌</span><span class="reading-txt">Privilégier le <strong>Core Retail Sales</strong> (hors automobiles) — plus stable</span></div>
+      </div>
+    </div>
+
+    <!-- JOLTS -->
+    <div class="card med">
+      <div class="card-head">
+        <div>
+          <div class="card-name">JOLTS</div>
+          <div class="card-fullname">Job Openings &amp; Labor Turnover</div>
+        </div>
+        <div class="badge med">⚡⚡ MODÉRÉ</div>
+      </div>
+      <div class="card-utility">Révèle la tension du marché du travail — plus il y a de postes non pourvus, plus les salaires montent et plus l'inflation est alimentée.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · décalage 1 mois</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">10h00 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">BLS</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+        <span class="ptag">USD/JPY</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Beaucoup d'offres → marché tendu → pression salariale → Fed hawkish → USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Peu d'offres → marché détendu → Fed peut assouplir → USD ↓</span></div>
+      </div>
+    </div>
+
+    <!-- BUILDING PERMITS -->
+    <div class="card med">
+      <div class="card-head">
+        <div>
+          <div class="card-name">Building Permits</div>
+          <div class="card-fullname">Permis de construire / Housing Starts</div>
+        </div>
+        <div class="badge med">⚡⚡ MODÉRÉ</div>
+      </div>
+      <div class="card-utility">Indique si les Américains ont confiance en l'avenir — quand les gens construisent des maisons, c'est qu'ils se sentent à l'aise financièrement. Indicateur avancé de croissance.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">8h30 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">Census Bureau</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">USD/CAD</span>
+        <span class="ptag">EUR/USD</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Permis ↑ → confiance des ménages → croissance anticipée → USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Permis ↓ → secteur immobilier en recul → signal de ralentissement</span></div>
+      </div>
+    </div>
+
+    <!-- CONSUMER CONFIDENCE -->
+    <div class="card med">
+      <div class="card-head">
+        <div>
+          <div class="card-name">Consumer Confidence</div>
+          <div class="card-fullname">Indice de confiance — Conference Board</div>
+        </div>
+        <div class="badge med">⚡⚡ MODÉRÉ</div>
+      </div>
+      <div class="card-utility">Mesure le moral des ménages américains — un consommateur confiant dépense plus. Indicateur avancé : il prédit ce que feront les consommateurs avant que les données réelles le confirment.</div>
+      <div class="card-meta">
+        <div class="meta"><span class="meta-k">📅</span><span class="meta-v">Mensuel · dernier mardi</span></div>
+        <div class="meta"><span class="meta-k">⏰</span><span class="meta-v">10h00 ET</span></div>
+        <div class="meta"><span class="meta-k">🏛</span><span class="meta-v">The Conference Board</span></div>
+      </div>
+      <div class="card-pairs">
+        <span class="ptag">EUR/USD</span>
+      </div>
+      <div class="card-reading">
+        <div class="reading-row"><span class="ico">🟢</span><span class="reading-txt">Indice ↑ → ménages optimistes → dépenses en vue → USD ↑</span></div>
+        <div class="reading-row"><span class="ico">🔴</span><span class="reading-txt">Indice ↓ → ménages inquiets → récession possible → USD ↓</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 3 — CORRÉLATIONS
+════════════════════════════════════════════════ -->
+<div id="correlations" class="section">
+
+  <!-- Risk-On / Risk-Off -->
+  <div class="section-label">Sentiment de marché — Risk-On / Risk-Off</div>
+  <div class="rof-grid">
+    <div class="rof-card">
+      <div class="rof-head off">🔴 Risk-Off — Peur &amp; fuite vers la sécurité</div>
+      <div class="rof-body">
+        <div class="rof-col buy">
+          <div class="rof-col-label">▲ On achète</div>
+          <div class="rof-tags">
+            <span class="rtag">USD</span>
+            <span class="rtag">JPY</span>
+            <span class="rtag">CHF</span>
+            <span class="rtag">XAU/USD</span>
+            <span class="rtag">Oblig. US</span>
+          </div>
+        </div>
+        <div class="rof-col sell">
+          <div class="rof-col-label">▼ On vend</div>
+          <div class="rof-tags">
+            <span class="rtag">AUD</span>
+            <span class="rtag">NZD</span>
+            <span class="rtag">Devises émergentes</span>
+            <span class="rtag">Actions</span>
+            <span class="rtag">Pétrole</span>
+          </div>
+        </div>
+      </div>
+      <div class="rof-note">Ex : crise bancaire, guerre, récession → USD ↑, JPY ↑, CHF ↑, XAU ↑, AUD/USD ↓</div>
+    </div>
+    <div class="rof-card">
+      <div class="rof-head on">🟢 Risk-On — Optimisme &amp; appétit pour le risque</div>
+      <div class="rof-body">
+        <div class="rof-col buy">
+          <div class="rof-col-label">▲ On achète</div>
+          <div class="rof-tags">
+            <span class="rtag">AUD</span>
+            <span class="rtag">NZD</span>
+            <span class="rtag">Devises émergentes</span>
+            <span class="rtag">Actions</span>
+            <span class="rtag">Pétrole</span>
+          </div>
+        </div>
+        <div class="rof-col sell">
+          <div class="rof-col-label">▼ On vend</div>
+          <div class="rof-tags">
+            <span class="rtag">JPY</span>
+            <span class="rtag">CHF</span>
+            <span class="rtag">XAU/USD</span>
+          </div>
+        </div>
+      </div>
+      <div class="rof-note">Ex : bons chiffres économiques, accord commercial → AUD ↑, actions ↑, JPY ↓, XAU ↓</div>
+    </div>
+  </div>
+
+  <!-- Impact par indicateur -->
+  <div class="section-label" style="margin-top:24px">Impact des indicateurs sur les paires clés</div>
+  <div class="corr-grid">
+    <div class="block">
+      <div class="block-title">Surprise haussière → effet sur chaque marché</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Indicateur</th>
+            <th>USD</th>
+            <th>EUR/USD</th>
+            <th>USD/JPY</th>
+            <th>XAU/USD</th>
+            <th>GBP/USD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-i">NFP fort</td><td class="u">↑↑↑</td><td class="d">↓↓↓</td><td class="u">↑↑↑</td><td class="d">↓↓↓</td><td class="d">↓↓</td></tr>
+          <tr><td class="td-i">CPI &gt; attentes</td><td class="u">↑↑↑</td><td class="d">↓↓↓</td><td class="u">↑↑↑</td><td class="d">↓↓</td><td class="d">↓↓</td></tr>
+          <tr><td class="td-i">Core PCE &gt; attentes</td><td class="u">↑↑↑</td><td class="d">↓↓↓</td><td class="u">↑↑↑</td><td class="d">↓↓</td><td class="d">↓↓</td></tr>
+          <tr><td class="td-i">PIB &gt; attentes</td><td class="u">↑↑</td><td class="d">↓↓</td><td class="u">↑↑</td><td class="d">↓</td><td class="d">↓↓</td></tr>
+          <tr><td class="td-i">Fed Hawkish</td><td class="u">↑↑↑</td><td class="d">↓↓↓</td><td class="u">↑↑↑</td><td class="d">↓↓↓</td><td class="d">↓↓</td></tr>
+          <tr><td class="td-i">ISM Services &gt; 50</td><td class="u">↑</td><td class="d">↓</td><td class="u">↑</td><td class="d">↓</td><td class="d">↓</td></tr>
+          <tr><td class="td-i">Retail Sales fort</td><td class="u">↑↑</td><td class="d">↓↓</td><td class="u">↑↑</td><td class="d">↓</td><td class="d">↓</td></tr>
+          <tr><td class="td-i">Jobless Claims élevé</td><td class="d">↓</td><td class="u">↑</td><td class="d">↓</td><td class="u">↑</td><td class="u">↑</td></tr>
+          <tr><td class="td-i">Récession (PIB nég.)</td><td class="d">↓↓</td><td class="u">↑↑</td><td class="n">±</td><td class="u">↑↑↑</td><td class="u">↑</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:8px 12px; font-size:11px; color:var(--muted); font-style:italic;">↑ léger · ↑↑ modéré · ↑↑↑ fort · Inverser pour une surprise baissière</div>
+    </div>
+
+    <!-- Corrélations entre paires -->
+    <div class="block">
+      <div class="block-title">Corrélations entre paires de devises</div>
+      <table>
+        <thead>
+          <tr><th>Paires</th><th>Corrélation</th><th>Pourquoi</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-i">EUR/USD ↔ GBP/USD</td>
+            <td><span class="u">Positive</span></td>
+            <td>Toutes deux cotées contre USD · économies UE/UK liées</td>
+          </tr>
+          <tr>
+            <td class="td-i">EUR/USD ↔ USD/JPY</td>
+            <td><span style="color:#f97316;">Inverse</span></td>
+            <td>EUR/USD ↑ quand USD faiblit · USD/JPY ↑ quand USD fort</td>
+          </tr>
+          <tr>
+            <td class="td-i">EUR/USD ↔ USD/CHF</td>
+            <td><span style="color:#ef4444;">Inverse forte</span></td>
+            <td>CHF suit l'EUR (Suisse très liée à l'UE commercialement)</td>
+          </tr>
+          <tr>
+            <td class="td-i">XAU/USD ↔ USD</td>
+            <td><span style="color:#f97316;">Inverse</span></td>
+            <td>Or coté en dollars — USD ↑ = or plus cher pour non-Américains = demande ↓</td>
+          </tr>
+          <tr>
+            <td class="td-i">XAU/USD ↔ taux réels</td>
+            <td><span style="color:#f97316;">Inverse</span></td>
+            <td>Taux réels ↑ = obligations rapportent plus = or moins attractif</td>
+          </tr>
+          <tr>
+            <td class="td-i">USD/CAD ↔ Pétrole</td>
+            <td><span style="color:#f97316;">Inverse</span></td>
+            <td>Canada = grand exportateur de pétrole · Pétrole ↑ → CAD ↑ → USD/CAD ↓</td>
+          </tr>
+          <tr>
+            <td class="td-i">AUD/USD ↔ Matières 1ères</td>
+            <td><span class="u">Positive</span></td>
+            <td>Australie = grand exportateur de minerais · Matières ↑ → AUD ↑</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Fiches par paire -->
+  <div class="section-label" style="margin-top:24px">Moteurs spécifiques par paire</div>
+  <div class="pair-cards">
+
+    <div class="pair-card">
+      <div class="pair-head">EUR / USD</div>
+      <div class="pair-body">
+        <div class="driver"><div class="dot"></div><span>NFP, CPI US, Core PCE, Fed → impact côté USD</span></div>
+        <div class="driver"><div class="dot"></div><span>CPI zone euro, PIB zone euro, décision BCE → impact côté EUR</span></div>
+        <div class="driver"><div class="dot"></div><span>Risk-off global → USD monte → EUR/USD baisse</span></div>
+        <div class="driver"><div class="dot"></div><span>Crise politique en Europe → EUR baisse indépendamment du USD</span></div>
+      </div>
+    </div>
+
+    <div class="pair-card">
+      <div class="pair-head">USD / JPY</div>
+      <div class="pair-body">
+        <div class="driver"><div class="dot"></div><span>Très sensible à l'<strong>écart de taux</strong> US/Japon</span></div>
+        <div class="driver"><div class="dot"></div><span>Fed hawkish + BoJ à taux zéro → USD/JPY monte fortement</span></div>
+        <div class="driver"><div class="dot"></div><span>Risk-off global → JPY valeur refuge → USD/JPY baisse même si USD fort</span></div>
+        <div class="driver"><div class="dot"></div><span>Intervention possible de la BoJ si JPY trop faible (attention aux pics)</span></div>
+      </div>
+    </div>
+
+    <div class="pair-card">
+      <div class="pair-head">XAU / USD — Or</div>
+      <div class="pair-body">
+        <div class="driver"><div class="dot"></div><span>USD fort → XAU/USD baisse (corrélation inverse)</span></div>
+        <div class="driver"><div class="dot"></div><span>Taux réels US ↑ → or moins attractif → XAU ↓</span></div>
+        <div class="driver"><div class="dot"></div><span>Risk-off / crise géopolitique → XAU ↑↑ (valeur refuge)</span></div>
+        <div class="driver"><div class="dot"></div><span>Inflation persistante → XAU ↑ (protection contre dévaluation)</span></div>
+        <div class="driver" style="color:#f97316;"><div class="dot" style="background:var(--med)"></div><span>Crash rapide → XAU peut baisser temporairement (vente pour cash) avant rebond</span></div>
+      </div>
+    </div>
+
+    <div class="pair-card">
+      <div class="pair-head">USD / CAD</div>
+      <div class="pair-body">
+        <div class="driver"><div class="dot"></div><span>Pétrole (WTI) = moteur principal côté CAD</span></div>
+        <div class="driver"><div class="dot"></div><span>Pétrole ↑ → CAD s'apprécie → USD/CAD baisse</span></div>
+        <div class="driver"><div class="dot"></div><span>NFP canadien + décision Banque du Canada (BoC) → impact direct</span></div>
+        <div class="driver"><div class="dot"></div><span>Données US (NFP, CPI) → impact via USD</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
