@@ -1,5 +1,5 @@
 {
-    "genere_le":  "2026-07-15 07:36:06",
+    "genere_le":  "2026-07-15 07:40:24",
     "nb_ko":  1,
     "taches":  [
                    {
@@ -67,10 +67,10 @@
                        "type":  "quotidien",
                        "etat":  "ok",
                        "motif":  "",
-                       "detail":  "",
-                       "dernier_run":  "2026-07-14 22:41",
-                       "prochain_run":  "2026-07-15 07:40",
-                       "code":  "0x0",
+                       "detail":  "en cours d\u0027execution",
+                       "dernier_run":  "2026-07-15 07:40",
+                       "prochain_run":  "2026-07-15 12:00",
+                       "code":  "0x41301",
                        "note":  "",
                        "note_conduite":  ""
                    },
@@ -92,8 +92,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-15 07:35",
-                       "prochain_run":  "2026-07-15 07:36",
+                       "dernier_run":  "2026-07-15 07:40",
+                       "prochain_run":  "2026-07-15 07:41",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -104,9 +104,9 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-15 07:35",
-                       "prochain_run":  "2026-07-15 07:37",
-                       "code":  "0x41301",
+                       "dernier_run":  "2026-07-15 07:39",
+                       "prochain_run":  "2026-07-15 07:41",
+                       "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
                    },
@@ -116,8 +116,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-15 07:35",
-                       "prochain_run":  "2026-07-15 07:40",
+                       "dernier_run":  "2026-07-15 07:40",
+                       "prochain_run":  "2026-07-15 07:45",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
