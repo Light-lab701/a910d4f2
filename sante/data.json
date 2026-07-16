@@ -1,6 +1,6 @@
 {
-    "genere_le":  "2026-07-16 07:40:32",
-    "nb_ko":  1,
+    "genere_le":  "2026-07-16 10:34:21",
+    "nb_ko":  0,
     "taches":  [
                    {
                        "nom":  "SyncProjetsObsidian",
@@ -32,8 +32,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-15 08:30",
-                       "prochain_run":  "2026-07-16 08:30",
+                       "dernier_run":  "2026-07-16 10:01",
+                       "prochain_run":  "2026-07-17 08:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -68,7 +68,7 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-07-16 07:40",
+                       "dernier_run":  "2026-07-16 10:33",
                        "prochain_run":  "2026-07-16 12:00",
                        "code":  "0x41301",
                        "note":  "",
@@ -80,9 +80,9 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "session active",
-                       "dernier_run":  "2026-07-16 06:33",
+                       "dernier_run":  "2026-07-16 10:01",
                        "prochain_run":  "2026-07-16 23:45",
-                       "code":  "0x41301",
+                       "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
                    },
@@ -92,7 +92,7 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "tunnel connecte",
-                       "dernier_run":  "2026-07-16 06:35",
+                       "dernier_run":  "2026-07-16 10:04",
                        "prochain_run":  "",
                        "code":  "",
                        "note":  "",
@@ -104,8 +104,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-16 07:40",
-                       "prochain_run":  "2026-07-16 07:41",
+                       "dernier_run":  "2026-07-16 10:34",
+                       "prochain_run":  "2026-07-16 10:35",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -113,11 +113,11 @@
                    {
                        "nom":  "JournalTrading_SLSnapshot",
                        "type":  "continu",
-                       "etat":  "attente",
-                       "motif":  "terminal64 ferme -- capteur en pause (normal, pas une panne)",
+                       "etat":  "ok",
+                       "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-16 07:39",
-                       "prochain_run":  "2026-07-16 07:41",
+                       "dernier_run":  "2026-07-16 10:33",
+                       "prochain_run":  "2026-07-16 10:35",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -128,8 +128,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-16 07:40",
-                       "prochain_run":  "2026-07-16 07:45",
+                       "dernier_run":  "2026-07-16 10:30",
+                       "prochain_run":  "2026-07-16 10:35",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -140,8 +140,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-16 07:30",
-                       "prochain_run":  "2026-07-16 08:00",
+                       "dernier_run":  "2026-07-16 10:30",
+                       "prochain_run":  "2026-07-16 11:00",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -152,8 +152,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-16 07:30",
-                       "prochain_run":  "2026-07-16 08:00",
+                       "dernier_run":  "2026-07-16 10:30",
+                       "prochain_run":  "2026-07-16 11:00",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -236,8 +236,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-15 07:50",
-                       "prochain_run":  "2026-07-16 07:50",
+                       "dernier_run":  "2026-07-16 07:50",
+                       "prochain_run":  "2026-07-17 07:50",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -245,14 +245,14 @@
                    {
                        "nom":  "JournalTrading_MonthlyStats",
                        "type":  "mensuel",
-                       "etat":  "ko",
-                       "motif":  "en retard : dernier run il y a 1066 h (max 780 h)",
+                       "etat":  "ok",
+                       "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-06-01 21:30",
+                       "dernier_run":  "2026-07-16 10:32",
                        "prochain_run":  "2026-08-01 07:00",
-                       "code":  "0x1",
-                       "note":  "KO connu et assumé — les stats de juin seront rattrapées plus tard, quand MT5 sera ouvert (décision David du 12-07, ticket T42). La tuile restera rouge d\u0027ici là.",
-                       "note_conduite":  "attendre"
+                       "code":  "0x0",
+                       "note":  "",
+                       "note_conduite":  ""
                    }
                ]
 }
