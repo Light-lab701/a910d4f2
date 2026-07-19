@@ -1106,10 +1106,10 @@ tr.t-detail td {
         </div>
         <div style="display:flex;align-items:center;gap:12px">
           <div class="chips chips-sm" id="cp-tbl-month"></div>
-          <button class="tbl-toggle" id="tbl-toggle" onclick="toggleJournal()" title="Afficher/masquer le journal">▾</button>
+          <button class="tbl-toggle" id="tbl-toggle" onclick="toggleJournal()" title="Afficher/masquer le journal">▸</button>
         </div>
       </div>
-      <div class="tbl-outer" id="tbl-outer">
+      <div class="tbl-outer" id="tbl-outer" style="display:none">
       <div class="tbl-wrap" id="tbl-wrap">
         <table>
           <thead>
@@ -1133,7 +1133,7 @@ tr.t-detail td {
         </table>
       </div>
       </div>
-      <div class="pag" id="pag"></div>
+      <div class="pag" id="pag" style="display:none"></div>
     </div>
 
   </div>
@@ -1151,7 +1151,7 @@ const SB_KEY = 'sb_publishable_-dxGKGDb0ZLFhidFKuGOJQ_a_vyl0e6';
 let realData=[], allData=[], filtered=[];
 let charts={}, sortK='entry_datetime', sortD=-1;
 let pg=1, PER=50, expanded=new Set();
-let tblMonth='all', journalOpen=true, hmOpen=true, calYM=null;
+let tblMonth='all', journalOpen=false, hmOpen=true, calYM=null;
 
 /* ── Theme toggle ─────────────────────────────────────────── */
 function initTheme(){
