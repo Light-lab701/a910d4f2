@@ -581,6 +581,42 @@ input[type="date"]:focus { border-color: var(--blue); }
 .hm-grid .hm-cell.empty { background: transparent; }
 .hm-grid .hm-hdr { font-size: 9px; color: var(--text-3); font-weight: 600; text-align: center; padding: 1px 0 3px; }
 
+/* Calendrier PnL */
+.cal-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 8px 9px;
+  margin-bottom: 7px;
+  box-shadow: var(--shadow);
+}
+.cal-head { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+.cal-head .cal-title { font-size: 12px; font-weight: 600; color: var(--text); min-width: 110px; text-align: center; }
+.cal-head .tbl-toggle:disabled { opacity: .3; cursor: default; }
+.cal-month-pnl { font-family: var(--font-numbers); font-size: 12px; font-weight: 600; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 10px; }
+.cal-grid .cal-hdr { font-size: 9px; color: var(--text-3); font-weight: 600; text-align: center; padding: 1px 0 3px; }
+.cal-grid .cal-cell {
+  min-height: 68px; border-radius: 10px; padding: 4px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  transition: transform .15s, box-shadow .15s; cursor: default;
+}
+.cal-grid .cal-cell:hover { outline: 1px solid var(--border-hi); z-index: 2; }
+.cal-grid .cal-cell.empty { background: transparent; }
+.cal-grid .cal-cell.win  { background: var(--win-dim); }
+.cal-grid .cal-cell.win  .cal-amt { color: var(--win); }
+.cal-grid .cal-cell.loss { background: var(--loss-dim); }
+.cal-grid .cal-cell.loss .cal-amt { color: var(--loss); }
+.cal-grid .cal-cell.be   { background: var(--be-dim); }
+.cal-grid .cal-cell.be   .cal-amt { color: var(--be); }
+.cal-day-num { font-size: 10px; color: var(--text-3); font-weight: 500; }
+.cal-amt { font-family: var(--font-numbers); font-size: 12.5px; font-weight: 600; line-height: 1.1; text-align: center; white-space: nowrap; }
+
+@media (max-width: 640px) {
+  .cal-grid .cal-cell { min-height: 52px; }
+  .cal-amt { font-size: 10px; }
+}
+
 /* ─── Table ──────────────────────────────────────────────── */
 .table-card {
   background: var(--surface);
@@ -1047,6 +1083,7 @@ tr.t-detail td {
 
     <!-- Heatmap -->
     <div class="section-label rise rise-5">Heatmap PnL<button class="tbl-toggle" id="hm-toggle" onclick="toggleHeatmap()" title="Afficher/masquer la heatmap">▾</button></div>
+    <div class="cal-wrap rise rise-5" id="cal-wrap"></div>
     <div class="hm-wrap rise rise-5" id="hm-wrap"></div>
 
     <!-- Table -->
@@ -1103,7 +1140,7 @@ const SB_KEY = 'sb_publishable_-dxGKGDb0ZLFhidFKuGOJQ_a_vyl0e6';
 let realData=[], allData=[], filtered=[];
 let charts={}, sortK='entry_datetime', sortD=-1;
 let pg=1, PER=50, expanded=new Set();
-let tblMonth='all', journalOpen=true, hmOpen=true;
+let tblMonth='all', journalOpen=true, hmOpen=true, calYM=null;
 
 /* ── Theme toggle ─────────────────────────────────────────── */
 function initTheme(){
@@ -1362,6 +1399,71 @@ function renderSparkline(){
 ctx.fillStyle=grad; ctx.fill();
 }
 
+function calNav(dir){
+  if(!calYM)return;
+  const [y,m]=calYM.split('-').map(Number);
+  const nd=new Date(y,m-1+dir,1);
+  calYM=nd.getFullYear()+'-'+String(nd.getMonth()+1).padStart(2,'0');
+  renderPnlCalendar();
+}
+
+function renderPnlCalendar(){
+  const wrap=document.getElementById('cal-wrap');
+  if(!wrap)return;
+  const moFull=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const mo=['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+  const days=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  const byDay={};
+  filtered.filter(t=>t.net_profit!=null&&t.trade_day).forEach(t=>{
+    const k=t.trade_day.slice(0,10);
+    if(!byDay[k]) byDay[k]={sum:0,n:0};
+    byDay[k].sum+=t.net_profit; byDay[k].n++;
+  });
+  const keys=Object.keys(byDay);
+  if(!keys.length){ wrap.innerHTML=''; return; }
+  const months=[...new Set(keys.map(k=>k.slice(0,7)))].sort();
+  const minYM=months[0], maxYM=months[months.length-1];
+  if(!calYM||calYM<minYM||calYM>maxYM) calYM=maxYM;
+  const [y,m]=calYM.split('-').map(Number);
+  const startDow=(new Date(y,m-1,1).getDay()+6)%7;
+  const daysInMonth=new Date(y,m,0).getDate();
+  let monthTotal=0;
+  for(let d=1;d<=daysInMonth;d++){
+    const k=calYM+'-'+String(d).padStart(2,'0');
+    if(byDay[k]) monthTotal+=byDay[k].sum;
+  }
+  const EPS=0.005;
+  const fmtAmt=v=>{
+    if(Math.abs(v)<EPS) return '0.00';
+    const av=Math.abs(v);
+    const s=av>=1000?(av/1000).toFixed(2)+'K':av.toFixed(2);
+    return (v<0?'-':'+')+s;
+  };
+  const totNear0=Math.abs(monthTotal)<EPS;
+  const totCls=totNear0?'':monthTotal>0?'n-pos':'n-neg';
+  const totAmt=totNear0?'0.00':(monthTotal>=0?'+':'')+monthTotal.toFixed(2);
+  let html='<div class="cal-head">';
+  html+=`<button class="tbl-toggle" onclick="calNav(-1)" ${calYM<=minYM?'disabled':''} title="Mois précédent">◀</button>`;
+  html+=`<div class="cal-title">${moFull[m-1]} ${y}</div>`;
+  html+=`<button class="tbl-toggle" onclick="calNav(1)" ${calYM>=maxYM?'disabled':''} title="Mois suivant">▶</button>`;
+  html+=`<div class="cal-month-pnl ${totCls}">Total du mois : ${totAmt} $</div>`;
+  html+='</div>';
+  html+='<div class="cal-grid">';
+  html+=days.map(d=>`<div class="cal-hdr">${d}</div>`).join('');
+  for(let i=0;i<startDow;i++) html+='<div class="cal-cell empty"></div>';
+  for(let d=1;d<=daysInMonth;d++){
+    const k=calYM+'-'+String(d).padStart(2,'0');
+    const info=byDay[k];
+    if(!info){ html+=`<div class="cal-cell"><div class="cal-day-num">${d}</div></div>`; continue; }
+    const cls=Math.abs(info.sum)<EPS?'be':info.sum>0?'win':'loss';
+    const nTr=info.n===1?'1 trade':info.n+' trades';
+    const exact=Math.abs(info.sum)<EPS?'0.00':(info.sum>=0?'+':'')+info.sum.toFixed(2);
+    html+=`<div class="cal-cell ${cls}" title="${d} ${mo[m-1]} ${y} : ${exact}$ · ${nTr}"><div class="cal-amt">${fmtAmt(info.sum)}</div><div class="cal-day-num">${d}</div></div>`;
+  }
+  html+='</div>';
+  wrap.innerHTML=html;
+}
+
 function renderHeatmap(){
   const wrap=document.getElementById('hm-wrap');
   if(!wrap)return;
@@ -1422,7 +1524,7 @@ let CP=getCP(), BS=getBS();
 
 function dc(k){ if(charts[k]){charts[k].destroy();delete charts[k];} }
 
-function renderCharts(){ CP=getCP(); BS=getBS(); rCumul(); rDonut(); rSym(); rSetup(); rMonth(); rQuarter(); rDay(); rHour(); rWeek(); rWLAvg(); renderHeatmap(); }
+function renderCharts(){ CP=getCP(); BS=getBS(); rCumul(); rDonut(); rSym(); rSetup(); rMonth(); rQuarter(); rDay(); rHour(); rWeek(); rWLAvg(); renderHeatmap(); renderPnlCalendar(); }
 
 function rCumul(){
   dc('cumul');
@@ -1645,6 +1747,7 @@ function toggleJournal(){
 function toggleHeatmap(){
   hmOpen=!hmOpen;
   document.getElementById('hm-wrap').style.display=hmOpen?'':'none';
+  document.getElementById('cal-wrap').style.display=hmOpen?'':'none';
   document.getElementById('hm-toggle').textContent=hmOpen?'▾':'▸';
 }
 
