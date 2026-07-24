@@ -1,5 +1,5 @@
 {
-    "genere_le":  "2026-07-24 07:40:27",
+    "genere_le":  "2026-07-24 12:00:31",
     "nb_ko":  1,
     "taches":  [
                    {
@@ -32,8 +32,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-23 08:30",
-                       "prochain_run":  "2026-07-24 08:30",
+                       "dernier_run":  "2026-07-24 08:30",
+                       "prochain_run":  "2026-07-25 08:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -55,10 +55,10 @@
                        "type":  "quotidien",
                        "etat":  "ok",
                        "motif":  "",
-                       "detail":  "",
-                       "dernier_run":  "2026-07-23 21:00",
-                       "prochain_run":  "2026-07-24 12:00",
-                       "code":  "0x0",
+                       "detail":  "en cours d\u0027execution",
+                       "dernier_run":  "2026-07-24 12:00",
+                       "prochain_run":  "2026-07-24 19:00",
+                       "code":  "0x41301",
                        "note":  "",
                        "note_conduite":  ""
                    },
@@ -68,8 +68,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-07-24 07:40",
-                       "prochain_run":  "2026-07-24 12:00",
+                       "dernier_run":  "2026-07-24 12:00",
+                       "prochain_run":  "2026-07-24 21:15",
                        "code":  "0x41301",
                        "note":  "",
                        "note_conduite":  ""
@@ -80,7 +80,7 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "session active",
-                       "dernier_run":  "2026-07-24 05:47",
+                       "dernier_run":  "2026-07-24 11:49",
                        "prochain_run":  "2026-07-24 23:45",
                        "code":  "0x0",
                        "note":  "",
@@ -104,8 +104,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-24 07:40",
-                       "prochain_run":  "2026-07-24 07:41",
+                       "dernier_run":  "2026-07-24 12:00",
+                       "prochain_run":  "2026-07-24 12:01",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -116,8 +116,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-24 07:39",
-                       "prochain_run":  "2026-07-24 07:41",
+                       "dernier_run":  "2026-07-24 11:59",
+                       "prochain_run":  "2026-07-24 12:01",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -128,8 +128,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-24 07:40",
-                       "prochain_run":  "2026-07-24 07:45",
+                       "dernier_run":  "2026-07-24 12:00",
+                       "prochain_run":  "2026-07-24 12:05",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -140,8 +140,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-24 07:30",
-                       "prochain_run":  "2026-07-24 08:00",
+                       "dernier_run":  "2026-07-24 12:00",
+                       "prochain_run":  "2026-07-24 12:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -152,8 +152,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-24 07:30",
-                       "prochain_run":  "2026-07-24 08:00",
+                       "dernier_run":  "2026-07-24 12:00",
+                       "prochain_run":  "2026-07-24 12:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -236,8 +236,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-07-23 07:50",
-                       "prochain_run":  "2026-07-24 07:50",
+                       "dernier_run":  "2026-07-24 07:50",
+                       "prochain_run":  "2026-07-25 07:50",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
