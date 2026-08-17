@@ -1,6 +1,6 @@
 {
-    "genere_le":  "2026-08-17 08:33:14",
-    "nb_ko":  9,
+    "genere_le":  "2026-08-17 08:35:19",
+    "nb_ko":  8,
     "taches":  [
                    {
                        "nom":  "SyncProjetsObsidian",
@@ -65,12 +65,12 @@
                    {
                        "nom":  "SanteSysteme",
                        "type":  "quotidien",
-                       "etat":  "ko",
-                       "motif":  "en retard : dernier run il y a 35 h (max 16 h)",
-                       "detail":  "",
-                       "dernier_run":  "2026-08-15 21:15",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "en cours d\u0027execution",
+                       "dernier_run":  "2026-08-17 08:34",
                        "prochain_run":  "2026-08-17 12:00",
-                       "code":  "0x0",
+                       "code":  "0x41301",
                        "note":  "",
                        "note_conduite":  ""
                    },
@@ -103,9 +103,9 @@
                        "type":  "continu",
                        "etat":  "ok",
                        "motif":  "",
-                       "detail":  "",
-                       "dernier_run":  "2026-08-17 08:32",
-                       "prochain_run":  "2026-08-17 08:34",
+                       "detail":  "en cours d\u0027execution",
+                       "dernier_run":  "2026-08-17 08:35",
+                       "prochain_run":  "2026-08-17 08:36",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -116,8 +116,8 @@
                        "etat":  "attente",
                        "motif":  "terminal64 ferme -- capteur en pause (normal, pas une panne)",
                        "detail":  "",
-                       "dernier_run":  "2026-08-17 08:31",
-                       "prochain_run":  "2026-08-17 08:33",
+                       "dernier_run":  "2026-08-17 08:33",
+                       "prochain_run":  "2026-08-17 08:35",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -127,9 +127,9 @@
                        "type":  "continu",
                        "etat":  "ok",
                        "motif":  "",
-                       "detail":  "",
-                       "dernier_run":  "2026-08-17 08:30",
-                       "prochain_run":  "2026-08-17 08:35",
+                       "detail":  "en cours d\u0027execution",
+                       "dernier_run":  "2026-08-17 08:35",
+                       "prochain_run":  "2026-08-17 08:40",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
