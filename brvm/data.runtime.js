@@ -1,15 +1,15 @@
 window.BRVM_RADAR_DATA = {
   "meta": {
-    "asOfDate": "2026-06-02",
-    "updatedAt": "10:43 UTC",
+    "asOfDate": "2026-08-14",
+    "updatedAt": "09:05 UTC",
     "market": "BRVM",
     "mode": "real",
     "kpis": {
-      "averageScore": 58.9
+      "averageScore": 56.8
     },
     "fluxDates": {
-      "prix": "2026-06-02",
-      "scoring": "2026-06-02",
+      "prix": "2026-08-14",
+      "scoring": "2026-08-14",
       "fondamentaux": "2026-05-21",
       "actualites": "2026-05-21"
     }
@@ -28,19 +28,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation discrétionnaire",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 46.93,
+        "date": "2026-08-14",
+        "global": 44.86,
         "fondamental": 43.89,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 3230.0,
-        "variation": 0.62,
-        "volume": 2885,
+        "date": "2026-08-14",
+        "cloture": 3170.0,
+        "variation": -0.63,
+        "volume": 425,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -52,6 +52,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 120.97,
         "rendement_div": 4.24,
         "resultat_net": 1351.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -69,19 +75,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Bénin",
       "score": {
-        "date": "2026-06-02",
-        "global": 63.24,
+        "date": "2026-08-14",
+        "global": 61.16,
         "fondamental": 71.07,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 5350.0,
-        "variation": 1.9,
-        "volume": 5145,
+        "date": "2026-08-14",
+        "cloture": 8500.0,
+        "variation": 0.29,
+        "volume": 3756,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -93,6 +99,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 254.5,
         "rendement_div": 5.15,
         "resultat_net": 30341.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -110,19 +122,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 55.53,
+        "date": "2026-08-14",
+        "global": 53.45,
         "fondamental": 58.22,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 29000.0,
-        "variation": 2.47,
-        "volume": 253,
+        "date": "2026-08-14",
+        "cloture": 28670.0,
+        "variation": -1.14,
+        "volume": 509,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -134,21 +146,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 1157.2,
         "rendement_div": 3.57,
         "resultat_net": 36520.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-04-20",
-          "source": "sikafinance.com",
-          "titre": "BRVM : L'action BICICI bondit après des résultats annuels bien accueillis",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -159,19 +169,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation discrétionnaire",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 50.99,
+        "date": "2026-08-14",
+        "global": 48.92,
         "fondamental": 50.66,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 1700.0,
+        "date": "2026-08-14",
+        "cloture": 2000.0,
         "variation": 0.0,
-        "volume": 4868,
+        "volume": 921,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -183,21 +193,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": 22.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-04-30",
-          "source": "sikafinance.com",
-          "titre": "BERNABE : BERNABE CI _ Etats financiers - Exercice 2025",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -208,19 +216,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Bénin",
       "score": {
-        "date": "2026-06-02",
-        "global": 54.48,
+        "date": "2026-08-14",
+        "global": 52.41,
         "fondamental": 55.68,
         "sentiment": 53.18,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 8710.0,
-        "variation": -1.02,
-        "volume": 5274,
+        "date": "2026-08-14",
+        "cloture": 8700.0,
+        "variation": 0.12,
+        "volume": 4697,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -232,28 +240,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 585.0,
         "rendement_div": 5.24,
         "resultat_net": 20107.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-08",
-          "source": "sikafinance.com",
-          "titre": "BANK OF AFRICA BENIN : BOA BN _ Paiement de dividendes - Exercice 2025",
-          "sentiment": "positif",
-          "score_sent": 0.35
-        },
-        {
-          "date": "2026-05-04",
-          "source": "sikafinance.com",
-          "titre": "BANK OF AFRICA BENIN : BOA BENIN _ Rapport dactivites - 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -264,19 +263,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Burkina Faso",
       "score": {
-        "date": "2026-06-02",
-        "global": 64.38,
+        "date": "2026-08-14",
+        "global": 62.3,
         "fondamental": 72.97,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 5590.0,
-        "variation": 0.09,
-        "volume": 5313,
+        "date": "2026-08-14",
+        "cloture": 7100.0,
+        "variation": 0.0,
+        "volume": 11763,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -288,21 +287,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 397.0,
         "rendement_div": 7.35,
         "resultat_net": 19252.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-04-30",
-          "source": "sikafinance.com",
-          "titre": "BANK OF AFRICA BURKINA FASO : BOA BF _ Rapport dactivites - 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -313,19 +310,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 59.73,
+        "date": "2026-08-14",
+        "global": 57.66,
         "fondamental": 65.23,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 8800.0,
-        "variation": -2.17,
-        "volume": 19062,
+        "date": "2026-08-14",
+        "cloture": 12900.0,
+        "variation": 3.2,
+        "volume": 4724,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -337,28 +334,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 594.5,
         "rendement_div": 6.76,
         "resultat_net": 35540.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-04-29",
-          "source": "brvm.org",
-          "titre": "BANK OF AFRICA NG : BOA NG : Communiqué de presse",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-30",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Bank Of Africa CI polarise les flux avec 738 millions FCFA à son actif",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -369,19 +357,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Mali",
       "score": {
-        "date": "2026-06-02",
-        "global": 64.04,
+        "date": "2026-08-14",
+        "global": 61.97,
         "fondamental": 71.62,
         "sentiment": 53.18,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 4980.0,
-        "variation": -5.05,
-        "volume": 5787,
+        "date": "2026-08-14",
+        "cloture": 6150.0,
+        "variation": 0.16,
+        "volume": 4869,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -393,21 +381,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 305.04,
         "rendement_div": 5.2,
         "resultat_net": 11081.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-11",
-          "source": "sikafinance.com",
-          "titre": "BANK OF AFRICA MALI : BOA ML _ Paiement de dividendes - Exercice 2025",
-          "sentiment": "positif",
-          "score_sent": 0.35
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -418,19 +404,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Niger",
       "score": {
-        "date": "2026-06-02",
-        "global": 43.13,
+        "date": "2026-08-14",
+        "global": 41.06,
         "fondamental": 39.09,
         "sentiment": 43.86,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 3695.0,
-        "variation": -0.14,
-        "volume": 4551,
+        "date": "2026-08-14",
+        "cloture": 5120.0,
+        "variation": 0.39,
+        "volume": 1271,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -442,28 +428,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 6.03,
         "resultat_net": 409.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-03-17",
-          "source": "sikafinance.com",
-          "titre": "BRVM : BOA Niger fortement sanctionnée après une alerte sur ses performances",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "source": "brvm.org",
-          "titre": "BANK OF AFRICA NG : BOA NIGER : Communiqué - Profit Warning",
-          "sentiment": "negatif",
-          "score_sent": -0.75
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -474,19 +451,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Sénégal",
       "score": {
-        "date": "2026-06-02",
-        "global": 61.34,
+        "date": "2026-08-14",
+        "global": 59.27,
         "fondamental": 67.03,
         "sentiment": 53.5,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 7290.0,
-        "variation": -3.64,
-        "volume": 19999,
+        "date": "2026-08-14",
+        "cloture": 7700.0,
+        "variation": 0.13,
+        "volume": 4989,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -498,28 +475,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 450.0,
         "rendement_div": 5.84,
         "resultat_net": 21905.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-08",
-          "source": "sikafinance.com",
-          "titre": "BANK OF AFRICA SENEGAL : BOA_SN__Paiement_de_dividendes_Exercice_2025",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-18",
-          "source": "sikafinance.com",
-          "titre": "BRVM : BOA Sénégal capte les échanges dans une séance hésitante",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -530,19 +498,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Industriels",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 65.47,
+        "date": "2026-08-14",
+        "global": 63.39,
         "fondamental": 75.08,
         "sentiment": 48.82,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
-        "signal": "achat"
+        "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 3400.0,
-        "variation": -1.88,
-        "volume": 4386,
+        "date": "2026-08-14",
+        "cloture": 3500.0,
+        "variation": 0.29,
+        "volume": 242,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -554,42 +522,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 152.02,
         "rendement_div": 3.66,
         "resultat_net": 1704.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-13",
-          "source": "sikafinance.com",
-          "titre": "SICABLE CI : SICABLE CI _ Paiement de dividendes - Exercice 2025",
-          "sentiment": "positif",
-          "score_sent": 0.35
-        },
-        {
-          "date": "2026-04-23",
-          "source": "sikafinance.com",
-          "titre": "SICABLE CI montre un net rebond après sa phase de correction",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-21",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SICABLE CI sanctionnée après un 1er trimestre en perte de vitesse",
-          "sentiment": "negatif",
-          "score_sent": -0.6
-        },
-        {
-          "date": "2026-03-11",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SICABLE CI sanctionné pour un rendement jugé faible",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -600,19 +545,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Burkina Faso",
       "score": {
-        "date": "2026-06-02",
-        "global": 62.96,
+        "date": "2026-08-14",
+        "global": 60.89,
         "fondamental": 67.66,
         "sentiment": 61.79,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 22500.0,
-        "variation": 4.6,
-        "volume": 2931,
+        "date": "2026-08-14",
+        "cloture": 28700.0,
+        "variation": 0.0,
+        "volume": 447,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -624,35 +569,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 900.0,
         "rendement_div": 3.09,
         "resultat_net": 65495.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-12",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Coris Bank International BF porte le marché et établit un nouveau record à 17 400 FCFA",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-07",
-          "source": "sikafinance.com",
-          "titre": "Coris Bank International BF réalise un résultat net en hausse de 22% au T1 2026",
-          "sentiment": "positif",
-          "score_sent": 0.55
-        },
-        {
-          "date": "2026-04-22",
-          "source": "sikafinance.com",
-          "titre": "Coris Bank International confirme sa dynamique avec un bénéfice en hausse de 36% à 65,5 milliards FCFA en 2025",
-          "sentiment": "positif",
-          "score_sent": 0.55
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -663,19 +592,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation discrétionnaire",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 31.36,
+        "date": "2026-08-14",
+        "global": 29.29,
         "fondamental": 17.95,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "vente"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 1530.0,
-        "variation": 1.66,
-        "volume": 1931,
+        "date": "2026-08-14",
+        "cloture": 1665.0,
+        "variation": 4.06,
+        "volume": 985,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -687,21 +616,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 7.04,
         "rendement_div": 0.53,
         "resultat_net": 4693.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-12",
-          "source": "sikafinance.com",
-          "titre": "CFAO CI : CFAO MOTORS CI _ Avis de convocation - Assemblée Générale Ordinaire",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -712,19 +639,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services publics",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 62.59,
+        "date": "2026-08-14",
+        "global": 60.52,
         "fondamental": 69.99,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 4515.0,
-        "variation": 7.5,
-        "volume": 9555,
+        "date": "2026-08-14",
+        "cloture": 5515.0,
+        "variation": 1.19,
+        "volume": 1628,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -736,6 +663,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 205.92,
         "rendement_div": 5.41,
         "resultat_net": 13127.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -753,19 +686,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 58.83,
+        "date": "2026-08-14",
+        "global": 56.75,
         "fondamental": 63.72,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 16345.0,
-        "variation": 0.58,
-        "volume": 2962,
+        "date": "2026-08-14",
+        "cloture": 16000.0,
+        "variation": 0.0,
+        "volume": 11343,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -777,42 +710,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 781.0,
         "rendement_div": 5.45,
         "resultat_net": 63482.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-08",
-          "source": "sikafinance.com",
-          "titre": "BRVM : La dynamique haussière se poursuit autour d’Ecobank CI",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-08",
-          "source": "sikafinance.com",
-          "titre": "ECOBANK CI : ECOBANK_CI_Paiement_de_dividendes_Exercice_2025",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-30",
-          "source": "sikafinance.com",
-          "titre": "Ecobank Côte d’Ivoire réalise un bénéfice de 13 milliards FCFA au 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-13",
-          "source": "sikafinance.com",
-          "titre": "Ecobank Côte d'Ivoire : Une enveloppe de 49 milliards FCFA dédiée à la rémunération des actionnaires",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -823,19 +733,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Togo",
       "score": {
-        "date": "2026-06-02",
-        "global": 69.69,
+        "date": "2026-08-14",
+        "global": 67.61,
         "fondamental": 81.82,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "achat"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 30.0,
+        "date": "2026-08-14",
+        "cloture": 68.0,
         "variation": 0.0,
-        "volume": 500579,
+        "volume": 1246051,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -847,21 +757,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.93,
         "rendement_div": 3.1,
         "resultat_net": 345523.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-13",
-          "source": "sikafinance.com",
-          "titre": "ETI TG : ETI TG _ Avis de convocation - Assemblée Générale Ordinaire",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -872,19 +780,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Industriels",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 80.59,
+        "date": "2026-08-14",
+        "global": 78.52,
         "fondamental": 100.0,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
-        "signal": "achat_fort"
+        "signal": "achat"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 2335.0,
-        "variation": -0.21,
-        "volume": 5095,
+        "date": "2026-08-14",
+        "cloture": 2190.0,
+        "variation": 0.0,
+        "volume": 698,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -896,6 +804,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 1726.55,
         "rendement_div": 84.77,
         "resultat_net": 18595.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -913,19 +827,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation discrétionnaire",
       "pays": "Bénin",
       "score": {
-        "date": "2026-06-02",
-        "global": 51.66,
+        "date": "2026-08-14",
+        "global": 49.59,
         "fondamental": 53.6,
         "sentiment": 42.71,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 3845.0,
-        "variation": -0.13,
-        "volume": 11813,
+        "date": "2026-08-14",
+        "cloture": 4100.0,
+        "variation": 2.5,
+        "volume": 2006,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -937,21 +851,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 164.0,
         "rendement_div": 7.27,
         "resultat_net": 4622.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-07",
-          "source": "sikafinance.com",
-          "titre": "LOTERIE NATIONALE DU BENIN : LNB BN _ Rapport dactivites - 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -962,19 +874,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation discrétionnaire",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 65.59,
+        "date": "2026-08-14",
+        "global": 63.52,
         "fondamental": 75.0,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
-        "signal": "achat"
+        "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 1995.0,
-        "variation": 0.25,
-        "volume": 4482,
+        "date": "2026-08-14",
+        "cloture": 2200.0,
+        "variation": 0.0,
+        "volume": 1364,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -986,6 +898,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 140.39,
         "rendement_div": 7.25,
         "resultat_net": 2037.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -1003,19 +921,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 63.89,
+        "date": "2026-08-14",
+        "global": 61.82,
         "fondamental": 72.16,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 17990.0,
-        "variation": -0.06,
-        "volume": 2297,
+        "date": "2026-08-14",
+        "cloture": 23015.0,
+        "variation": 0.07,
+        "volume": 1013,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1027,6 +945,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 4.24,
         "resultat_net": 40712.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [
@@ -1034,34 +958,6 @@ window.BRVM_RADAR_DATA = {
           "date": "2026-05-20",
           "source": "sikafinance.com",
           "titre": "BRVM : NSIA BANQUE CI, trois sommets en trois séances",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-15",
-          "source": "sikafinance.com",
-          "titre": "NSIA Banque Côte d’Ivoire franchit le cap des 40 milliards FCFA de bénéfice en 2025",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-13",
-          "source": "sikafinance.com",
-          "titre": "NSIA BANQUE : NSIA BANQUE CI _ Etats financiers et Communiqué - Exercice 2025",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-11",
-          "source": "sikafinance.com",
-          "titre": "NSIA Banque Côte d’Ivoire réalise la première cotation à la BRVM de la tranche FCFA de son FCTC 2025-2030",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-08",
-          "source": "sikafinance.com",
-          "titre": "UEMOA : NSIA Banque Côte d’Ivoire annonce la cotation des titres ZAKA RMBS NSIA Banque CI 2025-2036 à la BRVM",
           "sentiment": "neutre",
           "score_sent": 0.0
         }
@@ -1080,19 +976,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation de base",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 73.85,
+        "date": "2026-08-14",
+        "global": 71.78,
         "fondamental": 87.88,
         "sentiment": 53.5,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "achat"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 12900.0,
-        "variation": -0.69,
-        "volume": 3176,
+        "date": "2026-08-14",
+        "cloture": 17450.0,
+        "variation": 0.0,
+        "volume": 231,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1104,21 +1000,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 369.6,
         "rendement_div": 6.92,
         "resultat_net": 18427.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-04-08",
-          "source": "sikafinance.com",
-          "titre": "Côte d’Ivoire : Nestlé lance la campagne ''Nestlé for Good'' et met l’humain au cœur de son engagement",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1129,19 +1023,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Télécommunications",
       "pays": "Burkina Faso",
       "score": {
-        "date": "2026-06-02",
-        "global": 52.12,
+        "date": "2026-08-14",
+        "global": 50.05,
         "fondamental": 51.75,
         "sentiment": 53.18,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 2900.0,
+        "date": "2026-08-14",
+        "cloture": 2800.0,
         "variation": 0.0,
-        "volume": 14025,
+        "volume": 1637,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1153,6 +1047,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 145.32,
         "rendement_div": 4.15,
         "resultat_net": 15887.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [
@@ -1162,20 +1062,6 @@ window.BRVM_RADAR_DATA = {
           "titre": "ONATEL BF : ONATEL BF _ Paiement de dividendes - Exercice 2025",
           "sentiment": "positif",
           "score_sent": 0.35
-        },
-        {
-          "date": "2026-04-10",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Baisse de 26 % du résultat net d'Onatel, indifférence du marché",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-09",
-          "source": "brvm.org",
-          "titre": "ONATEL BF : ONATEL BURKINA FASO : Communiqué de presse",
-          "sentiment": "neutre",
-          "score_sent": 0.0
         }
       ],
       "pipeline": {
@@ -1192,19 +1078,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Télécommunications",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 53.66,
+        "date": "2026-08-14",
+        "global": 51.58,
         "fondamental": 55.1,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 15705.0,
-        "variation": -1.84,
-        "volume": 2233,
+        "date": "2026-08-14",
+        "cloture": 18000.0,
+        "variation": 0.0,
+        "volume": 261,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1216,49 +1102,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 704.0,
         "rendement_div": 4.84,
         "resultat_net": 167800.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-04-22",
-          "source": "sikafinance.com",
-          "titre": "Pass Kdo Max : Orange Côte d’Ivoire fait des heureux avec les premiers gagnants",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-09",
-          "source": "sikafinance.com",
-          "titre": "Télécom : Orange dévoile un plan à 5 milliards d’euros en Afrique et au Moyen-Orient et vise 50 millions d’utilisateurs en plus d’ici 2028",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-27",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Orange CI aux commandes dans une séance unanimement haussière",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-26",
-          "source": "sikafinance.com",
-          "titre": "Orange Côte d’Ivoire lance “Ma Box Internet”, une application qui redonne le contrôle de la fibre aux utilisateurs",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "source": "sikafinance.com",
-          "titre": "Performance réseau : Orange Côte d’Ivoire s’impose comme la référence nationale selon Ookla",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1278,10 +1134,10 @@ window.BRVM_RADAR_DATA = {
         "signal": null
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 2800.0,
-        "variation": 6.46,
-        "volume": 8634,
+        "date": "2026-08-14",
+        "cloture": 3060.0,
+        "variation": -0.16,
+        "volume": 985,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1293,28 +1149,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": -44363.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-04",
-          "source": "sikafinance.com",
-          "titre": "ORAGROUP TOGO : ORAGROUP TG _ Etats financiers - Exercice 2025",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-04",
-          "source": "sikafinance.com",
-          "titre": "ORAGROUP TOGO : ORAGROUP TG _ Notation Financiere",
-          "sentiment": "positif",
-          "score_sent": 0.1
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": false,
         "exclusion_reason": "per_not_applicable"
       }
@@ -1325,19 +1172,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation de base",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 72.76,
+        "date": "2026-08-14",
+        "global": 70.69,
         "fondamental": 86.94,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "achat"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 8000.0,
-        "variation": 0.31,
-        "volume": 15731,
+        "date": "2026-08-14",
+        "cloture": 9115.0,
+        "variation": 1.28,
+        "volume": 6294,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1349,21 +1196,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 441.4,
         "rendement_div": 6.44,
         "resultat_net": 15509.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-03-24",
-          "source": "sikafinance.com",
-          "titre": "BRVM : PALMCI sanctionnée en raison d’attentes de rendement non satisfaites",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1374,19 +1219,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation discrétionnaire",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 58.22,
+        "date": "2026-08-14",
+        "global": 56.15,
         "fondamental": 62.71,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 4300.0,
-        "variation": 3.49,
-        "volume": 497,
+        "date": "2026-08-14",
+        "cloture": 4495.0,
+        "variation": 0.0,
+        "volume": 169,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1398,21 +1243,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 183.92,
         "rendement_div": 5.72,
         "resultat_net": 2367.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-05",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Le marché décroche, Tractafric Motors et Oragroup sous pression",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1423,19 +1266,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 55.27,
+        "date": "2026-08-14",
+        "global": 53.2,
         "fondamental": 57.79,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 3860.0,
-        "variation": 7.37,
-        "volume": 8007,
+        "date": "2026-08-14",
+        "cloture": 5840.0,
+        "variation": 5.13,
+        "volume": 8093,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1447,42 +1290,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": 701.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-12",
-          "source": "sikafinance.com",
-          "titre": "BRVM/Alios Finance (ex-SAFCA) : Le bénéfice bondit de plus de 1000% au premier trimestre",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-11",
-          "source": "sikafinance.com",
-          "titre": "SAFCA CI : SAFCA CI _ Rapport d'activités - 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-24",
-          "source": "sikafinance.com",
-          "titre": "Quand SAFCA réalise sa meilleure performance de ces 10 dernières années",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-14",
-          "source": "brvm.org",
-          "titre": "SAFCA CI : ALIOS FINANCE (SAFCA CI) : Augmentation de capital par apport en numéraire avec DPS",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1502,10 +1322,10 @@ window.BRVM_RADAR_DATA = {
         "signal": null
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 2780.0,
-        "variation": 0.36,
-        "volume": 7348,
+        "date": "2026-08-14",
+        "cloture": 3660.0,
+        "variation": -0.95,
+        "volume": 3134,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1517,6 +1337,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": -6132.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [
@@ -1524,20 +1350,6 @@ window.BRVM_RADAR_DATA = {
           "date": "2026-05-18",
           "source": "sikafinance.com",
           "titre": "SUCRIVOIRE : SUCRIVOIRE CI _ Etats financiers - Exercice 2025 (Annule et remplace le précédent)",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-07",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SUCRIVOIRE et AGL CI se distinguent sur un marché en léger équilibre",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-09",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Sucrivoire s’illustre, Société Générale CI donne le ton au marché",
           "sentiment": "neutre",
           "score_sent": 0.0
         }
@@ -1556,19 +1368,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services publics",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 56.26,
+        "date": "2026-08-14",
+        "global": 54.19,
         "fondamental": 59.44,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 11000.0,
-        "variation": -0.23,
-        "volume": 1450,
+        "date": "2026-08-14",
+        "cloture": 11610.0,
+        "variation": 0.0,
+        "volume": 1013,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1580,6 +1392,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 462.0,
         "rendement_div": 3.76,
         "resultat_net": 4663.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [
@@ -1587,13 +1405,6 @@ window.BRVM_RADAR_DATA = {
           "date": "2026-05-18",
           "source": "sikafinance.com",
           "titre": "BRVM : L’action SODECI à son plus haut de la décennie",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-28",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SODECI en soutien d’un marché guidé par le rendement",
           "sentiment": "neutre",
           "score_sent": 0.0
         }
@@ -1612,19 +1423,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Industriels",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 64.42,
+        "date": "2026-08-14",
+        "global": 62.35,
         "fondamental": 73.05,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 1920.0,
-        "variation": 2.13,
-        "volume": 13953,
+        "date": "2026-08-14",
+        "cloture": 2775.0,
+        "variation": -0.72,
+        "volume": 3709,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1636,6 +1447,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 92.0,
         "rendement_div": 5.98,
         "resultat_net": 21069.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -1653,19 +1470,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Industriels",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 35.59,
+        "date": "2026-08-14",
+        "global": 33.52,
         "fondamental": 25.0,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "vente"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 1660.0,
-        "variation": 7.44,
-        "volume": 16873,
+        "date": "2026-08-14",
+        "cloture": 1490.0,
+        "variation": -0.33,
+        "volume": 2828,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1677,6 +1494,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": 45.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -1694,19 +1517,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 63.59,
+        "date": "2026-08-14",
+        "global": 61.52,
         "fondamental": 71.66,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 37200.0,
-        "variation": 0.54,
-        "volume": 21548,
+        "date": "2026-08-14",
+        "cloture": 39000.0,
+        "variation": -0.51,
+        "volume": 4375,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1718,35 +1541,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 2293.28,
         "rendement_div": 7.2,
         "resultat_net": 101352.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-07",
-          "source": "sikafinance.com",
-          "titre": "Société Générale CI réalise un bénéfice de 24 milliards FCFA au 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-20",
-          "source": "sikafinance.com",
-          "titre": "Société Générale CI : Vers un tournant décisif pour la rémunération des actionnaires ?",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Société Générale CI s’illustre bien et propulse les indices dans le vert",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1757,19 +1564,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Energie",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 56.32,
+        "date": "2026-08-14",
+        "global": 54.25,
         "fondamental": 59.54,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 2000.0,
-        "variation": 4.44,
-        "volume": 7486,
+        "date": "2026-08-14",
+        "cloture": 2200.0,
+        "variation": 0.0,
+        "volume": 1596,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1781,21 +1588,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 4.33,
         "resultat_net": 6028.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-05",
-          "source": "sikafinance.com",
-          "titre": "VIVO ENERGY CI : VIVO ENERGY _ Rapport dactivite - 4eme trimestre 2025 et du 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1806,19 +1611,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Services financiers",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 58.99,
+        "date": "2026-08-14",
+        "global": 56.92,
         "fondamental": 64.0,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 8770.0,
-        "variation": 3.18,
-        "volume": 17786,
+        "date": "2026-08-14",
+        "cloture": 9175.0,
+        "variation": 0.82,
+        "volume": 2638,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1830,21 +1635,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 374.0,
         "rendement_div": 5.45,
         "resultat_net": 55623.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-06",
-          "source": "sikafinance.com",
-          "titre": "SOCIETE IVOIRIENNE DE BANQUE CI : SIB CI _ Rapport dactivites - 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1855,19 +1658,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation de base",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 58.18,
+        "date": "2026-08-14",
+        "global": 56.11,
         "fondamental": 62.65,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 4270.0,
-        "variation": 0.0,
-        "volume": 9,
+        "date": "2026-08-14",
+        "cloture": 10080.0,
+        "variation": 7.46,
+        "volume": 159,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1879,21 +1682,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": 19.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-15",
-          "source": "sikafinance.com",
-          "titre": "SICOR : SICOR CI _ Avis de convocation - Assemblée Générale Ordinaire",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1904,19 +1705,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Industriels",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 29.37,
+        "date": "2026-08-14",
+        "global": 27.3,
         "fondamental": 13.79,
         "sentiment": 53.33,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "vente"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 2845.0,
-        "variation": -0.52,
-        "volume": 1572,
+        "date": "2026-08-14",
+        "cloture": 2430.0,
+        "variation": 0.83,
+        "volume": 910,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1928,21 +1729,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": 377.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-04",
-          "source": "sikafinance.com",
-          "titre": "ERIUM : ERIUM CI _ Notation Financiere",
-          "sentiment": "positif",
-          "score_sent": 0.1
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -1953,19 +1752,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation de base",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 57.17,
+        "date": "2026-08-14",
+        "global": 55.1,
         "fondamental": 59.71,
         "sentiment": 55.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 39300.0,
-        "variation": 3.42,
-        "volume": 967,
+        "date": "2026-08-14",
+        "cloture": 37250.0,
+        "variation": -1.97,
+        "volume": 416,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -1977,6 +1776,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 1871.76,
         "rendement_div": 3.23,
         "resultat_net": 45781.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [
@@ -1990,13 +1795,6 @@ window.BRVM_RADAR_DATA = {
         {
           "date": "2026-05-19",
           "source": "sikafinance.com",
-          "titre": "SOLIBRA CI : SOLIBRA CI _ Avis de convocation - Assemblée Générale Ordinaire",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-05-19",
-          "source": "sikafinance.com",
           "titre": "SOLIBRA CI : SOLIBRA CI _ Formulaire de vote par correspondance - Assemblée Générale Ordinaire",
           "sentiment": "neutre",
           "score_sent": 0.0
@@ -2005,6 +1803,13 @@ window.BRVM_RADAR_DATA = {
           "date": "2026-05-19",
           "source": "sikafinance.com",
           "titre": "SOLIBRA CI : SOLIBRA CI _ Etats financiers - Exercice 2025",
+          "sentiment": "neutre",
+          "score_sent": 0.0
+        },
+        {
+          "date": "2026-05-19",
+          "source": "sikafinance.com",
+          "titre": "SOLIBRA CI : SOLIBRA CI _ Avis de convocation - Assemblée Générale Ordinaire",
           "sentiment": "neutre",
           "score_sent": 0.0
         },
@@ -2030,19 +1835,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Energie",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 71.07,
+        "date": "2026-08-14",
+        "global": 68.99,
         "fondamental": 84.12,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "achat"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 13690.0,
-        "variation": 2.93,
-        "volume": 876,
+        "date": "2026-08-14",
+        "cloture": 16355.0,
+        "variation": -0.58,
+        "volume": 463,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2054,21 +1859,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 704.0,
         "rendement_div": 5.6,
         "resultat_net": 13075.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-12",
-          "source": "sikafinance.com",
-          "titre": "SMB CI : SMB CI _ Etats financiers et projet d'affectation du résultat - Exercice 2025",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -2079,19 +1882,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Télécommunications",
       "pays": "Sénégal",
       "score": {
-        "date": "2026-06-02",
-        "global": 65.91,
+        "date": "2026-08-14",
+        "global": 63.83,
         "fondamental": 75.52,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
-        "signal": "achat"
+        "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 28300.0,
-        "variation": -0.35,
-        "volume": 6603,
+        "date": "2026-08-14",
+        "cloture": 31900.0,
+        "variation": -0.3,
+        "volume": 4924,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2103,35 +1906,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 1740.0,
         "rendement_div": 6.7,
         "resultat_net": 413588.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-04-20",
-          "source": "sikafinance.com",
-          "titre": "Sonatel réalise un bénéfice de 114 milliards FCFA au 1er trimestre 2026",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-26",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Retour au-dessus des 400 points sous l’impulsion de SONATEL",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Sonatel stabilise le marché, après 2 séances de correction",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -2142,19 +1929,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation de base",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 62.04,
+        "date": "2026-08-14",
+        "global": 59.96,
         "fondamental": 69.07,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 7990.0,
-        "variation": 6.68,
-        "volume": 6384,
+        "date": "2026-08-14",
+        "cloture": 7850.0,
+        "variation": 7.31,
+        "volume": 697,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2166,6 +1953,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 501.6,
         "rendement_div": 8.12,
         "resultat_net": 12493.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [
@@ -2191,19 +1984,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation de base",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 76.0,
+        "date": "2026-08-14",
+        "global": 73.93,
         "fondamental": 92.35,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "achat"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 7305.0,
-        "variation": 2.89,
-        "volume": 3006,
+        "date": "2026-08-14",
+        "cloture": 8005.0,
+        "variation": 0.06,
+        "volume": 2797,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2215,35 +2008,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 430.32,
         "rendement_div": 6.99,
         "resultat_net": 24972.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-06",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SAPH CI au top sur un marché en réajustement progressif",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-07",
-          "source": "sikafinance.com",
-          "titre": "BRVM : Avec 900 millions FCFA drainés, SAPH signe sa meilleure activité depuis le début de l'année",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-19",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SAPH CI baisse sous l'effet d'une gratification peu convaincante",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -2263,10 +2040,10 @@ window.BRVM_RADAR_DATA = {
         "signal": null
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 3000.0,
-        "variation": 6.57,
-        "volume": 1292,
+        "date": "2026-08-14",
+        "cloture": 2635.0,
+        "variation": -0.75,
+        "volume": 2023,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2278,49 +2055,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": -97.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-13",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SETAO CI signe la plus forte hausse d’une séance largement positive",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-08",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SETAO CI toujours au top dans un marché en consolidation",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-03",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SETAO CI en tête dans une séance écourtée mais haussière",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-31",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SETAO CI atteint discrètement un sommet historique",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "source": "sikafinance.com",
-          "titre": "BRVM : SETAO CI confirme son regain d’intérêt sur le marché",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": false,
         "exclusion_reason": "per_not_applicable"
       }
@@ -2331,19 +2078,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Consommation de base",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 55.51,
+        "date": "2026-08-14",
+        "global": 53.43,
         "fondamental": 57.96,
         "sentiment": 50.91,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 21315.0,
-        "variation": 0.07,
-        "volume": 4241,
+        "date": "2026-08-14",
+        "cloture": 23495.0,
+        "variation": 5.01,
+        "volume": 2856,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2355,21 +2102,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 11.31,
         "resultat_net": 36158.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-04",
-          "source": "sikafinance.com",
-          "titre": "SITAB : SITAB CI _ Notation Financiere",
-          "sentiment": "positif",
-          "score_sent": 0.1
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -2380,19 +2125,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Energie",
       "pays": "Côte d'Ivoire",
       "score": {
-        "date": "2026-06-02",
-        "global": 55.29,
+        "date": "2026-08-14",
+        "global": 53.22,
         "fondamental": 57.83,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
         "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 2900.0,
-        "variation": 1.75,
-        "volume": 2304,
+        "date": "2026-08-14",
+        "cloture": 3150.0,
+        "variation": 5.0,
+        "volume": 4871,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2404,28 +2149,19 @@ window.BRVM_RADAR_DATA = {
         "dividende": 140.0,
         "rendement_div": 5.48,
         "resultat_net": 9087.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
-      "actualites": [
-        {
-          "date": "2026-05-05",
-          "source": "sikafinance.com",
-          "titre": "TOTAL CI : TotalEnergies Marketing CI _ Avis de convocation - Assemblee Generale Ordinaire",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        },
-        {
-          "date": "2026-04-01",
-          "source": "sikafinance.com",
-          "titre": "BRVM : TOTAL CI ajuste son cours après la publication de ses résultats",
-          "sentiment": "neutre",
-          "score_sent": 0.0
-        }
-      ],
+      "actualites": [],
       "pipeline": {
         "prix_ok": true,
         "fondamentaux_ok": true,
-        "actualites_ok": true,
+        "actualites_ok": false,
         "scoring_ok": true,
         "exclusion_reason": null
       }
@@ -2436,19 +2172,19 @@ window.BRVM_RADAR_DATA = {
       "secteur": "Energie",
       "pays": "Sénégal",
       "score": {
-        "date": "2026-06-02",
-        "global": 65.59,
+        "date": "2026-08-14",
+        "global": 63.52,
         "fondamental": 75.0,
         "sentiment": 50.0,
-        "macro": 52.38,
+        "macro": 44.09,
         "technique": 0.0,
-        "signal": "achat"
+        "signal": "neutre"
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 3365.0,
-        "variation": 0.0,
-        "volume": 4685,
+        "date": "2026-08-14",
+        "cloture": 3585.0,
+        "variation": -0.42,
+        "volume": 491,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2460,6 +2196,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 222.4,
         "rendement_div": 7.29,
         "resultat_net": 7091.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -2486,10 +2228,10 @@ window.BRVM_RADAR_DATA = {
         "signal": null
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 55000.0,
-        "variation": -3.68,
-        "volume": 17,
+        "date": "2026-08-14",
+        "cloture": 58000.0,
+        "variation": 0.0,
+        "volume": 0,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2501,6 +2243,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": 640.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
@@ -2527,10 +2275,10 @@ window.BRVM_RADAR_DATA = {
         "signal": null
       },
       "prix": {
-        "date": "2026-06-02",
-        "cloture": 1790.0,
-        "variation": 0.56,
-        "volume": 9037,
+        "date": "2026-08-14",
+        "cloture": 2000.0,
+        "variation": 3.09,
+        "volume": 21795,
         "capitalisation": null,
         "source": "brvm.org"
       },
@@ -2542,6 +2290,12 @@ window.BRVM_RADAR_DATA = {
         "dividende": 0.0,
         "rendement_div": 0.0,
         "resultat_net": -2218.0,
+        "bpa": null,
+        "capitaux_propres": null,
+        "nombre_actions": null,
+        "valeur_comptable_action": null,
+        "roe": null,
+        "p_cf": null,
         "updated_at": "2026-05-21"
       },
       "actualites": [],
