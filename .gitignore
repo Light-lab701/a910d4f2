@@ -1,2 +1,10 @@
 .DS_Store
 .gstack/
+
+# veille-actions-us : logos par ticker (Get-Logo, generer-page.ps1) exposeraient
+# en clair la composition de la watchlist/portefeuille de David dans ce depot
+# PUBLIC, en contournant l'auth Supabase/RLS mise en place pour proteger cette
+# donnee (finding HAUTE, security-auditor, 29-08-2026). Les donnees elles-memes
+# (secteurs/actions/cours/statut/news) transitent deja uniquement par Supabase,
+# jamais en dur dans ce depot -- les logos doivent suivre la meme regle.
+veille-actions-us/logos/
