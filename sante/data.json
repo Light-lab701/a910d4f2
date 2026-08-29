@@ -1,5 +1,5 @@
 {
-    "genere_le":  "2026-08-29 07:40:28",
+    "genere_le":  "2026-08-29 12:00:31",
     "nb_ko":  0,
     "taches":  [
                    {
@@ -32,8 +32,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-08-28 08:30",
-                       "prochain_run":  "2026-08-29 08:30",
+                       "dernier_run":  "2026-08-29 08:30",
+                       "prochain_run":  "2026-08-30 08:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -55,10 +55,10 @@
                        "type":  "quotidien",
                        "etat":  "ok",
                        "motif":  "",
-                       "detail":  "",
-                       "dernier_run":  "2026-08-28 21:00",
-                       "prochain_run":  "2026-08-29 12:00",
-                       "code":  "0x0",
+                       "detail":  "en cours d\u0027execution",
+                       "dernier_run":  "2026-08-29 12:00",
+                       "prochain_run":  "2026-08-29 19:00",
+                       "code":  "0x41301",
                        "note":  "",
                        "note_conduite":  ""
                    },
@@ -68,8 +68,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-08-29 07:40",
-                       "prochain_run":  "2026-08-29 12:00",
+                       "dernier_run":  "2026-08-29 12:00",
+                       "prochain_run":  "2026-08-29 21:15",
                        "code":  "0x41301",
                        "note":  "",
                        "note_conduite":  ""
@@ -80,7 +80,7 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "session active",
-                       "dernier_run":  "2026-08-29 06:07",
+                       "dernier_run":  "2026-08-29 09:08",
                        "prochain_run":  "2026-08-29 23:45",
                        "code":  "0xC000013A",
                        "note":  "",
@@ -104,8 +104,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-08-29 07:40",
-                       "prochain_run":  "2026-08-29 07:41",
+                       "dernier_run":  "2026-08-29 12:00",
+                       "prochain_run":  "2026-08-29 12:01",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -116,8 +116,8 @@
                        "etat":  "attente",
                        "motif":  "terminal64 ferme -- capteur en pause (normal, pas une panne)",
                        "detail":  "",
-                       "dernier_run":  "2026-08-29 07:39",
-                       "prochain_run":  "2026-08-29 07:41",
+                       "dernier_run":  "2026-08-29 11:59",
+                       "prochain_run":  "2026-08-29 12:01",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -128,8 +128,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-08-29 07:40",
-                       "prochain_run":  "2026-08-29 07:45",
+                       "dernier_run":  "2026-08-29 12:00",
+                       "prochain_run":  "2026-08-29 12:05",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -140,8 +140,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-08-29 07:30",
-                       "prochain_run":  "2026-08-29 08:00",
+                       "dernier_run":  "2026-08-29 12:00",
+                       "prochain_run":  "2026-08-29 12:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -152,8 +152,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-08-29 07:30",
-                       "prochain_run":  "2026-08-29 08:00",
+                       "dernier_run":  "2026-08-29 12:00",
+                       "prochain_run":  "2026-08-29 12:30",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -231,13 +231,25 @@
                        "note_conduite":  ""
                    },
                    {
+                       "nom":  "VeilleActionsUS_Hebdo",
+                       "type":  "hebdo",
+                       "etat":  "attente",
+                       "motif":  "jamais lancee",
+                       "detail":  "",
+                       "dernier_run":  "",
+                       "prochain_run":  "2026-08-31 07:00",
+                       "code":  "0x41303",
+                       "note":  "",
+                       "note_conduite":  ""
+                   },
+                   {
                        "nom":  "CleanupTraderReports",
                        "type":  "quotidien",
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-08-28 07:50",
-                       "prochain_run":  "2026-08-29 07:50",
+                       "dernier_run":  "2026-08-29 07:50",
+                       "prochain_run":  "2026-08-30 07:50",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
