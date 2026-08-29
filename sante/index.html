@@ -171,7 +171,8 @@
     "NexPipsWatch":                ["NexPips Watch",               "lundi 9h"],
     "WeeklyCoherence":             ["Cohérence système",           "dimanche 19h · désyncs règles/projets"],
     "CleanupTraderReports":        ["Nettoyage rapports + logs",   "7h50 · trader + rotation logs 14 j"],
-    "JournalTrading_MonthlyStats": ["Journal — stats mensuelles",  "1ᵉʳ du mois"]
+    "JournalTrading_MonthlyStats": ["Journal — stats mensuelles",  "1ᵉʳ du mois"],
+    "VeilleActionsUS_Hebdo":       ["Veille actions US",           "lundi 07h · résumé hebdo watchlist"]
   };
 
   // Guide par tâche, affiché dans le panneau de détail (clic sur une tuile) :
@@ -305,6 +306,12 @@
       quoi: "Le bilan mensuel de ton trading, calculé le 1ᵉʳ du mois au soir (MT5 doit être ouvert).",
       siKo: "MT5 était fermé le soir du 1ᵉʳ (le script réessaie jusqu'à 23h30 puis abandonne), ou le mois n'a pas été rattrapé.",
       faire: "Ouvrir MT5, puis demander à Elvis : « lance le rattrapage des stats du mois ».",
+      mode: "agir"
+    },
+    "VeilleActionsUS_Hebdo": {
+      quoi: "Le résumé hebdo de ta watchlist actions US (lundi 07h) : cours, logos, news par action et par secteur, poussé vers le Hub.",
+      siKo: "Passage raté (PC éteint lundi matin) ou erreur du script — rien n'est perdu, le run suivant rattrape automatiquement toute la période depuis le dernier run réussi.",
+      faire: "Demander à Elvis ou Claude de relancer la tâche VeilleActionsUS_Hebdo — sinon, le rattrapage se fera au prochain passage.",
       mode: "agir"
     }
   };
