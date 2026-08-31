@@ -93,6 +93,17 @@
   .pill .n{margin-left:6px; font-size:12px; color:var(--ink-faint); font-variant-numeric:tabular-nums}
   .pill.on .n{color:#cbd5e1}
 
+  /* Barre de filtres */
+  .filters{padding-top:8px}
+  .filter-row{display:grid; grid-template-columns:96px minmax(0,1fr); align-items:start; gap:16px; padding:10px 0}
+  .filter-label{font-size:14px; color:var(--ink-faint); line-height:32px}
+  .filter-row .pills{padding:0}
+  .pill:focus-visible{outline:2px solid var(--dark); outline-offset:2px}
+  @media (max-width:720px){
+    .filter-row{grid-template-columns:minmax(0,1fr); gap:6px}
+    .filter-label{line-height:20px}
+  }
+
   /* Sections secteurs */
   main{flex:1; padding-bottom:72px}
   .sector{padding-top:32px}
@@ -297,8 +308,22 @@
     </form>
   </div>
 
+  <div class="filters">
+    <div class="filter-row">
+      <span class="filter-label" id="lbl-statut">Statut</span>
+      <div class="pills" id="f-statut" role="group" aria-labelledby="lbl-statut"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label" id="lbl-actu">Actualités</span>
+      <div class="pills" id="f-actu" role="group" aria-labelledby="lbl-actu"></div>
+    </div>
+  </div>
+
   <div id="view-resume">
-    <div class="pills" id="pills"></div>
+    <div class="filter-row">
+      <span class="filter-label" id="lbl-secteurs">Secteurs</span>
+      <div class="pills" id="pills" role="group" aria-labelledby="lbl-secteurs"></div>
+    </div>
     <div id="sectors"></div>
     <p class="empty" id="empty">Aucune action ne correspond à cette recherche.</p>
   </div>
@@ -403,17 +428,105 @@ const statutLigne = a => a.ras
 
 let secteurActif = "Tous";
 let vueActive = "resume";
+let statutActif = "tous";    // tous | detenue | surveillee
+let actuActif   = "toutes";  // toutes | avec | sans
+let chargementEchoue = false;
 
 function match(a, q){
   return !q || a.ticker.toLowerCase().includes(q) || a.nom.toLowerCase().includes(q);
 }
 
+// Prédicat unique de visibilité (recherche + filtres Statut/Actualités).
+// `sauf` exclut son propre filtre pour permettre aux pastilles de compter
+// "si je clique ici, combien j'obtiens" (cf. renderFiltres) sans devoir
+// dupliquer la logique. Le secteur n'entre pas ici : il est géré à part
+// dans render() (vue Résumé uniquement, cf. secteursComptes).
+function visible(a, q, sauf){
+  if (!match(a, q)) return false;
+  if (sauf !== "statut"){
+    if (statutActif === "detenue"    && a.statut !== "detenue") return false;
+    if (statutActif === "surveillee" && a.statut === "detenue") return false;
+  }
+  if (sauf !== "actu"){
+    if (actuActif === "avec" && a.ras)  return false;
+    if (actuActif === "sans" && !a.ras) return false;
+  }
+  return true;
+}
+
+// Secteurs a 0 masques sous filtre (David) : render() fait deja
+// "if (!actions.length) return \"\";", donc une pastille a 0 pointait vers une
+// section deja absente de l'ecran. "Tous" reste toujours affiche, meme a 0.
+// Le repli de secteurActif quand son propre secteur tombe a 0 est traite en
+// amont dans render() (verifierSecteurActif), avant l'appel a pills(q) ici.
 function pills(q){
-  const total = DATA.reduce((n,s)=>n + s.actions.filter(a=>match(a,q)).length, 0);
-  const items = [{nom:"Tous", n:total}].concat(DATA.map(s=>({nom:s.secteur, n:s.actions.filter(a=>match(a,q)).length})));
+  const total = DATA.reduce((n,s)=>n + s.actions.filter(a=>visible(a,q)).length, 0);
+  const items = [{nom:"Tous", n:total}].concat(
+    DATA.map(s=>({nom:s.secteur, n:s.actions.filter(a=>visible(a,q)).length})).filter(i=>i.n>0)
+  );
   document.getElementById("pills").innerHTML = items.map(i =>
-    `<button class="pill${i.nom===secteurActif?" on":""}" data-sector="${esc(i.nom)}">${esc(i.nom)}<span class="n">${i.n}</span></button>`
+    `<button class="pill${i.nom===secteurActif?" on":""}" data-sector="${esc(i.nom)}" aria-pressed="${i.nom===secteurActif}">${esc(i.nom)}<span class="n">${i.n}</span></button>`
   ).join("");
+}
+
+// Compteurs des pastilles Statut/Actualités : chaque groupe s'auto-exclut
+// (visible(a,q,"statut") ignore le filtre Statut lui-même, etc.) pour que le
+// nombre affiché soit celui obtenu APRÈS clic, jamais un total figé.
+// secteursComptes scope par secteurActif seulement en vue Résumé : le filtre
+// secteur vit hors de visible() (appliqué à part dans render()) et la vue
+// Watchlist ne le connaît pas du tout (finding Grincheux, cf. spec §3).
+function renderFiltres(q){
+  const scopeSecteur = vueActive === "resume" && secteurActif !== "Tous";
+  const base = (sauf, tousSecteurs) => DATA
+    .filter(s => tousSecteurs || !scopeSecteur || s.secteur === secteurActif)
+    .flatMap(s => s.actions.filter(a => visible(a, q, sauf)));
+
+  const statutScope = base("statut", false);
+  const actuScope   = base("actu",   false);
+  // Bases tous secteurs : calculees seulement quand un secteur est selectionne
+  // (sinon identiques aux precedentes, inutile de rebalayer DATA).
+  const statutGlobal = scopeSecteur ? base("statut", true) : statutScope;
+  const actuGlobal   = scopeSecteur ? base("actu",   true) : actuScope;
+
+  // Le compteur annonce ce qu'on obtient VRAIMENT apres le clic, repli compris
+  // (finding Relecteur tour 2). Si l'option viderait le secteur selectionne,
+  // le clic declenche verifierSecteurActif -> repli sur "Tous" -> l'ecran
+  // montre le total tous secteurs : on affiche donc ce total, pas un 0 qui
+  // annoncerait une liste vide alors qu'elle ne le sera pas. Cas courant des
+  // qu'un secteur ne contient qu'un seul des deux statuts, pas un cas limite.
+  // Hors secteur selectionne, global === scope : un 0 y reste honnete (le clic
+  // donne bien une liste vide avec son message).
+  const compte = (scope, global, pred) => {
+    const n = scope.filter(pred).length;
+    return n > 0 ? n : global.filter(pred).length;
+  };
+  const toutes    = () => true;
+  const estDetenue = a => a.statut === "detenue";
+
+  const pill = (val, libelle, n, actif) =>
+    `<button class="pill${actif?" on":""}" data-val="${esc(val)}" aria-pressed="${actif}">${esc(libelle)}<span class="n">${n}</span></button>`;
+
+  document.getElementById("f-statut").innerHTML = [
+    pill("tous",       "Toutes",      compte(statutScope, statutGlobal, toutes),       statutActif === "tous"),
+    pill("detenue",    "Détenues",    compte(statutScope, statutGlobal, estDetenue),   statutActif === "detenue"),
+    pill("surveillee", "Surveillées", compte(statutScope, statutGlobal, a => !estDetenue(a)), statutActif === "surveillee"),
+  ].join("");
+
+  document.getElementById("f-actu").innerHTML = [
+    pill("toutes", "Toutes",          compte(actuScope, actuGlobal, toutes),      actuActif === "toutes"),
+    pill("avec",   "Avec actualité",  compte(actuScope, actuGlobal, a => !a.ras), actuActif === "avec"),
+    pill("sans",   "Sans actualité",  compte(actuScope, actuGlobal, a => a.ras),  actuActif === "sans"),
+  ].join("");
+}
+
+// Message de liste vide : distingue recherche/filtres pour ne pas mentir
+// (finding spec §6.3). Ne s'applique pas si le chargement des données a
+// échoué (chargementEchoue) -- signalerEchecChargement() a déjà écrit le
+// message d'erreur, un render() ultérieur ne doit pas l'écraser (§6.4).
+function messageVide(q, filtresActifs){
+  if (q && filtresActifs) return "Aucune action ne correspond à cette recherche et à ces filtres.";
+  if (filtresActifs) return "Aucune action ne correspond à ces filtres.";
+  return "Aucune action ne correspond à cette recherche.";
 }
 
 function carte(a, secteur){
@@ -445,17 +558,34 @@ function carte(a, secteur){
   </button>`;
 }
 
+// Repli sur "Tous" si le secteur actif n'a plus aucune action visible sous
+// les filtres courants (ex : secteur "Technologie" selectionne, puis clic sur
+// "Surveillees" qui le vide) -- sinon la vue reste vide sans aucune pastille
+// en surbrillance, plus aucun repere pour comprendre pourquoi ni revenir en
+// arriere (David). Doit s'executer AVANT pills(q) et la construction des
+// sections dans render(), sinon on affiche une frame vide avant correction.
+function verifierSecteurActif(q){
+  if (secteurActif === "Tous") return;
+  const s = DATA.find(x => x.secteur === secteurActif);
+  const compte = s ? s.actions.filter(a => visible(a, q)).length : 0;
+  if (!compte) secteurActif = "Tous";
+}
+
 function render(){
   const q = document.getElementById("q").value.trim().toLowerCase();
+  verifierSecteurActif(q);
   pills(q);
+  renderFiltres(q);
   let visibles = 0;
   const html = DATA.map(s => {
     if (secteurActif !== "Tous" && secteurActif !== s.secteur) return "";
-    const actions = s.actions.filter(a => match(a, q));
+    const actions = s.actions.filter(a => visible(a, q));
     if (!actions.length) return "";
     visibles += actions.length;
     const ras = actions.filter(a => a.ras).length;
-    const compteur = `${actions.length} action${actions.length>1?"s":""}` + (ras ? ` · ${ras} sans actualité` : "");
+    // Clause "sans actualité" supprimée quand le filtre Actualités est actif :
+    // sinon elle est soit toujours 0 ("avec"), soit une redite ("sans") -- §6.2.
+    const compteur = `${actions.length} action${actions.length>1?"s":""}` + (actuActif === "toutes" && ras ? ` · ${ras} sans actualité` : "");
     return `<section class="sector">
       <div class="sector-head">
         <h2 class="sector-title" data-sector-detail="${esc(s.secteur)}">${esc(s.secteur)}</h2>
@@ -468,6 +598,9 @@ function render(){
     </section>`;
   }).join("");
   document.getElementById("sectors").innerHTML = html;
+  if (!chargementEchoue){
+    document.getElementById("empty").textContent = messageVide(q, statutActif !== "tous" || actuActif !== "toutes");
+  }
   document.getElementById("empty").style.display = visibles ? "none" : "block";
 }
 
@@ -494,9 +627,10 @@ function ligneWatchlist(a){
 
 function renderWatchlist(){
   const q = document.getElementById("q").value.trim().toLowerCase();
+  renderFiltres(q);
   let visibles = 0;
   const html = DATA.map(s => {
-    const actions = s.actions.filter(a => match(a, q));
+    const actions = s.actions.filter(a => visible(a, q));
     if (!actions.length) return "";
     visibles += actions.length;
     // data-sector-detail : meme comportement au clic que .sector-title de la
@@ -508,6 +642,9 @@ function renderWatchlist(){
     </section>`;
   }).join("");
   document.getElementById("watchlist").innerHTML = html;
+  if (!chargementEchoue){
+    document.getElementById("watchlist-empty").textContent = messageVide(q, statutActif !== "tous" || actuActif !== "toutes");
+  }
   document.getElementById("watchlist-empty").style.display = visibles ? "none" : "block";
 }
 
@@ -557,9 +694,15 @@ function ouvrirSecteur(nom){
   document.getElementById("overlay").classList.add("open");
 }
 
-document.getElementById("q").addEventListener("input", () => {
+// Rendu unique selon la vue active : la barre de filtres Statut/Actualités
+// vit hors des deux vues (#view-resume / #view-watchlist), donc son listener
+// ne peut pas appeler render() en dur -- sinon un clic depuis la Watchlist
+// redessinerait la vue Résumé, invisible à l'écran (finding Grincheux §5bis).
+function redessiner(){
   if (vueActive === "watchlist") renderWatchlist(); else render();
-});
+}
+
+document.getElementById("q").addEventListener("input", redessiner);
 document.querySelector("nav.main").addEventListener("click", e => {
   const a = e.target.closest("a[data-view]");
   if (!a) return;
@@ -568,11 +711,19 @@ document.querySelector("nav.main").addEventListener("click", e => {
   document.querySelectorAll("nav.main a[data-view]").forEach(x => x.classList.toggle("on", x === a));
   document.getElementById("view-resume").style.display = vueActive === "resume" ? "" : "none";
   document.getElementById("view-watchlist").style.display = vueActive === "watchlist" ? "" : "none";
-  if (vueActive === "watchlist") renderWatchlist(); else render();
+  redessiner();
 });
 document.getElementById("pills").addEventListener("click", e => {
   const b = e.target.closest(".pill"); if (!b) return;
-  secteurActif = b.dataset.sector; render();
+  secteurActif = b.dataset.sector; redessiner();
+});
+document.getElementById("f-statut").addEventListener("click", e => {
+  const b = e.target.closest(".pill"); if (!b) return;
+  statutActif = b.dataset.val; redessiner();
+});
+document.getElementById("f-actu").addEventListener("click", e => {
+  const b = e.target.closest(".pill"); if (!b) return;
+  actuActif = b.dataset.val; redessiner();
 });
 document.getElementById("sectors").addEventListener("click", e => {
   const t = e.target.closest("[data-sector-detail]");
@@ -609,6 +760,7 @@ function afficherMeta(){
 }
 
 function signalerEchecChargement(){
+  chargementEchoue = true;
   const msg = "Échec du chargement des données. Réessayez plus tard.";
   document.getElementById("empty").textContent = msg;
   document.getElementById("watchlist-empty").textContent = msg;
