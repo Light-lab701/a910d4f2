@@ -81,7 +81,7 @@
   .search .icon{position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--ink-faint); display:grid; place-items:center}
 
   /* Pills secteurs */
-  .pills{display:flex; flex-wrap:wrap; gap:8px; padding:20px 0 4px}
+  .pills{display:flex; flex-wrap:wrap; gap:8px; padding:0}
   .pill{
     display:inline-flex; align-items:center; justify-content:center; height:32px; padding:0 10px;
     border-radius:8px; border:1px solid var(--line-soft); background:#fff; color:var(--ink);
@@ -95,14 +95,42 @@
 
   /* Barre de filtres */
   .filters{padding-top:8px}
-  .filter-row{display:grid; grid-template-columns:96px minmax(0,1fr); align-items:start; gap:16px; padding:10px 0}
-  .filter-label{font-size:14px; color:var(--ink-faint); line-height:32px}
-  .filter-row .pills{padding:0}
   .pill:focus-visible{outline:2px solid var(--dark); outline-offset:2px}
+
+  .toolbar{display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:10px; background:var(--zinc-bg); border:1px solid var(--line); border-radius:12px}
+  .toolbar-group{display:flex; align-items:center; gap:8px; padding:4px 4px 4px 12px; background:#fff; border:1px solid var(--line-soft); border-radius:10px}
   @media (max-width:720px){
-    .filter-row{grid-template-columns:minmax(0,1fr); gap:6px}
-    .filter-label{line-height:20px}
+    .toolbar{flex-direction:column; align-items:stretch}
+    .toolbar-group{justify-content:space-between}
   }
+
+  .sect-dropdown{position:relative}
+  .sect-trigger{display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px; border:1px solid var(--line-soft); border-radius:10px; background:#fff; font-size:14px; font-weight:500; color:var(--ink); cursor:pointer; font-family:inherit}
+  .sect-trigger:hover{background:#f4f4f5}
+  .sect-trigger:focus-visible{outline:2px solid var(--dark); outline-offset:2px}
+  .sect-trigger svg{color:var(--ink-faint); transition:transform .15s}
+  .sect-trigger[aria-expanded="true"] svg{transform:rotate(180deg)}
+  @media (max-width:720px){ .sect-dropdown{align-self:stretch} .sect-trigger{width:100%; justify-content:space-between} }
+
+  .sect-panel{position:absolute; top:calc(100% + 8px); left:0; width:260px; background:#fff; border-radius:12px; box-shadow:0 0 0 1px var(--ring), 0 10px 32px rgba(2,8,23,.12); padding:12px; z-index:30}
+  .sect-panel[hidden]{display:none}
+  @media (max-width:720px){ .sect-panel{left:0; right:0; width:auto} }
+  .sect-panel-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid var(--line)}
+  .sect-list{display:flex; flex-direction:column; gap:2px; max-height:224px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--line-input) transparent}
+  .sect-list::-webkit-scrollbar{width:6px}
+  .sect-list::-webkit-scrollbar-thumb{background:var(--line-input); border-radius:4px}
+  .sect-item{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:6px 8px; border-radius:8px; cursor:pointer; font-size:14px; color:var(--ink)}
+  .sect-item:hover{background:#f4f4f5}
+  .sect-item input[type="checkbox"]{accent-color:var(--dark); margin-right:8px}
+  .sect-item input[type="checkbox"]:focus-visible{outline:2px solid var(--dark); outline-offset:2px}
+  .sect-item .n{font-size:12px; color:var(--ink-faint); font-variant-numeric:tabular-nums}
+
+  .tags-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding-top:12px}
+  .tags-row[hidden]{display:none}
+  .tag{display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 6px 0 10px; border-radius:999px; background:var(--dark); color:var(--on-dark); font-size:12px; font-weight:500; white-space:nowrap}
+  .tag-x{display:grid; place-items:center; width:16px; height:16px; border-radius:999px; border:0; background:rgba(248,250,252,.15); color:var(--on-dark); cursor:pointer; flex:none}
+  .tag-x:hover{background:rgba(248,250,252,.28)}
+  .tag-x:focus-visible{outline:2px solid #fff; outline-offset:1px}
 
   /* Sections secteurs */
   main{flex:1; padding-bottom:72px}
@@ -162,6 +190,36 @@
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
   }
   .card-desc.ras{color:var(--ink-faint)}
+
+  /* Performance depuis le prix d'achat reel (T64) -- element dominant de la
+     carte, demande explicite de David ("en plein milieu, en gros").
+     Le signe +/- porte l'information autant que la couleur : la couleur seule
+     ne doit jamais etre le seul indicateur (regle d'accessibilite).
+     Teintes -700 et non -600 : a cette taille le contraste reste >= 4.5:1 sur
+     blanc, contrairement au vert clair deja utilise pour la variation
+     hebdo (.up/.down), qui reste inchange pour ne pas toucher a l'existant. */
+  .card-perf{
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    padding:14px 0 12px; margin:2px 0 12px;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .card-perf .v{
+    font-size:34px; font-weight:600; line-height:1.05; letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .card-perf .k{
+    font-size:11px; font-weight:500; line-height:16px; color:var(--ink-faint);
+    letter-spacing:.04em; text-align:center;
+  }
+  .perf-up{color:#15803d}
+  .perf-down{color:#b91c1c}
+  .perf-flat{color:var(--ink-muted)}
+  /* Action absente du releve du Club (surveillee, ou detenue ailleurs) : on
+     garde le bloc pour que la grille reste alignee, mais en retrait -- jamais
+     un grand vide, jamais un 0 % qui se lirait comme une vraie performance. */
+  .card-perf.vide .v{font-size:19px; font-weight:500; color:var(--ink-faint)}
+  @media (max-width:720px){ .card-perf .v{font-size:30px} }
+
   .card-foot{display:flex; align-items:center; gap:8px; margin-top:12px; flex-wrap:wrap}
   .badge{
     display:inline-flex; align-items:center; font-size:12px; font-weight:500; line-height:16px;
@@ -309,21 +367,37 @@
   </div>
 
   <div class="filters">
-    <div class="filter-row">
-      <span class="filter-label" id="lbl-statut">Statut</span>
-      <div class="pills" id="f-statut" role="group" aria-labelledby="lbl-statut"></div>
+    <div class="toolbar" id="toolbar">
+      <div class="toolbar-group">
+        <span class="panel-label" id="lbl-statut">Statut</span>
+        <div class="pills" id="f-statut" role="group" aria-labelledby="lbl-statut"></div>
+      </div>
+      <div class="toolbar-group">
+        <span class="panel-label" id="lbl-actu">Actualités</span>
+        <div class="pills" id="f-actu" role="group" aria-labelledby="lbl-actu"></div>
+      </div>
+      <div class="sect-dropdown" id="sect-dropdown">
+        <button class="sect-trigger" id="sect-trigger" type="button" aria-expanded="false" aria-controls="sect-panel">
+          <span id="sect-trigger-label">Secteurs : Tous</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="sect-panel" id="sect-panel" hidden>
+          <div class="sect-panel-head">
+            <span class="panel-label" id="lbl-secteurs-panel">Secteurs</span>
+            <button class="sector-link" id="sect-clear" type="button" hidden>Effacer la sélection</button>
+          </div>
+          <div class="sect-list" id="sect-list" role="group" aria-labelledby="lbl-secteurs-panel"></div>
+        </div>
+      </div>
     </div>
-    <div class="filter-row">
-      <span class="filter-label" id="lbl-actu">Actualités</span>
-      <div class="pills" id="f-actu" role="group" aria-labelledby="lbl-actu"></div>
+    <div class="tags-row" id="tags-row" hidden>
+      <span class="panel-label">Filtres actifs :</span>
+      <span id="tags-list" style="display:contents"></span>
+      <button class="sector-link" id="tags-clear" type="button">Effacer tout</button>
     </div>
   </div>
 
   <div id="view-resume">
-    <div class="filter-row">
-      <span class="filter-label" id="lbl-secteurs">Secteurs</span>
-      <div class="pills" id="pills" role="group" aria-labelledby="lbl-secteurs"></div>
-    </div>
     <div id="sectors"></div>
     <p class="empty" id="empty">Aucune action ne correspond à cette recherche.</p>
   </div>
@@ -408,6 +482,25 @@ const prix = a => a.prix == null ? "" : a.prix.toLocaleString("fr-FR", {minimumF
 const varClass = v => v > 0 ? "up" : (v < 0 ? "down" : "flat");
 const varTxt = v => (v > 0 ? "+" : "") + v.toLocaleString("fr-FR", {minimumFractionDigits:1, maximumFractionDigits:1}) + " %";
 
+// --- Performance depuis l'achat (T64) -------------------------------------
+// Au-dela de 100 %, la decimale n'apporte rien et allonge un nombre deja
+// affiche en tres gros sur une carte etroite (+1 361,4 % -> +1 361 %).
+const perfClass = p => p > 0 ? "perf-up" : (p < 0 ? "perf-down" : "perf-flat");
+const perfTxt = p => {
+  const dec = Math.abs(p) >= 100 ? 0 : 1;
+  return (p > 0 ? "+" : "") + p.toLocaleString("fr-FR", {minimumFractionDigits:dec, maximumFractionDigits:dec}) + " %";
+};
+const MOIS_COURT = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+// a.depuis vient de Supabase : format attendu "AAAA-MM-JJ", mais on ne fait
+// jamais confiance a une donnee externe pour un acces indexe -- un mois hors
+// plage renverrait "undefined" en plein milieu de la carte.
+const depuisTxt = d => {
+  const m = /^(\d{4})-(\d{2})-/.exec(String(d || ""));
+  if (!m) return "depuis l'achat";
+  const i = parseInt(m[2], 10) - 1;
+  return (i >= 0 && i < 12) ? `depuis ${MOIS_COURT[i]} ${m[1]}` : "depuis l'achat";
+};
+
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // n.url vient de Finnhub (donnee externe, T11) : esc() bloque l'evasion
 // d'attribut mais pas un schema "javascript:" -- n'accepter qu'http(s) avant
@@ -426,11 +519,17 @@ const statutLigne = a => a.ras
   ? "RAS"
   : (a.news.length ? `${a.news.length} point${a.news.length>1?"s":""} marquant${a.news.length>1?"s":""}` : "Point notable (voir résumé)");
 
-let secteurActif = "Tous";
+let secteursActifs = new Set();  // vide = tous les secteurs
 let vueActive = "resume";
 let statutActif = "tous";    // tous | detenue | surveillee
 let actuActif   = "toutes";  // toutes | avec | sans
 let chargementEchoue = false;
+
+// Un secteur est visible si aucune case n'est cochee (== "tous"), ou si son
+// nom fait partie de la selection courante.
+function secteurVisible(s){
+  return secteursActifs.size === 0 || secteursActifs.has(s.secteur);
+}
 
 function match(a, q){
   return !q || a.ticker.toLowerCase().includes(q) || a.nom.toLowerCase().includes(q);
@@ -439,8 +538,8 @@ function match(a, q){
 // Prédicat unique de visibilité (recherche + filtres Statut/Actualités).
 // `sauf` exclut son propre filtre pour permettre aux pastilles de compter
 // "si je clique ici, combien j'obtiens" (cf. renderFiltres) sans devoir
-// dupliquer la logique. Le secteur n'entre pas ici : il est géré à part
-// dans render() (vue Résumé uniquement, cf. secteursComptes).
+// dupliquer la logique. Le secteur n'entre pas ici : il est géré à part via
+// secteurVisible(), applique aux deux vues (render()/renderWatchlist()).
 function visible(a, q, sauf){
   if (!match(a, q)) return false;
   if (sauf !== "statut"){
@@ -454,68 +553,66 @@ function visible(a, q, sauf){
   return true;
 }
 
-// Secteurs a 0 masques sous filtre (David) : render() fait deja
-// "if (!actions.length) return \"\";", donc une pastille a 0 pointait vers une
-// section deja absente de l'ecran. "Tous" reste toujours affiche, meme a 0.
-// Le repli de secteurActif quand son propre secteur tombe a 0 est traite en
-// amont dans render() (verifierSecteurActif), avant l'appel a pills(q) ici.
-function pills(q){
-  const total = DATA.reduce((n,s)=>n + s.actions.filter(a=>visible(a,q)).length, 0);
-  const items = [{nom:"Tous", n:total}].concat(
-    DATA.map(s=>({nom:s.secteur, n:s.actions.filter(a=>visible(a,q)).length})).filter(i=>i.n>0)
-  );
-  document.getElementById("pills").innerHTML = items.map(i =>
-    `<button class="pill${i.nom===secteurActif?" on":""}" data-sector="${esc(i.nom)}" aria-pressed="${i.nom===secteurActif}">${esc(i.nom)}<span class="n">${i.n}</span></button>`
-  ).join("");
+// Secteurs a 0 masques sous filtre (David) : une case a 0 pointait vers une
+// liste deja vide sous les filtres Statut/Actualites courants. Sans repli
+// automatique (case cochee qui ne se decoche plus jamais toute seule), un
+// compte a 0 est desormais toujours honnete : cocher donne vraiment 0.
+function renderSecteurs(q){
+  // La case cochee/decochee a l'instant du re-rendu est celle qui a le focus
+  // (clic ou clavier) : on la retrouve par sa valeur apres reconstruction de
+  // la liste, sinon le focus se perd et un usage clavier doit re-tabuler
+  // depuis le haut a chaque case (finding Relecteur).
+  const focusVal = document.activeElement && document.activeElement.classList.contains("sect-check")
+    ? document.activeElement.value
+    : null;
+  const items = DATA
+    .map(s => ({nom:s.secteur, n:s.actions.filter(a=>visible(a,q)).length}))
+    .filter(i => i.n > 0);
+  document.getElementById("sect-list").innerHTML = items.map(i => `
+    <label class="sect-item">
+      <span><input type="checkbox" class="sect-check" value="${esc(i.nom)}"${secteursActifs.has(i.nom)?" checked":""}> ${esc(i.nom)}</span>
+      <span class="n">${i.n}</span>
+    </label>
+  `).join("");
+  const lbl = document.getElementById("sect-trigger-label");
+  lbl.textContent = secteursActifs.size === 0
+    ? "Secteurs : Tous"
+    : `Secteurs : ${secteursActifs.size} sélectionné${secteursActifs.size>1?"s":""}`;
+  document.getElementById("sect-clear").hidden = secteursActifs.size === 0;
+  if (focusVal !== null){
+    const next = [...document.querySelectorAll("#sect-list .sect-check")].find(el => el.value === focusVal);
+    if (next) next.focus();
+  }
 }
 
 // Compteurs des pastilles Statut/Actualités : chaque groupe s'auto-exclut
 // (visible(a,q,"statut") ignore le filtre Statut lui-même, etc.) pour que le
-// nombre affiché soit celui obtenu APRÈS clic, jamais un total figé.
-// secteursComptes scope par secteurActif seulement en vue Résumé : le filtre
-// secteur vit hors de visible() (appliqué à part dans render()) et la vue
-// Watchlist ne le connaît pas du tout (finding Grincheux, cf. spec §3).
+// nombre affiché soit celui obtenu APRÈS clic. Scope = secteurs actuellement
+// coches (secteurVisible), applique aux deux vues -- plus de repli, un
+// compte a 0 est toujours honnete (cliquer donne vraiment 0).
 function renderFiltres(q){
-  const scopeSecteur = vueActive === "resume" && secteurActif !== "Tous";
-  const base = (sauf, tousSecteurs) => DATA
-    .filter(s => tousSecteurs || !scopeSecteur || s.secteur === secteurActif)
+  const scope = sauf => DATA
+    .filter(s => secteurVisible(s))
     .flatMap(s => s.actions.filter(a => visible(a, q, sauf)));
 
-  const statutScope = base("statut", false);
-  const actuScope   = base("actu",   false);
-  // Bases tous secteurs : calculees seulement quand un secteur est selectionne
-  // (sinon identiques aux precedentes, inutile de rebalayer DATA).
-  const statutGlobal = scopeSecteur ? base("statut", true) : statutScope;
-  const actuGlobal   = scopeSecteur ? base("actu",   true) : actuScope;
-
-  // Le compteur annonce ce qu'on obtient VRAIMENT apres le clic, repli compris
-  // (finding Relecteur tour 2). Si l'option viderait le secteur selectionne,
-  // le clic declenche verifierSecteurActif -> repli sur "Tous" -> l'ecran
-  // montre le total tous secteurs : on affiche donc ce total, pas un 0 qui
-  // annoncerait une liste vide alors qu'elle ne le sera pas. Cas courant des
-  // qu'un secteur ne contient qu'un seul des deux statuts, pas un cas limite.
-  // Hors secteur selectionne, global === scope : un 0 y reste honnete (le clic
-  // donne bien une liste vide avec son message).
-  const compte = (scope, global, pred) => {
-    const n = scope.filter(pred).length;
-    return n > 0 ? n : global.filter(pred).length;
-  };
-  const toutes    = () => true;
-  const estDetenue = a => a.statut === "detenue";
+  const statutScope = scope("statut");
+  const actuScope   = scope("actu");
+  const toutes      = () => true;
+  const estDetenue  = a => a.statut === "detenue";
 
   const pill = (val, libelle, n, actif) =>
     `<button class="pill${actif?" on":""}" data-val="${esc(val)}" aria-pressed="${actif}">${esc(libelle)}<span class="n">${n}</span></button>`;
 
   document.getElementById("f-statut").innerHTML = [
-    pill("tous",       "Toutes",      compte(statutScope, statutGlobal, toutes),       statutActif === "tous"),
-    pill("detenue",    "Détenues",    compte(statutScope, statutGlobal, estDetenue),   statutActif === "detenue"),
-    pill("surveillee", "Surveillées", compte(statutScope, statutGlobal, a => !estDetenue(a)), statutActif === "surveillee"),
+    pill("tous",       "Toutes",      statutScope.filter(toutes).length,       statutActif === "tous"),
+    pill("detenue",    "Détenues",    statutScope.filter(estDetenue).length,   statutActif === "detenue"),
+    pill("surveillee", "Surveillées", statutScope.filter(a => !estDetenue(a)).length, statutActif === "surveillee"),
   ].join("");
 
   document.getElementById("f-actu").innerHTML = [
-    pill("toutes", "Toutes",          compte(actuScope, actuGlobal, toutes),      actuActif === "toutes"),
-    pill("avec",   "Avec actualité",  compte(actuScope, actuGlobal, a => !a.ras), actuActif === "avec"),
-    pill("sans",   "Sans actualité",  compte(actuScope, actuGlobal, a => a.ras),  actuActif === "sans"),
+    pill("toutes", "Toutes",          actuScope.filter(toutes).length,      actuActif === "toutes"),
+    pill("avec",   "Avec actualité",  actuScope.filter(a => !a.ras).length, actuActif === "avec"),
+    pill("sans",   "Sans actualité",  actuScope.filter(a => a.ras).length,  actuActif === "sans"),
   ].join("");
 }
 
@@ -527,6 +624,30 @@ function messageVide(q, filtresActifs){
   if (q && filtresActifs) return "Aucune action ne correspond à cette recherche et à ces filtres.";
   if (filtresActifs) return "Aucune action ne correspond à ces filtres.";
   return "Aucune action ne correspond à cette recherche.";
+}
+
+// Bloc central de la carte (T64). Deux etats seulement, jamais de trou :
+// - performance connue -> le chiffre, en gros ;
+// - action absente du releve du Club -> libelle explicite en retrait, qui dit
+//   POURQUOI il n'y a pas de chiffre (surveillee vs detenue sans donnee).
+function blocPerf(a){
+  if (a.perf == null) {
+    // Trois situations distinctes, jamais confondues : ligne bien presente au
+    // releve du Club mais sans cours exploitable ; action detenue qui n'y
+    // figure pas ; action seulement surveillee.
+    let titre, sous;
+    if (a.releve) { titre = "Cours indisponible"; sous = "au relevé, sans cotation"; }
+    else if (a.statut === "detenue") { titre = "Hors relevé"; sous = "non trouvée au relevé du Club"; }
+    else { titre = "Non détenue"; sous = "surveillée seulement"; }
+    return `<span class="card-perf vide">
+      <span class="v">${titre}</span>
+      <span class="k">${sous}</span>
+    </span>`;
+  }
+  return `<span class="card-perf">
+    <span class="v ${perfClass(a.perf)}">${perfTxt(a.perf)}</span>
+    <span class="k">${depuisTxt(a.depuis)}</span>
+  </span>`;
 }
 
 function carte(a, secteur){
@@ -547,6 +668,7 @@ function carte(a, secteur){
           ${spark(a, 64, 18)}
         </span>`}
       </span>
+      ${blocPerf(a)}
       <span class="card-desc${a.ras?" ras":""}" style="display:-webkit-box">${esc(a.resume)}</span>
       <span class="card-foot">
         <span class="badge ${a.statut==="detenue"?"badge-held":"badge-watch"}">${label(a.statut)}</span>
@@ -558,27 +680,10 @@ function carte(a, secteur){
   </button>`;
 }
 
-// Repli sur "Tous" si le secteur actif n'a plus aucune action visible sous
-// les filtres courants (ex : secteur "Technologie" selectionne, puis clic sur
-// "Surveillees" qui le vide) -- sinon la vue reste vide sans aucune pastille
-// en surbrillance, plus aucun repere pour comprendre pourquoi ni revenir en
-// arriere (David). Doit s'executer AVANT pills(q) et la construction des
-// sections dans render(), sinon on affiche une frame vide avant correction.
-function verifierSecteurActif(q){
-  if (secteurActif === "Tous") return;
-  const s = DATA.find(x => x.secteur === secteurActif);
-  const compte = s ? s.actions.filter(a => visible(a, q)).length : 0;
-  if (!compte) secteurActif = "Tous";
-}
-
-function render(){
-  const q = document.getElementById("q").value.trim().toLowerCase();
-  verifierSecteurActif(q);
-  pills(q);
-  renderFiltres(q);
+function render(q){
   let visibles = 0;
   const html = DATA.map(s => {
-    if (secteurActif !== "Tous" && secteurActif !== s.secteur) return "";
+    if (!secteurVisible(s)) return "";
     const actions = s.actions.filter(a => visible(a, q));
     if (!actions.length) return "";
     visibles += actions.length;
@@ -599,15 +704,14 @@ function render(){
   }).join("");
   document.getElementById("sectors").innerHTML = html;
   if (!chargementEchoue){
-    document.getElementById("empty").textContent = messageVide(q, statutActif !== "tous" || actuActif !== "toutes");
+    document.getElementById("empty").textContent = messageVide(q, statutActif !== "tous" || actuActif !== "toutes" || secteursActifs.size > 0);
   }
   document.getElementById("empty").style.display = visibles ? "none" : "block";
 }
 
 // Vue Watchlist : liste complete groupee par secteur, alimentee par DATA
-// deja charge (zero appel reseau). secteurActif (pills de la vue Resume)
-// n'y est pas applique -- il s'agit ici de la liste complete, pas filtree
-// par secteur, seulement par la recherche #q (comportement demande).
+// deja charge (zero appel reseau). Le filtre Secteurs (secteurVisible)
+// s'applique ici aussi, comme sur la vue Resume.
 // Bouton (pas <div>) pour heriter le comportement clic + clavier des cartes
 // .card -- meme comportement au clic que la vue Resume (David, 29-08-2026) :
 // ouvre le meme panneau de detail via ouvrirAction (listener sur #watchlist
@@ -625,11 +729,10 @@ function ligneWatchlist(a){
   </button>`;
 }
 
-function renderWatchlist(){
-  const q = document.getElementById("q").value.trim().toLowerCase();
-  renderFiltres(q);
+function renderWatchlist(q){
   let visibles = 0;
   const html = DATA.map(s => {
+    if (!secteurVisible(s)) return "";
     const actions = s.actions.filter(a => visible(a, q));
     if (!actions.length) return "";
     visibles += actions.length;
@@ -643,7 +746,7 @@ function renderWatchlist(){
   }).join("");
   document.getElementById("watchlist").innerHTML = html;
   if (!chargementEchoue){
-    document.getElementById("watchlist-empty").textContent = messageVide(q, statutActif !== "tous" || actuActif !== "toutes");
+    document.getElementById("watchlist-empty").textContent = messageVide(q, statutActif !== "tous" || actuActif !== "toutes" || secteursActifs.size > 0);
   }
   document.getElementById("watchlist-empty").style.display = visibles ? "none" : "block";
 }
@@ -694,12 +797,60 @@ function ouvrirSecteur(nom){
   document.getElementById("overlay").classList.add("open");
 }
 
-// Rendu unique selon la vue active : la barre de filtres Statut/Actualités
-// vit hors des deux vues (#view-resume / #view-watchlist), donc son listener
-// ne peut pas appeler render() en dur -- sinon un clic depuis la Watchlist
-// redessinerait la vue Résumé, invisible à l'écran (finding Grincheux §5bis).
+// Rangée "Filtres actifs" : un tag retirable par filtre en cours (recherche,
+// Statut, Actualités, un par secteur coché). TAGS_ACTUELS mémorise la
+// fonction "clear" de chaque tag pour le listener délégué #tags-list (on ne
+// peut pas remettre une closure dans un attribut HTML).
+let TAGS_ACTUELS = [];
+function renderTags(q){
+  // Meme principe que renderSecteurs() : innerHTML detruit le bouton qui a
+  // le focus. Ici pas d'identifiant stable comme la valeur d'une case --
+  // l'index sert de repere ; s'il ne pointe plus sur le meme tag apres
+  // retrait (les index se decalent), tant pis, le focus reste au moins dans
+  // la rangee au lieu de se perdre.
+  const focusI = document.activeElement && document.activeElement.classList.contains("tag-x")
+    ? document.activeElement.dataset.i
+    : null;
+  const tags = [];
+  // q (parametre) est deja en minuscules pour le filtrage -- le tag doit
+  // afficher ce que l'utilisateur a reellement tape, pas la version
+  // normalisee servant a la comparaison.
+  if (q) tags.push({label:`Recherche : "${document.getElementById("q").value.trim()}"`, clear: () => { document.getElementById("q").value = ""; }});
+  if (statutActif !== "tous") tags.push({label:`Statut : ${statutActif==="detenue"?"Détenues":"Surveillées"}`, clear: () => { statutActif = "tous"; }});
+  if (actuActif !== "toutes") tags.push({label:`Actualité : ${actuActif==="avec"?"Avec actualité":"Sans actualité"}`, clear: () => { actuActif = "toutes"; }});
+  [...secteursActifs].forEach(sec => tags.push({label:`Secteur : ${sec}`, clear: () => { secteursActifs.delete(sec); }}));
+  TAGS_ACTUELS = tags;
+  const row = document.getElementById("tags-row");
+  row.hidden = tags.length === 0;
+  if (!tags.length) return;
+  document.getElementById("tags-list").innerHTML = tags.map((t,i) => `
+    <span class="tag">${esc(t.label)}
+      <button type="button" class="tag-x" data-i="${i}" aria-label="Retirer ce filtre">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </span>
+  `).join("");
+  if (focusI !== null){
+    const next = document.querySelector(`#tags-list .tag-x[data-i="${focusI}"]`);
+    if (next) next.focus();
+  }
+}
+
+// Regroupe le rendu de la barre d'outils (Statut/Actualités/Secteurs) et de
+// la rangée de tags -- commun aux deux vues, fait une seule fois par redessin.
+function renderToolbar(q){
+  renderFiltres(q);
+  renderSecteurs(q);
+  renderTags(q);
+}
+
+// Rendu unique selon la vue active : q est lu une seule fois ici et passé en
+// paramètre à toute la chaîne, pour ne jamais relire #q à plusieurs endroits
+// avec un risque de désynchronisation.
 function redessiner(){
-  if (vueActive === "watchlist") renderWatchlist(); else render();
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  renderToolbar(q);
+  if (vueActive === "watchlist") renderWatchlist(q); else render(q);
 }
 
 document.getElementById("q").addEventListener("input", redessiner);
@@ -713,10 +864,6 @@ document.querySelector("nav.main").addEventListener("click", e => {
   document.getElementById("view-watchlist").style.display = vueActive === "watchlist" ? "" : "none";
   redessiner();
 });
-document.getElementById("pills").addEventListener("click", e => {
-  const b = e.target.closest(".pill"); if (!b) return;
-  secteurActif = b.dataset.sector; redessiner();
-});
 document.getElementById("f-statut").addEventListener("click", e => {
   const b = e.target.closest(".pill"); if (!b) return;
   statutActif = b.dataset.val; redessiner();
@@ -724,6 +871,45 @@ document.getElementById("f-statut").addEventListener("click", e => {
 document.getElementById("f-actu").addEventListener("click", e => {
   const b = e.target.closest(".pill"); if (!b) return;
   actuActif = b.dataset.val; redessiner();
+});
+document.getElementById("sect-trigger").addEventListener("click", e => {
+  e.stopPropagation();
+  const panel = document.getElementById("sect-panel");
+  const willOpen = panel.hidden;
+  panel.hidden = !willOpen;
+  document.getElementById("sect-trigger").setAttribute("aria-expanded", String(willOpen));
+});
+document.addEventListener("click", e => {
+  if (!document.getElementById("sect-dropdown").contains(e.target)) {
+    document.getElementById("sect-panel").hidden = true;
+    document.getElementById("sect-trigger").setAttribute("aria-expanded", "false");
+  }
+});
+document.getElementById("sect-list").addEventListener("change", e => {
+  const cb = e.target.closest(".sect-check"); if (!cb) return;
+  if (cb.checked) secteursActifs.add(cb.value); else secteursActifs.delete(cb.value);
+  redessiner();
+});
+document.getElementById("sect-clear").addEventListener("click", () => {
+  // Le bouton peut disparaitre (hidden) une fois la selection videe -- s'il
+  // avait le focus clavier, le renvoyer vers un element stable plutot que
+  // de le laisser se perdre.
+  document.getElementById("sect-trigger").focus();
+  secteursActifs.clear(); redessiner();
+});
+document.getElementById("tags-list").addEventListener("click", e => {
+  const b = e.target.closest(".tag-x"); if (!b) return;
+  const t = TAGS_ACTUELS[Number(b.dataset.i)];
+  if (t) { t.clear(); redessiner(); }
+});
+document.getElementById("tags-clear").addEventListener("click", () => {
+  // Meme raison que #sect-clear : renvoyer le focus vers la recherche
+  // qu'il vide de toute facon, plutot que vers un bouton en train de
+  // disparaitre.
+  document.getElementById("q").focus();
+  statutActif = "tous"; actuActif = "toutes"; secteursActifs.clear();
+  document.getElementById("q").value = "";
+  redessiner();
 });
 document.getElementById("sectors").addEventListener("click", e => {
   const t = e.target.closest("[data-sector-detail]");
@@ -745,7 +931,13 @@ document.getElementById("close").addEventListener("click", () => document.getEle
 document.getElementById("overlay").addEventListener("click", e => {
   if (e.target.id === "overlay") e.currentTarget.classList.remove("open");
 });
-document.addEventListener("keydown", e => { if (e.key === "Escape") document.getElementById("overlay").classList.remove("open"); });
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  document.getElementById("overlay").classList.remove("open");
+  document.getElementById("sect-panel").hidden = true;
+  document.getElementById("sect-trigger").setAttribute("aria-expanded", "false");
+  document.getElementById("sect-trigger").focus();
+});
 
 /* ── Auth (Supabase) ───────────────────────────────────────────────────── */
 const sb = supabase.createClient(SB_URL, SB_KEY);
@@ -783,7 +975,7 @@ async function startApp(){
   document.getElementById("app-shell").style.display = "";
   await fetchReal();
   afficherMeta();
-  render();
+  redessiner();
 }
 
 function initLogin(){
