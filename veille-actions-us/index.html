@@ -211,6 +211,10 @@
     font-size:11px; font-weight:500; line-height:16px; color:var(--ink-faint);
     letter-spacing:.04em; text-align:center;
   }
+  /* T77 : prochains resultats (earnings). Herite font-size/color de .k
+     ci-dessus (pas de couleur dediee, contrairement a .card-news svg) --
+     seul l'alignement icone+texte est ajoute ici. */
+  .card-perf .k.evt{ display:inline-flex; align-items:center; gap:4px; }
   .perf-up{color:#15803d}
   .perf-down{color:#b91c1c}
   .perf-flat{color:var(--ink-muted)}
@@ -456,6 +460,7 @@ let DATA = [];
 let META = {};
 
 const ICON_NEWS = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14H4z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M7 9h7M7 13h7"/></svg>';
+const ICON_CALENDAR = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
 const ICON_EXT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15L20 4"/><path d="M14 4h6v6"/><path d="M18 13v6H5V6h6"/></svg>';
 
 const tuile = t => LOGOS[t]
@@ -501,6 +506,22 @@ const depuisTxt = d => {
   return (i >= 0 && i < 12) ? `depuis ${MOIS_COURT[i]} ${m[1]}` : "depuis l'achat";
 };
 
+// a.prochain_resultat vient de Supabase, mais in fine de Finnhub (T77) :
+// meme prudence que depuisTxt sur l'acces indexe. Contrairement a depuisTxt,
+// le jour exact est necessaire ici (ex. "28 oct.") -- et contrairement a
+// depuisTxt, pas de repli textuel : si le format ne matche pas ou que le
+// jour/mois est hors plage, on renvoie null (rien n'est affiche, voir
+// blocPerf() -- degradation propre plutot qu'une date fausse ou un texte
+// generique trompeur).
+const prochainEvtTxt = d => {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d || ""));
+  if (!m) return null;
+  const i = parseInt(m[2], 10) - 1;
+  const jour = parseInt(m[3], 10);
+  if (i < 0 || i > 11 || jour < 1 || jour > 31) return null;
+  return `${jour} ${MOIS_COURT[i]}`;
+};
+
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // n.url vient de Finnhub (donnee externe, T11) : esc() bloque l'evasion
 // d'attribut mais pas un schema "javascript:" -- n'accepter qu'http(s) avant
@@ -521,7 +542,7 @@ const statutLigne = a => a.ras
 
 let secteursActifs = new Set();  // vide = tous les secteurs
 let vueActive = "resume";
-let statutActif = "tous";    // tous | detenue | surveillee
+let statutActif = "detenue"; // tous | detenue | surveillee -- defaut demande par David (T76, 01-09)
 let actuActif   = "toutes";  // toutes | avec | sans
 let chargementEchoue = false;
 
@@ -631,6 +652,11 @@ function messageVide(q, filtresActifs){
 // - action absente du releve du Club -> libelle explicite en retrait, qui dit
 //   POURQUOI il n'y a pas de chiffre (surveillee vs detenue sans donnee).
 function blocPerf(a){
+  // T77 : independant de la performance affichee -- ajoute dans les deux
+  // branches ci-dessous si une date est connue, rien du tout sinon
+  // (degradation propre, pas de ligne vide).
+  const evt = prochainEvtTxt(a.prochain_resultat);
+  const ligneEvt = evt ? `<span class="k evt">${ICON_CALENDAR}Résultats le ${esc(evt)}</span>` : "";
   if (a.perf == null) {
     // Trois situations distinctes, jamais confondues : ligne bien presente au
     // releve du Club mais sans cours exploitable ; action detenue qui n'y
@@ -642,11 +668,13 @@ function blocPerf(a){
     return `<span class="card-perf vide">
       <span class="v">${titre}</span>
       <span class="k">${sous}</span>
+      ${ligneEvt}
     </span>`;
   }
   return `<span class="card-perf">
     <span class="v ${perfClass(a.perf)}">${perfTxt(a.perf)}</span>
     <span class="k">${depuisTxt(a.depuis)}</span>
+    ${ligneEvt}
   </span>`;
 }
 
@@ -907,6 +935,11 @@ document.getElementById("tags-clear").addEventListener("click", () => {
   // qu'il vide de toute facon, plutot que vers un bouton en train de
   // disparaitre.
   document.getElementById("q").focus();
+  // "Reinitialiser" vide TOUS les filtres (recherche, secteurs, actualite
+  // inclus) -- reste sur "tous" (etat le plus neutre, aucun filtre actif),
+  // volontairement different du defaut d'affichage initial "detenue" de la
+  // page (T76, 01-09) : ce bouton signifie "aucun filtre", pas "revenir a
+  // l'accueil".
   statutActif = "tous"; actuActif = "toutes"; secteursActifs.clear();
   document.getElementById("q").value = "";
   redessiner();
