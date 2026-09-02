@@ -442,6 +442,7 @@
     </div>
     <div class="foot-bottom">
       <span id="foot-cours"></span>
+      <span id="foot-perf-releve"></span>
       <span id="foot-genere"></span>
     </div>
   </div>
@@ -504,6 +505,19 @@ const depuisTxt = d => {
   if (!m) return "depuis l'achat";
   const i = parseInt(m[2], 10) - 1;
   return (i >= 0 && i < 12) ? `depuis ${MOIS_COURT[i]} ${m[1]}` : "depuis l'achat";
+};
+
+// META.perf_releve vient de Supabase (rouge 2) : date du releve de compte du
+// Club au format "AAAA-MM-JJ" -- meme prudence que depuisTxt sur l'acces
+// indexe. Repli sur la valeur brute (jamais "undefined") si le format ne
+// matche pas.
+const releveTxt = d => {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d || ""));
+  if (!m) return String(d || "");
+  const i = parseInt(m[2], 10) - 1;
+  const jour = parseInt(m[3], 10);
+  if (i < 0 || i > 11 || jour < 1 || jour > 31) return String(d || "");
+  return `${jour} ${MOIS_COURT[i]} ${m[1]}`;
 };
 
 // a.prochain_resultat vient de Supabase, mais in fine de Finnhub (T77) :
@@ -671,9 +685,15 @@ function blocPerf(a){
       ${ligneEvt}
     </span>`;
   }
+  // Rouge 3 : note optionnelle (NVDA uniquement pour l'instant, voir
+  // data/club-positions-2026-07.json) -- signale quand la date affichee
+  // ci-dessus n'est pas la vraie date d'achat (ex. ajustement de split).
+  // Meme classe .k que la ligne "depuis" juste au-dessus, aucun style neuf.
+  const ligneNote = a.perf_note ? `<span class="k">${esc(a.perf_note)}</span>` : "";
   return `<span class="card-perf">
     <span class="v ${perfClass(a.perf)}">${perfTxt(a.perf)}</span>
     <span class="k">${depuisTxt(a.depuis)}</span>
+    ${ligneNote}
     ${ligneEvt}
   </span>`;
 }
@@ -981,6 +1001,7 @@ function afficherMeta(){
   document.getElementById("subtitle").textContent =
     `${totalActions} action${totalActions>1?"s":""} sur ${DATA.length} secteur${DATA.length>1?"s":""}`;
   document.getElementById("foot-cours").textContent = META.source_cours ? `Cours : ${META.source_cours}` : "";
+  document.getElementById("foot-perf-releve").textContent = META.perf_releve ? `Prix de revient au relevé du ${releveTxt(META.perf_releve)}` : "";
   document.getElementById("foot-genere").textContent = META.genere_le ? `Généré le ${META.genere_le}` : "";
 }
 
