@@ -1,6 +1,6 @@
 {
-    "genere_le":  "2026-09-01 21:15:29",
-    "nb_ko":  0,
+    "genere_le":  "2026-09-02 07:40:29",
+    "nb_ko":  1,
     "taches":  [
                    {
                        "nom":  "SyncProjetsObsidian",
@@ -32,7 +32,7 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-01 08:30",
+                       "dernier_run":  "2026-09-02 07:14",
                        "prochain_run":  "2026-09-02 08:30",
                        "code":  "0x0",
                        "note":  "",
@@ -44,8 +44,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-08-31 23:55",
-                       "prochain_run":  "2026-09-01 23:55",
+                       "dernier_run":  "2026-09-01 23:55",
+                       "prochain_run":  "2026-09-02 23:55",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -68,8 +68,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "en cours d\u0027execution",
-                       "dernier_run":  "2026-09-01 21:15",
-                       "prochain_run":  "2026-09-02 07:40",
+                       "dernier_run":  "2026-09-02 07:40",
+                       "prochain_run":  "2026-09-02 12:00",
                        "code":  "0x41301",
                        "note":  "",
                        "note_conduite":  ""
@@ -80,9 +80,9 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "session active",
-                       "dernier_run":  "2026-09-01 20:52",
-                       "prochain_run":  "2026-09-01 23:45",
-                       "code":  "0x0",
+                       "dernier_run":  "2026-09-02 06:13",
+                       "prochain_run":  "2026-09-02 23:45",
+                       "code":  "0x41301",
                        "note":  "",
                        "note_conduite":  ""
                    },
@@ -92,7 +92,7 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "tunnel connecte",
-                       "dernier_run":  "2026-09-01 15:57",
+                       "dernier_run":  "2026-09-02 06:15",
                        "prochain_run":  "",
                        "code":  "",
                        "note":  "",
@@ -104,8 +104,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-01 21:15",
-                       "prochain_run":  "2026-09-01 21:16",
+                       "dernier_run":  "2026-09-02 07:40",
+                       "prochain_run":  "2026-09-02 07:41",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -113,11 +113,11 @@
                    {
                        "nom":  "JournalTrading_SLSnapshot",
                        "type":  "continu",
-                       "etat":  "attente",
-                       "motif":  "terminal64 ferme -- capteur en pause (normal, pas une panne)",
+                       "etat":  "ok",
+                       "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-01 21:13",
-                       "prochain_run":  "2026-09-01 21:15",
+                       "dernier_run":  "2026-09-02 07:39",
+                       "prochain_run":  "2026-09-02 07:41",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -128,8 +128,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-01 21:15",
-                       "prochain_run":  "2026-09-01 21:20",
+                       "dernier_run":  "2026-09-02 07:40",
+                       "prochain_run":  "2026-09-02 07:45",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -140,8 +140,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-01 21:00",
-                       "prochain_run":  "2026-09-01 21:30",
+                       "dernier_run":  "2026-09-02 07:30",
+                       "prochain_run":  "2026-09-02 08:00",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -152,8 +152,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-01 21:00",
-                       "prochain_run":  "2026-09-01 21:30",
+                       "dernier_run":  "2026-09-02 07:30",
+                       "prochain_run":  "2026-09-02 08:00",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -257,12 +257,12 @@
                    {
                        "nom":  "JournalTrading_MonthlyStats",
                        "type":  "mensuel",
-                       "etat":  "ok",
-                       "motif":  "",
-                       "detail":  "en cours d\u0027execution",
+                       "etat":  "ko",
+                       "motif":  "code de sortie 0x1",
+                       "detail":  "",
                        "dernier_run":  "2026-09-01 19:00",
                        "prochain_run":  "2026-10-01 07:00",
-                       "code":  "0x41301",
+                       "code":  "0x1",
                        "note":  "",
                        "note_conduite":  ""
                    }
