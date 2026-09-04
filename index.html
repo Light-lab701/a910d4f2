@@ -51,6 +51,24 @@
   }
   #gate input:focus { outline: none; border-color: var(--accent); }
   #gate .error { color: var(--danger); font-size: 12px; height: 14px; }
+  #gate .bio-btn {
+    background: transparent; border: 1px solid var(--border-hi);
+    color: var(--text-2); font-size: 12px; padding: 8px 14px;
+    border-radius: 6px; cursor: pointer; font-family: inherit;
+  }
+  #gate .bio-btn:hover { color: var(--accent); border-color: var(--accent); }
+  #gate .bio-btn.hidden, #gate .bio-offer.hidden { display: none; }
+  #gate .bio-offer {
+    display: flex; flex-direction: column; gap: 10px; align-items: center;
+    font-size: 12px; color: var(--text-2); max-width: 240px; text-align: center;
+  }
+  #gate .bio-offer-actions { display: flex; gap: 8px; }
+  #gate .bio-offer-actions button {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-size: 12px; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; font-family: inherit;
+  }
+  #gate .bio-offer-actions button:hover { border-color: var(--accent); }
 
   /* ─── Shell ─────────────────────────────────────────────── */
   #shell { display: flex; height: 100vh; }
@@ -129,6 +147,14 @@
   <div class="brand">Central&nbsp;&nbsp;Hub</div>
   <input id="pin-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off">
   <div class="error" id="pin-error"></div>
+  <button id="bio-btn" class="bio-btn hidden">Déverrouiller avec Face ID / empreinte</button>
+  <div id="bio-offer" class="bio-offer hidden">
+    <div>Activer le déverrouillage rapide (Face ID / empreinte) sur cet appareil ?</div>
+    <div class="bio-offer-actions">
+      <button id="bio-offer-yes">Oui</button>
+      <button id="bio-offer-no">Non merci</button>
+    </div>
+  </div>
 </div>
 
 <div id="shell" class="hidden">
@@ -159,43 +185,159 @@
     { name: "Veille actions US", url: "veille-actions-us/" },
   ];
 
-  // ── PIN gate ──────────────────────────────────────────────
+  // ── PIN gate + biométrie + verrou d'inactivité (15 min) ────
   // Hash SHA-256 du code à 4 chiffres (jamais stocké en clair ici).
   const PIN_HASH = "d83036ffb5b49a153bc391fd12b4a10df06bbb200f39fed97c331b03b6833ce7";
   const UNLOCK_KEY = "terminal_unlocked_v1";
   const LAST_DASH_KEY = "hub_last_dashboard";
+  const LAST_ACTIVITY_KEY = "hub_last_activity";
+  const BIO_CRED_KEY = "hub_webauthn_cred_id";
+  const INACTIVITY_MS = 15 * 60 * 1000;
 
   async function sha256(text) {
     const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
     return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
   }
 
+  function bufToB64(buf) { return btoa(String.fromCharCode(...new Uint8Array(buf))); }
+  function b64ToBuf(b64) { return Uint8Array.from(atob(b64), c => c.charCodeAt(0)); }
+
+  async function bioAvailable() {
+    return !!(window.PublicKeyCredential &&
+      await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable().catch(() => false));
+  }
+
+  async function bioRegister() {
+    const cred = await navigator.credentials.create({
+      publicKey: {
+        challenge: crypto.getRandomValues(new Uint8Array(32)),
+        rp: { name: "Central Hub" },
+        user: { id: crypto.getRandomValues(new Uint8Array(16)), name: "david", displayName: "David" },
+        pubKeyCredParams: [{ alg: -7, type: "public-key" }, { alg: -257, type: "public-key" }],
+        authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required" },
+        timeout: 60000
+      }
+    });
+    localStorage.setItem(BIO_CRED_KEY, bufToB64(cred.rawId));
+  }
+
+  async function bioUnlock() {
+    const credId = localStorage.getItem(BIO_CRED_KEY);
+    if (!credId) return false;
+    try {
+      await navigator.credentials.get({
+        publicKey: {
+          challenge: crypto.getRandomValues(new Uint8Array(32)),
+          allowCredentials: [{ id: b64ToBuf(credId), type: "public-key" }],
+          userVerification: "required",
+          timeout: 60000
+        }
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  const gate = document.getElementById("gate");
+  const shellEl = document.getElementById("shell");
+  const pinInput = document.getElementById("pin-input");
+  const pinError = document.getElementById("pin-error");
+  const bioBtn = document.getElementById("bio-btn");
+  const bioOffer = document.getElementById("bio-offer");
+
+  function touchActivity() { localStorage.setItem(LAST_ACTIVITY_KEY, String(Date.now())); }
+
   function showShell() {
-    document.getElementById("gate").classList.add("hidden");
-    document.getElementById("shell").classList.remove("hidden");
+    gate.classList.add("hidden");
+    shellEl.classList.remove("hidden");
+    localStorage.setItem(UNLOCK_KEY, "1");
+    touchActivity();
     initNav();
   }
 
-  const pinInput = document.getElementById("pin-input");
-  const pinError = document.getElementById("pin-error");
+  async function setupBioButton() {
+    bioBtn.classList.add("hidden");
+    if (localStorage.getItem(BIO_CRED_KEY) && await bioAvailable()) {
+      bioBtn.classList.remove("hidden");
+    }
+  }
 
-  if (localStorage.getItem(UNLOCK_KEY) === "1") {
-    showShell();
-  } else {
+  function lock() {
+    shellEl.classList.add("hidden");
+    gate.classList.remove("hidden");
+    bioOffer.classList.add("hidden");
+    localStorage.removeItem(UNLOCK_KEY);
+    pinInput.value = "";
+    pinError.textContent = "";
+    setupBioButton();
     pinInput.focus();
   }
+
+  bioBtn.addEventListener("click", async () => {
+    pinError.textContent = "";
+    if (await bioUnlock()) showShell();
+    else pinError.textContent = "Échec — utilise le code";
+  });
+
+  document.getElementById("bio-offer-yes").addEventListener("click", async () => {
+    bioOffer.classList.add("hidden");
+    try { await bioRegister(); } catch (e) { /* annulé ou non supporté, tant pis */ }
+    showShell();
+  });
+  document.getElementById("bio-offer-no").addEventListener("click", () => {
+    bioOffer.classList.add("hidden");
+    showShell();
+  });
 
   pinInput.addEventListener("input", async () => {
     if (pinInput.value.length !== 4) return;
     const hash = await sha256(pinInput.value);
-    if (hash === PIN_HASH) {
-      localStorage.setItem(UNLOCK_KEY, "1");
-      showShell();
-    } else {
+    if (hash !== PIN_HASH) {
       pinError.textContent = "Code incorrect";
       pinInput.value = "";
+      return;
+    }
+    pinError.textContent = "";
+    // Premier code juste (pas de biométrie enregistrée) + appareil compatible
+    // -> propose l'activation avant de révéler le shell.
+    if (!localStorage.getItem(BIO_CRED_KEY) && await bioAvailable()) {
+      bioOffer.classList.remove("hidden");
+    } else {
+      showShell();
     }
   });
+
+  // ── Auto-verrouillage après 15 min d'inactivité ────────────
+  ["mousemove", "keydown", "click", "touchstart", "scroll"].forEach(evt => {
+    document.addEventListener(evt, () => {
+      if (shellEl.classList.contains("hidden")) return;
+      touchActivity();
+    }, { passive: true });
+  });
+
+  function checkInactivity() {
+    if (shellEl.classList.contains("hidden")) return;
+    const last = Number(localStorage.getItem(LAST_ACTIVITY_KEY) || 0);
+    if (Date.now() - last >= INACTIVITY_MS) lock();
+  }
+
+  setInterval(checkInactivity, 15000);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") checkInactivity();
+  });
+
+  // ── État initial ────────────────────────────────────────────
+  (async () => {
+    const last = Number(localStorage.getItem(LAST_ACTIVITY_KEY) || 0);
+    if (localStorage.getItem(UNLOCK_KEY) === "1" && (Date.now() - last) < INACTIVITY_MS) {
+      showShell();
+    } else {
+      localStorage.removeItem(UNLOCK_KEY);
+      await setupBioButton();
+      pinInput.focus();
+    }
+  })();
 
   // ── Sidebar rétractable ──────────────────────────────────
   const shell = document.getElementById("shell");
