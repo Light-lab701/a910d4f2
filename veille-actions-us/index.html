@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Veille actions US — Résumé hebdo</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.114.0/dist/umd/supabase.js" integrity="sha384-UxmVkfpcoSCBn4QrHwxxZVlCbloMpP/2Ay2ByWcNy6TcMxC3JUgqa8Geipyl0tP7" crossorigin="anonymous"></script>
 <style>
   :root{
     --bg:#ffffff;
@@ -464,9 +464,14 @@ const ICON_NEWS = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" s
 const ICON_CALENDAR = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
 const ICON_EXT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15L20 4"/><path d="M14 4h6v6"/><path d="M18 13v6H5V6h6"/></svg>';
 
-const tuile = t => LOGOS[t]
-  ? `<span class="tile"><img src="${esc(LOGOS[t])}" alt="Logo ${esc(t)}"></span>`
-  : `<span class="tile">${esc(t)}</span>`;
+const safeImgSrc = u => /^data:image\/(png|jpeg);base64,[A-Za-z0-9+/]+={0,2}$/.test(u || "") ? u : "";
+
+const tuile = t => {
+  const src = safeImgSrc(LOGOS[t]);
+  return src
+    ? `<span class="tile"><img src="${esc(src)}" alt="Logo ${esc(t)}"></span>`
+    : `<span class="tile">${esc(t)}</span>`;
+};
 
 const spark = (a, w, h) => {
   if (!a.serie || a.serie.length < 2) return "";
