@@ -1,6 +1,6 @@
 {
-    "genere_le":  "2026-09-06 07:47:36",
-    "nb_ko":  1,
+    "genere_le":  "2026-09-06 07:51:21",
+    "nb_ko":  0,
     "taches":  [
                    {
                        "nom":  "SyncProjetsObsidian",
@@ -17,12 +17,12 @@
                    {
                        "nom":  "BackupSyncr",
                        "type":  "quotidien",
-                       "etat":  "ko",
-                       "motif":  "code de sortie 0x1",
-                       "detail":  "",
-                       "dernier_run":  "2026-09-05 20:30",
+                       "etat":  "ok",
+                       "motif":  "",
+                       "detail":  "379 Mo en 133 s",
+                       "dernier_run":  "2026-09-06 07:48",
                        "prochain_run":  "2026-09-06 20:30",
-                       "code":  "0x1",
+                       "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
                    },
@@ -104,8 +104,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-06 07:47",
-                       "prochain_run":  "2026-09-06 07:48",
+                       "dernier_run":  "2026-09-06 07:51",
+                       "prochain_run":  "2026-09-06 07:52",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -116,8 +116,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-06 07:45",
-                       "prochain_run":  "2026-09-06 07:47",
+                       "dernier_run":  "2026-09-06 07:49",
+                       "prochain_run":  "2026-09-06 07:51",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -128,8 +128,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-06 07:45",
-                       "prochain_run":  "2026-09-06 07:50",
+                       "dernier_run":  "2026-09-06 07:50",
+                       "prochain_run":  "2026-09-06 07:55",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
@@ -248,8 +248,8 @@
                        "etat":  "ok",
                        "motif":  "",
                        "detail":  "",
-                       "dernier_run":  "2026-09-05 07:50",
-                       "prochain_run":  "2026-09-06 07:50",
+                       "dernier_run":  "2026-09-06 07:50",
+                       "prochain_run":  "2026-09-07 07:50",
                        "code":  "0x0",
                        "note":  "",
                        "note_conduite":  ""
