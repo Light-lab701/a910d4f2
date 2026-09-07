@@ -551,8 +551,8 @@ const label = st => st === "detenue" ? "détenue" : "surveillée";
 
 // Statut "actualite" d'une action pour l'affichage secteur (panneau detail) :
 // doit se baser sur a.ras comme le compteur de secteur (render()/ouvrirSecteur),
-// jamais sur a.news.length seul -- sinon un cas comme CRTA (ras:false, mais
-// news:[] car son seul point notable est le "resume", pas un lien externe)
+// jamais sur a.news.length seul -- sinon un ticker avec ras:false mais
+// news:[] (son seul point notable est le "resume", pas un lien externe)
 // redevient incoherent : compte comme "a signaler" dans le compteur mais
 // affiche quand meme "RAS" ligne par ligne.
 const statutLigne = a => a.ras
