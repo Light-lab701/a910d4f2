@@ -183,8 +183,6 @@
   .quote-line .spark{margin-top:0; align-self:center}
   .card-name{font-size:16.32px; font-weight:600; line-height:24px; color:var(--ink-strong); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .card-sector{font-size:12px; line-height:16px; color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  .card-count{display:inline-flex; align-items:center; gap:4px; flex:none; font-size:12px; font-weight:500; color:var(--ink-muted); font-variant-numeric:tabular-nums}
-  .card-count svg{color:#a1a1aa}
   .card-desc{
     font-size:14px; line-height:24px; color:var(--ink-muted); min-height:48px;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
@@ -1017,19 +1015,42 @@ function signalerEchecChargement(){
   document.getElementById("watchlist-empty").textContent = msg;
 }
 
+async function gererSessionExpiree(){
+  appStarted = false;
+  document.getElementById("app-shell").style.display = "none";
+  document.getElementById("login-gate").style.display = "";
+  try { await sb.auth.signOut(); } catch(_) {}
+}
+
+// Après un échec de fetchReal(), le code/message de l'erreur Postgrest ne dit
+// pas de façon fiable si la cause est une session morte : selon le chemin
+// d'échec côté SDK (refresh token mort avant même l'appel), la requête peut
+// repartir authentifiée en clé anonyme et RLS renvoie un simple "not found"
+// (PGRST116), sans trace de JWT/401 dans l'erreur. Le signal fiable est donc
+// comportemental : y a-t-il encore une session Supabase active ?
+async function gererEchecFetch(){
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { await gererSessionExpiree(); return; }
+  signalerEchecChargement();
+}
+
 async function fetchReal(){
   try {
     const { data, error } = await sb.from(SB_TABLE).select("data,logos,meta").eq("id", 1).single();
-    if (error) { console.warn(error); signalerEchecChargement(); return; }
+    if (error) { console.warn(error); await gererEchecFetch(); return; }
     DATA = data.data || [];
     LOGOS = data.logos || {};
     META = data.meta || {};
-  } catch(e) { console.warn(e); signalerEchecChargement(); }
+  } catch(e) {
+    console.warn(e);
+    await gererEchecFetch();
+  }
 }
 
 async function startApp(){
   if (appStarted) return;
   appStarted = true;
+  chargementEchoue = false;
   document.getElementById("login-gate").style.display = "none";
   document.getElementById("app-shell").style.display = "";
   await fetchReal();
